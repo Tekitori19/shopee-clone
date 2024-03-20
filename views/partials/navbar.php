@@ -1,3 +1,14 @@
+<?php
+    $navbarClass = "border-b-2 border-indigo-700 text-indigo-700";
+    $routePath = $_SERVER['REQUEST_URI'];
+    $check = match ($routePath) {
+        '/' => 1,
+        '/listings' => 2,
+        '/listings/create' => 3,
+        default => 4
+    }
+?>
+
 <div id="mobile-nav" class="w-full xl:hidden h-full absolute z-40">
         <div class="bg-gray-800 opacity-50 inset-0 fixed w-full h-full" onclick="sidebarHandler(false)"></div>
         <div class="w-64 z-20 absolute left-0 z-40 top-0 bg-white shadow flex-col justify-between transition duration-150 ease-in-out h-full">
@@ -142,10 +153,10 @@
                     <h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight ml-3 hidden lg:block">Shop BEE</h3>
                 </div>
                 <ul class="pr-12 xl:flex items-center h-full hidden">
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-indigo-700 tracking-normal border-b-2 border-indigo-700"><a href="/"> Trang Chủ</a></li>
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal" ><a href="/#store">Shop</a></li>
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal"><a href="/listings/create">Đăng bài</a></li>
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal"><a href="javascript:void(0)">Deliverables</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check===1 ? $navbarClass : ""?>"><a href="/"> Trang Chủ</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check===2 ? $navbarClass : ""?>" ><a href="/listings">Shop</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check===3 ? $navbarClass : ""?>"><a href="/listings/create">Đăng bài</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal <?= $check===4 ? $navbarClass : ""?>"><a href="javascript:void(0)">Deliverables</a></li>
                 </ul>
             </div>
             <div class="h-full xl:flex items-center justify-end hidden">
@@ -177,7 +188,7 @@
                         <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative" onclick="dropdownHandler(this)">
                             <button aria-haspopup="true" onclick="dropdownHandler(this)" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded flex items-center" >
                                 <img class="rounded h-10 w-10 object-cover" src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png" alt="logo">
-                                <p class="text-gray-800 text-sm ml-2">Jane Doe</p>
+                                <p class="text-gray-800 text-sm ml-2">Guest</p>
                             </button>
                             <ul class="p-2 w-40 border-r bg-white absolute rounded z-40 left-0 shadow mt-64 hidden">
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
@@ -187,7 +198,7 @@
                                             <circle cx="12" cy="7" r="4" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                         </svg>
-                                        <a href="javascript:void(0)" class="ml-2">My Profile</a>
+                                        <a href="/login" class="ml-2">Đăng Nhập</a>
                                     </div>
                                 </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
@@ -197,7 +208,7 @@
                                         <line x1="12" y1="17" x2="12" y2="17.01" />
                                         <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
                                     </svg>
-                                    <a href="javascript:void(0)" class="ml-2">Help Center</a>
+                                    <a href="/register" class="ml-2">Đăng kí</a>
                                 </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -221,6 +232,27 @@
             </div>
         </div>
     </nav>
+    <!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var navbarLinks = document.querySelectorAll(".navbar-item");
+
+        // Mặc định set border cho liên kết của trang chủ
+        navbarLinks[0].classList.add("border-b-2", "border-indigo-700", "text-indigo-700");
+
+        // Thêm sự kiện click cho từng liên kết
+        navbarLinks.forEach(function(link, index) {
+            link.addEventListener("click", function() {
+                // Loại bỏ lớp active từ tất cả các liên kết
+                navbarLinks.forEach(function(item) {
+                    item.classList.remove("border-b-2 border-indigo-700");
+                });
+                // Thêm lớp active cho liên kết được click
+                this.classList.add("border-b-2 border-indigo-700");
+            });
+        });
+    });
+    </script> -->
+
     <script>
         function dropdownHandler(element) {
             let single = element.getElementsByTagName("ul")[0];
