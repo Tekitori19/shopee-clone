@@ -1,6 +1,6 @@
  <!-- Bottom Banner -->
  <section class="container mx-auto my-6">
-     <div class="border-indigo-700 border rounded p-4 flex items-center justify-between">
+     <div class="border-indigo-400 border rounded p-4 flex items-center justify-between">
          <div>
              <h2 class="text-xl font-semibold">Looking to hire?</h2>
              <p class="text-gry-800 text-lg mt-2">

@@ -139,12 +139,12 @@
             <div class="h-full flex items-center">
                 <div aria-label="Home" role="img" class="mr-10 flex items-center">
                     <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_white_bg-svg1.svg" alt="logo">
-                    <h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight ml-3 hidden lg:block">The North</h3>
+                    <h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight ml-3 hidden lg:block">Shop BEE</h3>
                 </div>
                 <ul class="pr-12 xl:flex items-center h-full hidden">
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-indigo-700 tracking-normal border-b-2 border-indigo-700"><a href="javascript:void(0)"> Dashboard</a></li>
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal" ><a href="javascript:void(0)">Products</a></li>
-                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal"><a href="javascript:void(0)">Performance</a></li>
+                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-indigo-700 tracking-normal border-b-2 border-indigo-700"><a href="/"> Trang Chủ</a></li>
+                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal" ><a href="/#store">Shop</a></li>
+                    <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal"><a href="/listings/create">Đăng bài</a></li>
                     <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal"><a href="javascript:void(0)">Deliverables</a></li>
                 </ul>
             </div>
