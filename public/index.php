@@ -1,8 +1,9 @@
 <?php
 require_once "../helpers.php";
+require_once basePath("Database.php");
 
-$uri = $_SERVER['REQUEST_URI'];
-$method = $_SERVER['REQUEST_METHOD'];
+$config = require_once basePath('config/db.php');
+$db = new Database($config);
 
 require_once basePath("Router.php");
 
@@ -12,5 +13,8 @@ $router = new Router();
 // Get routes
 require_once basePath('routes.php');
 // inspect($router);
+
+$uri = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);
