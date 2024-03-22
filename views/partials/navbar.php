@@ -1,11 +1,28 @@
 <?php
     $navbarClass = "border-b-2 border-indigo-700 text-indigo-700";
     $routePath = $_SERVER['REQUEST_URI'];
+    $staticNav = [
+        'Trang chủ',
+        'Shop',
+        'Đăng bài'
+    ];
+    $dynamicNav = [
+        'Thanh toán',
+        'Đăng nhập',
+        'Đăng ký',
+        'Quản lý (khách hàng)',
+        'Quản lý (sản phẩm)'
+    ];
     $check = match ($routePath) {
-        '/' => 1,
-        '/listings' => 2,
-        '/listings/create' => 3,
-        default => 4
+        '/' => 'Trang chủ',
+        '/listings' => 'Shop',
+        '/listings/create' => 'Đăng bài',
+        '/checkout' => 'Thanh toán',
+        '/login' => 'Đăng nhập',
+        '/register' => 'Đăng ký',
+        '/dashboard' => 'Quản lý (admin)',
+        '/dashboard/products' => 'Quản lý (sản phẩm)',
+        default => 'jj'
     }
 ?>
 
@@ -153,10 +170,12 @@
                     <h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight ml-3 hidden lg:block">Shop BEE</h3>
                 </div>
                 <ul class="pr-12 xl:flex items-center h-full hidden">
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check===1 ? $navbarClass : ""?>"><a href="/"> Trang Chủ</a></li>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check===2 ? $navbarClass : ""?>" ><a href="/listings">Shop</a></li>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check===3 ? $navbarClass : ""?>"><a href="/listings/create">Đăng bài</a></li>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal <?= $check===4 ? $navbarClass : ""?>"><a href="javascript:void(0)">Deliverables</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check === 'Trang chủ' ? $navbarClass : ""?>"><a href="/"> Trang Chủ</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check === 'Shop' ? $navbarClass : ""?>" ><a href="/listings">Shop</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : ""?>"><a href="/listings/create">Đăng bài</a></li>
+                    <?php if (!in_array($check, $staticNav) && in_array($check, $dynamicNav)): ?>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal <?=  $navbarClass ?>"><?=$check?></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="h-full xl:flex items-center justify-end hidden">
@@ -172,17 +191,17 @@
                     <div class="w-full h-full flex">
                         <div class="w-16 xl:w-32 h-full flex items-center justify-center xl:border-r">
                             <div class="relative">
-                                <a aria-label="show notifications" href="javascript:void(0)" class="cursor-pointer w-6 h-6 xl:w-auto xl:h-auto text-gray-600">
+                                <a aria-label="show notifications" href="/checkout" class="cursor-pointer w-6 h-6 xl:w-auto xl:h-auto text-gray-600">
                                     <!-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_white_bg-svg6.svg" alt="notifications"> -->
                                     <button type="button" class="group -m-2 flex items-center p-2" aria-expanded="false">
                                         <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
                                         </svg>
-                                        <!-- <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span> -->
+                                        <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                                         <span class="sr-only">items in cart, view bag</span>
                                       </button>
                                 </a>
-                                <!-- <div class="animate-ping w-2 h-2 rounded-full bg-red-400 border border-white absolute inset-0 mt-1 mr-1 m-auto"></div> -->
+                                <div class="animate-ping w-2 h-2 rounded-full bg-red-400 border border-white absolute inset-0 mt-1 mr-4 m-auto"></div>
                             </div>
                         </div>
                         <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative" onclick="dropdownHandler(this)">
@@ -216,7 +235,7 @@
                                         <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <circle cx="12" cy="12" r="3" />
                                     </svg>
-                                    <a href="javascript:void(0)" class="ml-2">Account Settings</a>
+                                    <a href="/dashboard" class="ml-2">Quản lý</a>
                                 </li>
                             </ul>
                         </div>

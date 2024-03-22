@@ -1,4 +1,4 @@
-<div class="mx-auto container bg-white dark:bg-gray-800 shadow rounded">
+<div class="mx-auto container bg-white dark:bg-gray-800 shadow pt-14 rounded">
         <div class="flex flex-col lg:flex-row p-8 justify-between items-start lg:items-stretch w-full">
             <div class="w-full lg:w-1/4 xl:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
                 <div class="w-full relative mb-2 lg:mb-0 lg:mr-4">
@@ -17,13 +17,13 @@
                 </div>
             </div>
             <div class="w-full lg:w-3/4 xl:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-between">
-                <div class="relative w-full lg:w-1/4 my-2 lg:my-0 lg:mx-2 xl:mx-4 z-10">
+                <div class="relative w-full lg:w-1/4 my-2 lg:my-0 lg:mx-2 xl:mx-4 z-0">
                     <div class="absolute z-0 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg2.svg"
                             alt="arrow down">
                     </div>
                     <select aria-label="Selected tab"
-                        class="relative z-10 cursor-pointer focus:outline-none focus:border-gray-800 focus:shadow-outline-gray text-sm form-select block w-full py-2 px-2 xl:px-3 border border-gray-300 dark:border-gray-200 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent">
+                        class="relative cursor-pointer focus:outline-none focus:border-gray-800 focus:shadow-outline-gray text-sm form-select block w-full py-2 px-2 xl:px-3 border border-gray-300 dark:border-gray-200 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent">
                         <option class="text-sm text-gray-600 dark:text-gray-400">Inactive</option>
                         <option class="text-sm text-gray-600 dark:text-gray-400">Inactive</option>
                         <option selected="" class="text-sm text-gray-600 dark:text-gray-400">Representatives</option>
@@ -31,13 +31,13 @@
                         <option class="text-sm text-gray-600 dark:text-gray-400">Inactive</option>
                     </select>
                 </div>
-                <div class="relative w-full lg:w-1/4 my-2 lg:my-0 lg:mx-2 xl:mx-4 z-10">
+                <div class="relative w-full lg:w-1/4 my-2 lg:my-0 lg:mx-2 xl:mx-4 z-0">
                     <div class="z-0 absolute inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg2.svg"
                             alt="arrow down">
                     </div>
                     <select aria-label="Selected tab"
-                        class="relative z-10 cursor-pointer focus:outline-none focus:border-gray-800 focus:shadow-outline-gray text-sm form-select block w-full py-2 px-2 xl:px-3 border border-gray-300 dark:border-gray-200 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent">
+                        class="relative cursor-pointer focus:outline-none focus:border-gray-800 focus:shadow-outline-gray text-sm form-select block w-full py-2 px-2 xl:px-3 border border-gray-300 dark:border-gray-200 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent">
                         <option class="text-sm text-gray-600 dark:text-gray-400">Inactive</option>
                         <option class="text-sm text-gray-600 dark:text-gray-400">Inactive</option>
                         <option selected="" class="text-sm text-gray-600 dark:text-gray-400">Status Reports</option>
@@ -51,14 +51,15 @@
                         class="z-0 w-10 px-2 absolute inset-0 m-auto z-0 border-l mr-0 flex items-center text-indigo-700 focus:outline-none focus:ring-2 focus:ring-gray-800 ">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg3.svg"
                             alt="calendar">
-                        <input placeholder="date" type="date" class="absolute right-0 z-10 opacity-0 cursor-pointer"
+                        <input placeholder="date" type="date" class="absolute right-0 z-0 opacity-0 cursor-pointer"
                             id="datepicker" />
                     </button>
                     <p class="text-sm text-gray-600 dark:text-gray-400 datepicker">Schedule Dates</p>
                 </div>
                 <button
-                    class="focus:shadow-outline-gray border border-transparent w-auto lg:w-1/4 my-2 lg:my-0 lg:ml-2 xl:ml-4 bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:shadow-outline-gray duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm">Add
-                    Schedule</button>
+                    class="focus:shadow-outline-gray border border-transparent w-auto lg:w-1/4 my-2 lg:my-0 lg:ml-2 xl:ml-4 bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:shadow-outline-gray duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm">
+                    <a href="/dashboard/products">Quản lý sản phẩm</a>
+                </button>
 
             </div>
         </div>
@@ -67,30 +68,24 @@
                 <thead>
                     <tr class="w-full h-16 border-gray-300 dark:border-gray-200 border-b py-8 bg-indigo-50">
                         <th role="columnheader"
-                            class="pl-8 text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Date
+                            class="pl-8 text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Ngày mua
                         </th>
                         <th role="columnheader"
-                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Time</th>
+                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Sản phẩm | số lượng</th>
                         <th role="columnheader"
-                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Status
+                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Trạng thái
                         </th>
                         <th role="columnheader"
-                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Client
+                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Khách hàng
                         </th>
                         <th role="columnheader"
-                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Phone
-                            Number</th>
+                            class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Số điện thoại</th>
                         <th role="columnheader"
                             class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                            Representative</th>
+                            Địa chỉ</th>
                         <th role="columnheader"
                             class="text-gray-600 font-normal pr-6 text-left text-sm tracking-normal leading-4">Action
                         </th>
-                        <td class="pr-8">
-                            <button
-                                class="w-32 opacity-0 bg-gray-100 transition duration-150 ease-in-out focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm cursor-default">Start
-                                Session</button>
-                        </td>
                     </tr>
                 </thead>
                 <tbody role="rowgroup">
@@ -101,7 +96,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-100 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -116,7 +111,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -147,11 +142,7 @@
                             </div>
                         </td>
 
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -160,7 +151,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-yellow-100 text-yellow-700 rounded-full text-sm leading-3 py-2 px-5">Reg.
@@ -175,7 +166,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -205,11 +196,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="opacity-50 h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -218,7 +205,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-200 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -233,7 +220,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -263,10 +250,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="cursor-not-allowed bg-gray-200 transition duration-150 ease-in-out rounded text-gray-600 dark:text-gray-400 px-5 py-1 text-sm focus:outline-none">Cancelled</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -275,7 +259,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div
@@ -291,7 +275,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -321,11 +305,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="opacity-50 h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -334,7 +314,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-200 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -349,7 +329,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -379,10 +359,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="cursor-not-allowed bg-gray-200 transition duration-150 ease-in-out rounded text-gray-600 dark:text-gray-400 px-5 py-1 text-sm focus:outline-none">Cancelled</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -391,7 +368,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-100 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -406,7 +383,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -436,11 +413,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -449,7 +422,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-yellow-100 text-yellow-700 rounded-full text-sm leading-3 py-2 px-5">Reg.
@@ -464,7 +437,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -494,11 +467,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -507,7 +476,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-100 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -522,7 +491,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -552,11 +521,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -565,7 +530,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div
@@ -581,7 +546,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -611,11 +576,7 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="bg-gray-100 transition duration-150 ease-in-out border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-indigo-700 px-5 py-1 text-sm">Start
-                                Session</button>
-                        </td>
+                        
                     </tr>
                     <tr
                         class="opacity-50 h-24 border-gray-300 border-b border-t hover:border-indigo-300 hover:shadow-md cursor-pointer transition duration-150 ease-in-out">
@@ -624,7 +585,7 @@
                             06/02/2020</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            9:00 am</td>
+                            Bánh mì | 2</td>
                         <td class="pr-6">
                             <div class="w-full flex justify-start items-center h-full">
                                 <div class="bg-indigo-200 text-indigo-700 rounded-full text-sm leading-3 py-2 px-5">New
@@ -639,7 +600,7 @@
                             300-300-232-232</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                            Dr. Ralp Kimmerman</td>
+                            144 Nguyễn Thị Thập</td>
                         <td
                             class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                             <div class="flex items-center">
@@ -669,39 +630,11 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="pr-8 text-right">
-                            <button
-                                class="cursor-not-allowed bg-gray-200 transition duration-150 ease-in-out rounded text-gray-600 dark:text-gray-400 px-5 py-1 text-sm focus:outline-none">Cancelled</button>
-                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="mx-auto container pt-8 flex justify-center sm:justify-end items-center">
-        <a class="mr-2 sm:mr-5 rounded border border-transparent focus:outline-none focus:border-gray-800 text-gray-600 focus:shadow-outline-gray"
-            aria-label="Previous Page" role="link" href="javascript: void(0)">
-            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg7.svg"
-                alt="Previous">
-        </a>
-        <p class="text-gray-800 dark:text-gray-100 fot-normal text-base">Page</p>
-        <label for="selectedPage" class="hidden"></label>
-        <input placeholder="0" id="selectedPage" type="text"
-            class="bg-white dark:bg-gray-800 w-8 px-2 mx-2 text-gray-800 dark:text-gray-100 focus:outline-none focus:shadow-outline-gray focus:border focus:border-indigo-700 font-normal flex items-center text-base border-gray-300 rounded border"
-            value="4" />
-        <p class="text-gray-800 dark:text-gray-100 fot-normal text-base">of 20</p>
-        <a class="mx-2 sm:mx-5 rounded border border-transparent focus:outline-none focus:border-gray-800 text-gray-600 focus:shadow-outline-gray"
-            aria-label="Next Page" role="link" href="javascript: void(0)">
-            <img class="transform rotate-180"
-                src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg7.svg"
-                alt="Previous">
-        </a>
-        <label for="totalPage" class="hidden"></label>
-        <input placeholder="0" id="totalPage" type="text"
-            class="bg-white dark:bg-gray-800 w-10 px-2 mr-2 text-gray-800 dark:text-gray-100 focus:outline-none focus:shadow-outline-gray focus:border focus:border-indigo-700 font-normal flex items-center text-base border-gray-300 rounded border"
-            value="30" />
-        <p class="-mt-1 text-gray-800 dark:text-gray-100 fot-normal text-base">per page</p>
-    </div>
-
 
     </div>

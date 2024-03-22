@@ -7,4 +7,7 @@
     $products = $db->query('SELECT * FROM products')->fetchAll();
     // inspect($products);
 
-    loadView('home');
+    loadView('home', [
+        'products' => $products,
+        'home' => true
+    ]);

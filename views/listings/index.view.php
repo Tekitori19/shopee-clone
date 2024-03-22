@@ -1,4 +1,6 @@
 <?php
     loadPartial("head");
     loadPartial("navbar");
-    loadPartial("shop-container");
+    loadPartial("shop-container", [
+        'products' => $products
+    ]);
