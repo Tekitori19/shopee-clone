@@ -1,5 +1,5 @@
 /vendor
 /node_modules
-/config/db.php
+/config/_db.php
 .env
 .vscode
