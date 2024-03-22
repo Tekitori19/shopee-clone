@@ -1,4 +1,4 @@
 <?php
     loadPartial("head");
     loadPartial("navbar");
-    loadPartial("admin");
+    loadPartial("admin-product");

@@ -44,7 +44,8 @@
                                         <select aria-label="select an option" name="category" class="text-sm text-gray-500 dark:bg-gray-900 w-full focus:outline-none">
                                             <option selected="" disabled="" value="">Danh mục</option>
                                             <option value="1">Đồ điện tử</option>
-                                            <option value="2">Thời trang và gia dụng</option>
+                                            <option value="2">Thời trang</option>
+                                            <option value="3">Gia dụng</option>
                                         </select>
                                     </div>
                                 </div>

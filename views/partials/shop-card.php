@@ -2,6 +2,12 @@
     // inspect($product);
     //<?= $product->picture
     //"https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg"
+    $category = match ($product->category_id) {
+        1 => 'Đồ điện tử',
+        2 => 'Thời trang',
+        3 => 'Gia dụng',
+        default => 'Không có danh mục'
+    }
 ?>
 
 <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
@@ -19,7 +25,7 @@
         </h3>
         <p class="text-sm text-gray-500"><?=$product->description?></p>
         <div class="flex flex-1 flex-col justify-end">
-            <p class="text-sm italic text-gray-500"><?=$product->category_id===1 ? 'Đồ điện tử': 'Thời trang và gia dụng'?></p>
+            <p class="text-sm italic text-gray-500"><?=$category?></p>
             <p class="text-base font-medium text-gray-900">$<?=$product->price?></p>
         </div>
     </div>
