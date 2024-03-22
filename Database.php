@@ -30,14 +30,20 @@ class Database{
      * Query data in database
      *
      * @param string $query
+     * @param array $params
      * 
      * @return PDOStatement
      * @throws PDOException
      */
-    public function query($query)
+    public function query($query, $params)
     {
         try {
             $stm = $this->conn->prepare($query);
+
+            foreach ($params as $param => $value) {
+                $stm->bindValue(':'.$param, $value);
+            }
+
             $stm->execute();
             return $stm;
         } catch (PDOException $e) {

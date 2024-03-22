@@ -14,7 +14,7 @@ $router = new Router();
 require_once basePath('routes.php');
 
 // GET current URI and HTTP method
-$uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // parse_url to delete behind "?"
 $method = $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);

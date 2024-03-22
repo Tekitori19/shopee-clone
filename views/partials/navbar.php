@@ -20,7 +20,7 @@
         '/checkout' => 'Thanh toán',
         '/login' => 'Đăng nhập',
         '/register' => 'Đăng ký',
-        '/dashboard' => 'Quản lý (admin)',
+        '/dashboard' => 'Quản lý (khách hàng)',
         '/dashboard/products' => 'Quản lý (sản phẩm)',
         default => 'jj'
     }
