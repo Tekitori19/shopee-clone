@@ -7,3 +7,4 @@
     $router->get('/checkout', 'controllers/checkout/index.php');
     $router->get('/dashboard', 'controllers/dashboard/index.php');
     $router->get('/dashboard/products', 'controllers/dashboard/products.php');
+    $router->get('/detail', 'controllers/detail/index.php');
