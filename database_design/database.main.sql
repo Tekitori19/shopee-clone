@@ -12,8 +12,10 @@ CREATE TABLE users(
     phone_number VARCHAR(10) NOT NULL,
     address VARCHAR(200) DEFAULT '',
     password VARCHAR(100) NOT NULL DEFAULT '',
-    role_id INT REFERENCES roles(id)
+    role_id INT,
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
+
 -- Bảng danh mục sản phẩm(Category)
 CREATE TABLE categories(
     id INT PRIMARY KEY AUTO_INCREMENT,
