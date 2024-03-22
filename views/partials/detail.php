@@ -1,4 +1,3 @@
-
 <div class="bg-white">
             <div
                 class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -25,14 +24,14 @@
                     </nav>
 
                     <div class="mt-4">
-                        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everyday Ruck Snack</h1>
+                        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><?=$product->name?></h1>
                     </div>
 
                     <section aria-labelledby="information-heading" class="mt-4">
                         <h2 id="information-heading" class="sr-only">Product information</h2>
 
                         <div class="flex items-center">
-                            <p class="text-lg text-gray-900 sm:text-xl">$220</p>
+                            <p class="text-lg text-gray-900 sm:text-xl">$<?=$product->price?></p>
 
                             <div class="ml-4 border-l border-gray-300 pl-4">
                                 <h2 class="sr-only">Reviews</h2>
@@ -79,19 +78,19 @@
                         </div>
 
                         <div class="mt-4 space-y-6">
-                            <p class="text-base text-gray-500">Don't compromise on snack-carrying capacity with this
-                                lightweight and spacious bag. The drawstring top keeps all your favorite chips, crisps,
-                                fries, biscuits, crackers, and cookies secure.</p>
+                            <p class="text-base text-gray-500"><?=$product->description?></p>
                         </div>
 
                         <div class="mt-6 flex items-center">
+                            <?php if ($product->status === 1): ?>
                             <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <p class="ml-2 text-sm text-gray-500">In stock and ready to ship</p>
+                            <p class="ml-2 text-sm text-gray-500">Còn hàng</p>
+                            <?php endif;?>
                         </div>
                     </section>
                 </div>

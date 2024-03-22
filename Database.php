@@ -35,7 +35,7 @@ class Database{
      * @return PDOStatement
      * @throws PDOException
      */
-    public function query($query, $params)
+    public function query($query, $params = [])
     {
         try {
             $stm = $this->conn->prepare($query);
