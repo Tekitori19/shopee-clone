@@ -4,7 +4,8 @@
     $staticNav = [
         'Trang chủ',
         'Shop',
-        'Đăng bài'
+        'Đăng bài',
+        'Quản lý'
     ];
     $dynamicNav = [
         'Thanh toán',
@@ -173,6 +174,9 @@
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check === 'Trang chủ' ? $navbarClass : ""?>"><a href="/"> Trang Chủ</a></li>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check === 'Shop' ? $navbarClass : ""?>" ><a href="/listings">Shop</a></li>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : ""?>"><a href="/listings/create">Đăng bài</a></li>
+                    <?php if ($check !== 'Quản lý (khách hàng)'):?>
+                        <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal "><a href="/dashboard">Quản lý</a></li>
+                        <?php endif;?>
                     <?php if (!in_array($check, $staticNav) && in_array($check, $dynamicNav)): ?>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal <?=  $navbarClass ?>"><?=$check?></li>
                     <?php endif; ?>
