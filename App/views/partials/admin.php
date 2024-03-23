@@ -56,10 +56,10 @@
                     </button>
                     <p class="text-sm text-gray-600 dark:text-gray-400 datepicker">Schedule Dates</p>
                 </div> -->
-                <button
-                    class="focus:shadow-outline-gray border border-transparent w-auto lg:w-1/4 my-2 lg:my-0 lg:ml-2 xl:ml-4 bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:shadow-outline-gray duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm">
-                    <a href="/dashboard/products">Quản lý sản phẩm</a>
-                </button>
+                <a
+                    class="focus:shadow-outline-gray border block text-center border-transparent w-auto lg:w-1/4 my-2 lg:my-0 lg:ml-2 xl:ml-4 bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:shadow-outline-gray duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm"
+                     href="/dashboard/products">Quản lý sản phẩm</a>
+                
 
             <!-- </div> -->
         </div>

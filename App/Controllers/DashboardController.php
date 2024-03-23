@@ -40,21 +40,6 @@ class DashboardController
 
     public function products() {
         $products = $this->db->query(
-            // 'SELECT 
-            //     products.id AS product_id,
-            //     products.name AS product_name,
-            //     SUM(order_details.total_money) AS total_revenue,
-            //     products.price,
-            //     products.name,
-            //     products.status
-            // FROM 
-            //     products
-            // JOIN 
-            //     order_details ON products.id = order_details.product_id
-            // GROUP BY 
-            //     products.id, products.name,  products.price, products.name, products.status
-            // ORDER BY 
-            //     total_revenue DESC;'
             " SELECT 
                 products.id AS product_id,
                 products.name AS product_name,
@@ -70,8 +55,6 @@ class DashboardController
             ORDER BY 
                 total_revenue DESC;"
             )->fetchAll();
-    
-        // inspect($products);
     
         loadView("dashboard/products", [
             'products'=> $products

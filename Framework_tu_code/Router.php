@@ -85,6 +85,11 @@ class Router{
     public function route($uri) {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+        if ($requestMethod === 'POST' && isset($_POST['_method'])) {
+            // Ghi đè requestMethod thành DELETE | UPDATE vì trong form không có method DELETE | UPDATE
+            $requestMethod = strtoupper($_POST['_method']);
+        }
+
         foreach ($this->routes as $route) 
         {
             // Chia URI hiện tại thành 2 phần 1 là phần path 2 là phần id ví dụ listing/1 => ["listing", 1]
@@ -134,19 +139,6 @@ class Router{
                     return;
                 }
             }
-
-
-            // if ($route['uri'] === $uri && $route['method'] === $requestMethod) 
-            // {
-                
-            //     $controller = 'App\\Controllers\\' . $route['controller']; // Sửa từ "App\Controller\\" thành "App\Controllers\\"
-            //     $controllerMethod = $route['controllerMethod'];
-
-            //     $controllerInstance = new $controller();
-
-            //     $controllerInstance->$controllerMethod();
-            //     return;
-            // }
         }
         ErrorController::notFound();
     }

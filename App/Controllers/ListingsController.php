@@ -103,7 +103,21 @@ class ListingsController
             $this->db->query($query, $newProduct);
             redirect("/listings");
         }
-        
+    }
 
+    public function destroy($params)
+    {
+        $id = $params['id'];
+
+        $sql = "DELETE od, p FROM order_details od
+            INNER JOIN products p ON od.product_id = p.id
+            WHERE p.id = :id";
+
+        $params = [
+            'id' => $id
+        ];
+
+        $this->db->query($sql, $params)->fetch();
+        redirect('/listings');
     }
 }

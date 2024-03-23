@@ -1,3 +1,12 @@
+<?php
+    $cate = match ($product->category_id) {
+        1 => "Đồ điện tử",
+        2 => "Thời trang",
+        3 => "Gia dụng",
+        default => "Chưa có danh mục" 
+    }
+?>
+
 <div class="bg-white">
             <div
                 class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -7,7 +16,7 @@
                         <ol role="list" class="flex items-center space-x-2">
                             <li>
                                 <div class="flex items-center text-sm">
-                                    <a href="javascript:void(0)" class="font-medium text-gray-500 hover:text-gray-900">Travel</a>
+                                    <a href="/listings" class="font-medium text-gray-500 hover:text-gray-900">Shop</a>
                                     <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
                                         class="ml-2 h-5 w-5 flex-shrink-0 text-gray-300">
                                         <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
@@ -16,7 +25,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center text-sm">
-                                    <a href="javascript:void(0)" class="font-medium text-gray-500 hover:text-gray-900">Bags</a>
+                                    <a href="javascript:void(0)" class="font-medium text-gray-500 hover:text-gray-900"><?=$cate?></a>
                                 </div>
                             </li>
 
