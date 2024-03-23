@@ -120,4 +120,87 @@ class ListingsController
         $this->db->query($sql, $params)->fetch();
         redirect('/listings');
     }
+
+    public function edit($params)
+    {
+        $id = $params['id'] ?? '';
+
+        $params = [
+        'id' => $id
+        ];
+
+        $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+
+        // Check if product exists
+        if (!$product) {
+        ErrorController::notFound('Listing not found');
+        return;
+        }
+
+
+        loadView('listings/edit', [
+        'product' => $product
+        ]);
+    }
+
+    public function update($params)
+    {
+        $id = $params['id'] ?? '';
+
+        $params = [
+        'id' => $id
+        ];
+
+        $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+
+        // Check if product$product exists
+        if (!$product) {
+        ErrorController::notFound('product not found');
+        return;
+        }
+
+
+        $validArray = ['name', 'price','category_id', 'description'];
+
+        $updateValues = [];
+
+        $updateValues = array_intersect_key($_POST, array_flip($validArray));
+
+        $updateValues = array_map('sanitize', $updateValues);
+
+        $requiredFields = ['name', 'price','category_id', 'description'];
+
+        $errors = [];
+
+        foreach ($requiredFields as $field) {
+        if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+            $errors[$field] = ucfirst($field) . ' is required';
+        }
+        }
+
+        if (!empty($errors)) {
+        loadView('listings/edit', [
+            'product' => $product,
+            'errors' => $errors
+        ]);
+        exit;
+        } else {
+        // Submit to database
+        $updateFields = [];
+
+        foreach (array_keys($updateValues) as $field) {
+            $updateFields[] = "{$field} = :{$field}";
+        }
+
+        $updateFields = implode(', ', $updateFields);
+
+        $updateQuery = "UPDATE listings SET $updateFields WHERE id = :id";
+
+        $updateValues['id'] = $id;
+        $this->db->query($updateQuery, $updateValues);
+
+        redirect('/listings/' . $id);
+        }
+    }
+
 }

@@ -28,7 +28,7 @@
         <div class="hidden absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-2-button" tabindex="-1">
           <!-- Active: "bg-gray-50", Not Active: "" -->
           <a href="/listings/<?= $product->product_id?>" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-green-50" role="menuitem" tabindex="-1" id="options-menu-2-item-0">Xem<span class="sr-only">, Reform</span></a>
-          <a href="/" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-green-50" role="menuitem" tabindex="-1" id="options-menu-2-item-1">Sửa<span class="sr-only">, Reform</span></a>
+          <a href="/listings/edit/<?= $product->product_id?>" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-green-50" role="menuitem" tabindex="-1" id="options-menu-2-item-1">Sửa<span class="sr-only">, Reform</span></a>
           <!-- DELETE FORM -->
           <form method="post" action="/listings/<?= $product->product_id?>">
             <input type="hidden" name="_method" value="DELETE">
