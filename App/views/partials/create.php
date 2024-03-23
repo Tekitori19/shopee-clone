@@ -41,13 +41,13 @@
                                 <?php endforeach;?> 
                                 <?php endif;?> 
                                 <div class="flex items-center pt-10 space-x-9">
-                                    <input placeholder="Tên sản phẩm" name="fullname" value="<?=$listing['fullname']?? ''?>" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
+                                    <input placeholder="Tên sản phẩm" name="name" value="<?=$listing['name']?? ''?>" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
                                     <input placeholder="Giá" name="price" type="number" value="<?=$listing['price']?? ''?>" min="1" step=".01" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
                                 </div>
                                 <div class="flex items-center space-x-9 mt-8">
                                     <input placeholder="Trạng thái: Có hàng" disabled class="placeholder:text-green-500 focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 ">
                                     <div tabindex="0" class="focus:outline-none focus:ring-2 focus:ring-gray-400 w-1/2 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700  py-2.5 px-3">
-                                        <select aria-label="select an option" name="category" class="text-sm text-gray-500 dark:bg-gray-900 w-full focus:outline-none">
+                                        <select aria-label="select an option" name="category_id" class="text-sm text-gray-500 dark:bg-gray-900 w-full focus:outline-none">
                                             <option disabled selected value="">Danh mục</option>
                                             <option value="1">Đồ điện tử</option>
                                             <option value="2">Thời trang</option>
