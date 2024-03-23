@@ -19,22 +19,22 @@
                                      alt="icon"/>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center">
-                                <div class="flex items-center justify-start w-full border border-dashed border-indigo-700 rounded-lg p-3">
-                                    <div class="cursor-pointer text-indigo-700 dark:text-indigo-600">
-                                        <img class="cursor-default" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_file_upload-svg3.svg" alt="icon">
-                                       <!-- <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_file_upload-svg3dark.svg" alt="icon"> -->
-                                       
+                            <form class="mt-11" method="post" action="/listings" enctype="multipart/form-data">
+                                <div class="flex items-center justify-center">
+                                    <div class="flex items-center justify-start w-full border border-dashed border-indigo-700 rounded-lg p-3">
+                                        <div class="cursor-pointer text-indigo-700 dark:text-indigo-600">
+                                            <img class="cursor-default" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_file_upload-svg3.svg" alt="icon">
+                                           <!-- <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_file_upload-svg3dark.svg" alt="icon"> -->
+                                           
+                                        </div>
+                                        <p class="cursor-default text-base font-normal tracking-normal text-gray-800 dark:text-gray-100 text-left ml-4">
+                                            Đăng ảnh sản phẩm tại 
+                                            <label for="fileUp" tabindex="0" class="focus:outline-none cursor-pointer text-base font-normal tracking-normal text-indigo-700 dark:text-indigo-600 text-center"> đây </label>
+                                            <input type="file" name="picture" id="picture" class="hidden" onchange="onFileSelected(event)" name="fileUpload" id="fileUp" />
+                                        </p>
                                     </div>
-                                    <p class="cursor-default text-base font-normal tracking-normal text-gray-800 dark:text-gray-100 text-left ml-4">
-                                        Đăng ảnh sản phẩm tại 
-                                        <label for="fileUp" tabindex="0" class="focus:outline-none cursor-pointer text-base font-normal tracking-normal text-indigo-700 dark:text-indigo-600 text-center"> đây </label>
-                                        <input type="file" class="hidden" onchange="onFileSelected(event)" name="fileUpload" id="fileUp" />
-                                    </p>
                                 </div>
-                            </div>
-                            <form class="mt-11 ">
-                                <div class="flex items-center space-x-9">
+                                <div class="flex items-center pt-10 space-x-9">
                                     <input placeholder="Tên sản phẩm" name="fullname" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
                                     <input placeholder="Giá" name="price" type="number" min="1" step=".01" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
                                 </div>

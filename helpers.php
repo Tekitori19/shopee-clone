@@ -69,3 +69,14 @@ function inspectAndDie($value)
   die(var_dump($value));
   echo '</pre>';
 }
+
+/**
+ * parse data to string
+ *
+ * @param string $dirty
+ * @return void
+ */
+function sanitize($dirty)
+{
+  return filter_var($dirty, FILTER_SANITIZE_SPECIAL_CHARS);
+}
