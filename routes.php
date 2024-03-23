@@ -1,13 +1,13 @@
 <?php
-    $router->get('/', 'controllers/home.php');
-   
-    $router->get('/listings', 'controllers/listings/index.php');
-    $router->get('/listings/create', 'controllers/listings/create.php');
-    $router->get('/listing', 'controllers/listings/detail.php');
-   
-    $router->get('/login', 'controllers/login/index.php');
-    $router->get('/register', 'controllers/register/index.php');
-    $router->get('/checkout', 'controllers/checkout/index.php');
-   
-    $router->get('/dashboard', 'controllers/dashboard/index.php');
-    $router->get('/dashboard/products', 'controllers/dashboard/products.php');
+$router->get('/', 'HomeController@index');
+
+$router->get('/listings', 'ListingsController@index');
+$router->get('/listings/create', 'ListingsController@create');
+$router->get('/listing', 'ListingsController@detail');
+
+$router->get('/login', 'LoginController@index');
+$router->get('/register', 'RegisterController@index');
+$router->get('/checkout', 'CheckoutController@index');
+
+$router->get('/dashboard', 'DashboardController@index');
+$router->get('/dashboard/products', 'DashboardController@products');

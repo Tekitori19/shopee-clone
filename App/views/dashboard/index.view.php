@@ -1,4 +1,6 @@
 <?php
     loadPartial("head");
     loadPartial("navbar");
-    loadPartial("admin");
+    loadPartial("admin", [
+        'users' => $users
+    ]);

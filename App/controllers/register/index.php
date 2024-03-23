@@ -1,2 +1,0 @@
-<?php
-    loadView("authorization/register");

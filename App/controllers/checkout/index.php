@@ -1,2 +1,0 @@
-<?php
-    loadView("checkout/index");

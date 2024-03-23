@@ -37,35 +37,3 @@
           </div>
         </div>
     </div>
-
-    <main class="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:max-w-none">
-            <h1 class="text-3xl font-semibold mb-8">Checkout</h1>
-
-            <form action="submit_order.php" method="post" class="space-y-6">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Contact Information</h2>
-                    <input type="email" name="email-address" id="email-address" placeholder="Email address" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3">
-                </div>
-
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Shipping Information</h2>
-                    <input type="text" name="full-name" id="full-name" placeholder="Full name" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2">
-                    <input type="text" name="phone-number" id="phone-number" placeholder="Phone number" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2">
-                    <input type="text" name="address" id="address" placeholder="Address" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3">
-                </div>
-
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Payment</h2>
-                    <input type="text" name="card-number" id="card-number" placeholder="Card number" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2">
-                    <input type="text" name="name-on-card" id="name-on-card" placeholder="Name on card" class="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2">
-                    <div class="flex">
-                        <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/YY" class="block w-1/2 border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2 mr-2">
-                        <input type="text" name="cvc" id="cvc" placeholder="CVC" class="block w-1/2 border-gray-300 rounded-md shadow-sm py-2 px-3 mb-2">
-                    </div>
-                </div>
-
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Confirm Order</button>
-            </form>
-        </div>
-    </main>
