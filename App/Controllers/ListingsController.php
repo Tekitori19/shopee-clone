@@ -26,15 +26,20 @@ class ListingsController
         loadView("listings\create");
     }
 
-    public function detail()
+    public function detail($params)
     {
-        $id = $_GET['id'] ?? '';
+        $id = $params['id'];
 
         $params = [
             'id' => $id,
         ];
     
         $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+
+        if (!$product) {
+            ErrorController::notFound("Không tìm thấy sản phẩm");
+            return;
+        }
     
         loadView("listings/detail", [
             'product' => $product

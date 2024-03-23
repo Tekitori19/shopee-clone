@@ -30,48 +30,48 @@ class Router{
      * Add a GET route
      * 
      * @param string $uri
-     * @param string $controller
+     * @param string $action
      * 
      * @return void
      */
-    public function get($uri, $controller) {
-        $this->registerRoute("GET", $uri, $controller);
+    public function get($uri, $action) {
+        $this->registerRoute("GET", $uri, $action);
     }
 
     /**
      * Add a POST route
      * 
      * @param string $uri
-     * @param string $controller
+     * @param string $action
      * 
      * @return void
      */
-    public function post($uri, $controller) {
-        $this->registerRoute("POST", $uri, $controller);
+    public function post($uri, $action) {
+        $this->registerRoute("POST", $uri, $action);
     }
 
     /**
      * Add a PUT route
      * 
      * @param string $uri
-     * @param string $controller
+     * @param string $action
      * 
      * @return void
      */
-    public function put($uri, $controller) {
-        $this->registerRoute("PUT", $uri, $controller);
+    public function put($uri, $action) {
+        $this->registerRoute("PUT", $uri, $action);
     }
 
     /**
      * Add a DELETE route
      * 
      * @param string $uri
-     * @param string $controller
+     * @param string $action
      * 
      * @return void
      */
-    public function delete($uri, $controller) {
-        $this->registerRoute("DELETE", $uri, $controller);
+    public function delete($uri, $action) {
+        $this->registerRoute("DELETE", $uri, $action);
     }
 
     /**
@@ -82,18 +82,71 @@ class Router{
      * 
      * @return void
      */
-    public function route($uri, $method) {
-        foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === $method) {
+    public function route($uri) {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+
+        foreach ($this->routes as $route) 
+        {
+            // Chia URI hiện tại thành 2 phần 1 là phần path 2 là phần id ví dụ listing/1 => ["listing", 1]
+            $uriSplit = explode('/', trim($uri, '/'));
+
+            // Chia route URI thành 2 phần giống như trên
+            $routeSplit = explode('/', trim($route['uri'], '/'));
+            // inspect($routeSplit); // hiện tất cả route khai báo trong file routes.php
+
+            $match = true;
+
+            // Kiểm tra xem số phần tử của 2 mảng $uriSplit và $routeSplit có bằng nhau k
+            // Đồng thời kiểm tra xem methoad của route có bằng với requestMethod của trình duyệt k
+            if 
+            (
+                count($uriSplit) === count($routeSplit) &&
+                strtoupper($route["method"] === $requestMethod)
+            ) 
+            {
+                $params = [];
                 
-                $controller = 'App\\Controllers\\' . $route['controller']; // Sửa từ "App\Controller\\" thành "App\Controllers\\"
-                $controllerMethod = $route['controllerMethod'];
+                $match = true;
 
-                $controllerInstance = new $controller();
+                for ($i=0; $i < count($uriSplit); $i++) {
+                    // inspect($i);
+                    // Nếu uri không match với Regular expression thì không có params
+                    if ($routeSplit[$i] != $uriSplit[$i] && !preg_match('/\{(.+?)\}/', $routeSplit[$i])) {
+                        $match = false;
+                        break;
+                    }
 
-                $controllerInstance->$controllerMethod();
-                return;
+                    // tham số thứ 3 tức là $matches là tham số để lưu giá trị dưới dạng assoc array
+                    if (preg_match('/\{(.+?)\}/', $routeSplit[$i], $matches)) {
+                        // inspectAndDie($matches);
+                        $params[$matches[1]] = $uriSplit[$i];
+                        // inspectAndDie($params); 
+                    }
+
+                }
+                if ($match) {
+                    $controller = 'App\\Controllers\\' . $route['controller'];
+                    $controllerMethod = $route['controllerMethod'];
+    
+                    $controllerInstance = new $controller();
+    
+                    $controllerInstance->$controllerMethod($params);
+                    return;
+                }
             }
+
+
+            // if ($route['uri'] === $uri && $route['method'] === $requestMethod) 
+            // {
+                
+            //     $controller = 'App\\Controllers\\' . $route['controller']; // Sửa từ "App\Controller\\" thành "App\Controllers\\"
+            //     $controllerMethod = $route['controllerMethod'];
+
+            //     $controllerInstance = new $controller();
+
+            //     $controllerInstance->$controllerMethod();
+            //     return;
+            // }
         }
         ErrorController::notFound();
     }

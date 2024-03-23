@@ -3,7 +3,7 @@ $router->get('/', 'HomeController@index');
 
 $router->get('/listings', 'ListingsController@index');
 $router->get('/listings/create', 'ListingsController@create');
-$router->get('/listing', 'ListingsController@detail');
+$router->get('/listing/{id}', 'ListingsController@detail');
 
 $router->get('/login', 'LoginController@index');
 $router->get('/register', 'RegisterController@index');
