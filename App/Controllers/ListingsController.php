@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use Framework_Tu_Code\Database;
+use Framework_Tu_Code\Validation;
 
 class ListingsController
 {
@@ -57,7 +58,52 @@ class ListingsController
         $newProduct['picture']="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg";
 
         $newProduct = array_map('sanitize', $newProduct);
+        $requiredFields = ['fullname', 'price','category', 'description'];
 
-        inspect($newProduct);
+        $errors = [];
+
+        foreach ($requiredFields as $field) {
+            if (empty($newProduct[$field]) || !Validation::string($newProduct[$field])) {
+              $errors[$field] = ucfirst($field) . ' is required';
+            }
+          }
+      
+        if (!empty($errors)) {
+            loadView('listings/create', [
+                'errors' => $errors,
+                'listing' => $newProduct
+            ]);
+        } else {
+            // $this->db->query('INSERT INTO products (name, status, price, picture, description, category_id) VALUES
+            // (:name, 1, :price, :picture, :description, :category);', $newProduct);
+         
+            $fields = [];
+
+            foreach ($newProduct as $field => $value) {
+                $fields[] = $field;
+            }
+
+            $fields = implode(', ', $fields);
+
+            $values = [];
+            
+            foreach ($newProduct as $field => $value) {
+                if ($values === '') {
+                    $newProduct[$field] = null;
+                }
+                $values[] = ":" . $field;
+            }
+
+            $values = implode(', ', $values);
+            // inspect($fields);
+            // inspect($values);
+
+            $query = "INSERT INTO products ({$fields}) VALUES ({$values})";
+
+            $this->db->query($query, $newProduct);
+            redirect("/listings");
+        }
+        
+
     }
 }

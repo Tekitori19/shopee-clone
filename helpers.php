@@ -80,3 +80,9 @@ function sanitize($dirty)
 {
   return filter_var($dirty, FILTER_SANITIZE_SPECIAL_CHARS);
 }
+
+function redirect($path)
+{
+  header("Location: {$path}");
+  exit;
+}
