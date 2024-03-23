@@ -1,7 +1,5 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-require_once "../helpers.php";
-echo __DIR__ . '/../vendor/autoload.php';
 
 /// Cach 1: Dung require => Nhuoc diem de bi loi
 //      require_once basePath("Framework_tu_code/Router.php");
@@ -17,12 +15,13 @@ echo __DIR__ . '/../vendor/autoload.php';
 
 /// Cach 3: Sử dụng thư viện để đặt tên cho cái folder để dễ dàng import (giống golang)
 use Framework_Tu_Code\Router;
-use Framework_Tu_Code\Database;
+// use Framework_Tu_Code\Database;
 
 
-$config = require_once basePath('config/db.php');
-$db = new Database($config);
+// $config = require_once basePath('config/db.php');
+// $db = new Database($config);
 
+require_once "../helpers.php";
 
 //Init router
 $router = new Router();

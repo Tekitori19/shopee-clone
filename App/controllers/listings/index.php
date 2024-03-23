@@ -1,4 +1,5 @@
 <?php
+    use Framework_Tu_Code\Database;
     // REMEMBER: use USE for return file
     $config = require basePath('config/db.php');
 

@@ -2,6 +2,10 @@
 
 namespace Framework_Tu_Code;
 
+use PDO;
+use PDOException;
+use Exception;
+
 class Database{
     public $conn;
 

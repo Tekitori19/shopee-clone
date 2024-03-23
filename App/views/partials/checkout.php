@@ -1,4 +1,4 @@
-<main class="mx-auto max-w-7xl px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+<main class="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl lg:max-w-none">
     <h1 class="sr-only">Checkout</h1>
 
@@ -19,7 +19,7 @@
           <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
 
           <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-            <div>
+            <!-- <div>
               <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
               <div class="mt-1">
                 <input type="text" id="first-name" name="first-name" autocomplete="given-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
@@ -31,12 +31,12 @@
               <div class="mt-1">
                 <input type="text" id="last-name" name="last-name" autocomplete="family-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
-            </div>
+            </div> -->
 
             <div class="sm:col-span-2">
-              <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+              <label for="fullname" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
               <div class="mt-1">
-                <input type="text" name="company" id="company" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <input type="text" name="fullname" id="fullname" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
@@ -53,23 +53,6 @@
                 <input type="text" name="apartment" id="apartment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
-
-            <div>
-              <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-              <div class="mt-1">
-                <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-            </div>
-
-            <div>
-              <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-              <div class="mt-1">
-                <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option>United States</option>
-                  <option>Canada</option>
-                  <option>Mexico</option>
-                </select>
-              </div>
             </div>
 
             <div>
