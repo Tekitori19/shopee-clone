@@ -1,5 +1,7 @@
 <?php
 
+namespace Framework_Tu_Code;
+
 class Database{
     public $conn;
 

@@ -1,0 +1,16 @@
+{
+    "name": "tekitori19/shopee-clone",
+    "description": "shop app like shopee",
+    "authors": [
+        {
+            "name": "Dwcks Dinh",
+            "email": "corclan19@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework_Tu_Code\\":"Framework_Tu_Code/",
+            "App\\": "App/"
+        }
+    }
+}
