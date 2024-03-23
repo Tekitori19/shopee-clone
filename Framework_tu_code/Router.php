@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework_Tu_Code;
+use App\Controllers\ErrorController;
 
 class Router{
     protected $routes = [];
@@ -16,7 +17,6 @@ class Router{
      */
     public function registerRoute($method, $uri, $action) {
         [$controller, $controllerMethod] = explode('@', $action);
-        // inspect(explode('@', $action));
 
         $this->routes[] = [
             'method' => $method,
@@ -24,18 +24,6 @@ class Router{
             'controller' => $controller,
             'controllerMethod' => $controllerMethod
         ];
-    }
-
-    /**
-     * Load Error view
-     *
-     * @param int $httpCode
-     * @return void
-     */
-    public function error($httpCode = 404){
-        http_response_code($httpCode);
-        loadView("error/{$httpCode}");
-        exit;
     }
 
     /**
@@ -102,11 +90,11 @@ class Router{
                 $controllerMethod = $route['controllerMethod'];
 
                 $controllerInstance = new $controller();
-                // inspect($controllerInstance);
+
                 $controllerInstance->$controllerMethod();
                 return;
             }
         }
-        $this->error(404);
+        ErrorController::notFound();
     }
 }

@@ -7,7 +7,7 @@
                         <ol role="list" class="flex items-center space-x-2">
                             <li>
                                 <div class="flex items-center text-sm">
-                                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Travel</a>
+                                    <a href="javascript:void(0)" class="font-medium text-gray-500 hover:text-gray-900">Travel</a>
                                     <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
                                         class="ml-2 h-5 w-5 flex-shrink-0 text-gray-300">
                                         <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
@@ -16,7 +16,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center text-sm">
-                                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Bags</a>
+                                    <a href="javascript:void(0)" class="font-medium text-gray-500 hover:text-gray-900">Bags</a>
                                 </div>
                             </li>
 
@@ -112,12 +112,13 @@
                         <form>
 
                             <div class="mt-1">
-                                <button type="submit"
+                                <button 
+                                    type="button"
                                     class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Add
                                     to bag</button>
                             </div>
                             <div class="mt-6 text-center">
-                                <div href="#" class="group inline-flex text-base font-medium">
+                                <div href="javascrip:void(0)" class="group inline-flex text-base font-medium">
                                     <svg class="mr-2 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                         aria-hidden="true">

@@ -2,7 +2,7 @@
 <!-- Registration Form Box -->
 <div class="flex justify-center items-center">
       <div class="bg-white p-8 rounded-lg w-3/5 md:w-3/5 max-sm:w-full sm:w-full shadow-md md:w-500 mx-6">
-        <h2 class="text-4xl text-center font-bold mb-4">Register</h2>
+        <h2 class="text-4xl text-center font-bold mb-4">Đăng kí</h2>
         <!-- <div class="message bg-red-100 p-3 my-3">This is an error message.</div>
         <div class="message bg-green-100 p-3 my-3">
           This is a success message.
@@ -12,7 +12,7 @@
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder="Tên đầy đủ"
               class="w-full px-4 py-2 border rounded focus:outline-none"
             />
           </div>
@@ -20,23 +20,24 @@
             <input
               type="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="Địa chỉ email"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+           <div class="mb-4">
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Số điện thoại"
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               class="w-full px-4 py-2 border rounded focus:outline-none"
             />
           </div>
            <div class="mb-4">
             <input
               type="text"
-              name="city"
-              placeholder="City"
-              class="w-full px-4 py-2 border rounded focus:outline-none"
-            />
-          </div>
-           <div class="mb-4">
-            <input
-              type="text"
-              name="state"
-              placeholder="State"
+              name="address"
+              placeholder="địa chỉ"
               class="w-full px-4 py-2 border rounded focus:outline-none"
             />
           </div>
@@ -59,12 +60,12 @@
           <button
             type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
           >
-            Register
+            Đăng kí
           </button>
 
           <p class="mt-4 text-gray-500">
-            Already have an account?
-            <a class="text-blue-900" href="/login">Login</a>
+            Đã có tài khoản?
+            <a class="text-blue-900" href="/login">Đăng nhập</a>
           </p>
         </form>
       </div>
