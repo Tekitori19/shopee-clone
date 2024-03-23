@@ -17,7 +17,7 @@ function basePath($path = '') {
  * @return void
  */
 function loadView($name, $data = []) {
-    $viewPath = basePath("views\\{$name}.view.php");
+    $viewPath = basePath("App\\views\\{$name}.view.php");
 
     if (file_exists($viewPath)) {
       extract($data);
@@ -34,8 +34,8 @@ function loadView($name, $data = []) {
  * @param string $name
  * @return void
  */
-function loadPartial($name="", $data = []) {
-    $partialPath = basePath("views\partials\\{$name}.php");
+function loadPartial($name = "", $data = []) {
+    $partialPath = basePath("App\\views\partials\\{$name}.php");
 
     if (file_exists($partialPath)) {
         extract($data);

@@ -1,7 +1,19 @@
 <?php
 require_once "../helpers.php";
-require_once basePath("Router.php");
-require_once basePath("Database.php");
+
+/// Cach 1: Dung require => Nhuoc diem de bi loi
+//      require_once basePath("Framework_tu_code/Router.php");
+//      require_once basePath("Framework_tu_code/Database.php");
+
+/// Cach 2: Dung tu dong load cua PHP => k toi uu cho codebase lon
+spl_autoload_register(function ($class) {
+  $path = basePath('Framework_tu_code/' . $class . '.php');
+  if (file_exists($path)) {
+    require $path;
+  }  
+});
+
+/// Cach 3: Sử dụng thư viện để đặt tên cho cái folder để dễ dàng import (giống golang)
 
 $config = require_once basePath('config/db.php');
 $db = new Database($config);
