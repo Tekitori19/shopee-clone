@@ -45,28 +45,8 @@
               <div class="mt-1">
                 <input type="text" name="address" id="address" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
-            </div>
+            <!-- </div> -->
 
-            <div class="sm:col-span-2">
-              <label for="apartment" class="block text-sm font-medium text-gray-700">Apartment, suite, etc.</label>
-              <div class="mt-1">
-                <input type="text" name="apartment" id="apartment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-            </div>
-            </div>
-
-            <div>
-              <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-              <div class="mt-1">
-                <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-            </div>
-
-            <div>
-              <label for="postal-code" class="block text-sm font-medium text-gray-700">Postal code</label>
-              <div class="mt-1">
-                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
             </div>
 
             <div class="sm:col-span-2">
@@ -87,25 +67,6 @@
                 Checked: "border-transparent", Not Checked: "border-gray-300"
                 Active: "ring-2 ring-indigo-500"
               -->
-              <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
-                <input type="radio" name="delivery-method" value="Standard" class="sr-only" aria-labelledby="delivery-method-0-label" aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1">
-                <span class="flex flex-1">
-                  <span class="flex flex-col">
-                    <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900">Standard</span>
-                    <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500">4–10 business days</span>
-                    <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900">$5.00</span>
-                  </span>
-                </span>
-                <!-- Not Checked: "hidden" -->
-                <svg class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-                </svg>
-                <!--
-                  Active: "border", Not Active: "border-2"
-                  Checked: "border-indigo-500", Not Checked: "border-transparent"
-                -->
-                <span class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></span>
-              </label>
               <!--
                 Checked: "border-transparent", Not Checked: "border-gray-300"
                 Active: "ring-2 ring-indigo-500"
@@ -141,16 +102,16 @@
             <legend class="sr-only">Payment type</legend>
             <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
               <div class="flex items-center">
-                <input id="credit-card" name="payment-type" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">Credit card</label>
+                <input id="credit-card" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">Thanh toán khi nhận hàng</label>
               </div>
               <div class="flex items-center">
-                <input id="paypal" name="payment-type" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700">PayPal</label>
+                <input id="paypal" disabled type="radio" class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700">PayPal <span class="text-red-500">(Bảo trì)</span></label>
               </div>
               <div class="flex items-center">
-                <input id="etransfer" name="payment-type" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700">eTransfer</label>
+                <input id="etransfer" type="radio" disabled class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700">eTransfer <span class="text-red-500">(Bảo trì)</span></label>
               </div>
             </div>
           </fieldset>
@@ -159,28 +120,28 @@
             <div class="col-span-4">
               <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
               <div class="mt-1">
-                <input type="text" id="card-number" name="card-number" autocomplete="cc-number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <input type="text" disabled id="card-number" name="card-number" autocomplete="cc-number" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div class="col-span-4">
               <label for="name-on-card" class="block text-sm font-medium text-gray-700">Name on card</label>
               <div class="mt-1">
-                <input type="text" id="name-on-card" name="name-on-card" autocomplete="cc-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <input type="text" disabled id="name-on-card" name="name-on-card" autocomplete="cc-name" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div class="col-span-3">
               <label for="expiration-date" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
               <div class="mt-1">
-                <input type="text" name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <input type="text" disabled name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div>
               <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
-              <div class="mt-1">
-                <input type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div class=" cursor-not-allowedmt-1">
+                <input type="text" disabled name="cvc" id="cvc" autocomplete="csc" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
           </div>
