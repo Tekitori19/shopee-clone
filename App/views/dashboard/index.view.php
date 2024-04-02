@@ -4,3 +4,4 @@
     loadPartial("admin", [
         'users' => $users
     ]);
+    loadPartial("footer");

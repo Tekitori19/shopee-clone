@@ -8,3 +8,4 @@
         'errors' => $errors,
         'listing' => $listing
     ]);
+    loadPartial("footer");

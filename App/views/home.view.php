@@ -8,3 +8,4 @@ loadPartial("shop-container", [
     'home' => $home
 ]);
 loadPartial("bottom-banner");
+loadPartial("footer");

@@ -5,3 +5,4 @@
         'product' => $product
     ]);
     loadPartial("bottom-banner");
+    loadPartial("footer");

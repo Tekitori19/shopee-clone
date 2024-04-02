@@ -4,3 +4,4 @@
     loadPartial("shop-container", [
         'products' => $products
     ]);
+    loadPartial("footer");

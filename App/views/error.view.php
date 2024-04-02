@@ -5,3 +5,4 @@
         'status' => $status,
         'message' => $message
     ]);
+    loadPartial("footer");

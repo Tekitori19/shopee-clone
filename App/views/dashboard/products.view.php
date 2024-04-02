@@ -4,3 +4,4 @@
     loadPartial("admin-product", [
         'products'=> $products
     ]);
+    loadPartial("footer");

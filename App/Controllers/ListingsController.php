@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use Framework_Tu_Code\Database;
 use Framework_Tu_Code\Validation;
+use PDOException;
 
 class ListingsController
 {
@@ -108,17 +109,28 @@ class ListingsController
     public function destroy($params)
     {
         $id = $params['id'];
-
-        $sql = "DELETE od, p FROM order_details od
-            INNER JOIN products p ON od.product_id = p.id
-            WHERE p.id = :id";
-
+        
         $params = [
             'id' => $id
         ];
 
-        $this->db->query($sql, $params)->fetch();
-        redirect('/listings');
+        try {
+            $sql = "DELETE od, p FROM order_details od
+            INNER JOIN products p ON od.product_id = p.id
+            WHERE p.id = :id";
+            $this->db->query($sql, $params)->fetch();
+        } catch (PDOException $e) {
+            //throw $th;
+        }
+
+        try {
+            $sql = "DELETE FROM products WHERE id = :id";
+            $this->db->query($sql, $params)->fetch();
+        } catch (PDOException $e) {
+            //throw $th;
+        }
+
+        redirect('/dashboard/products');
     }
 
     public function edit($params)
@@ -194,7 +206,7 @@ class ListingsController
 
         $updateFields = implode(', ', $updateFields);
 
-        $updateQuery = "UPDATE listings SET $updateFields WHERE id = :id";
+        $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
 
         $updateValues['id'] = $id;
         $this->db->query($updateQuery, $updateValues);

@@ -19,7 +19,7 @@
                                      alt="icon"/>
                                 </div>
                             </div>
-                            <form class="mt-11" method="post" action="/listings" enctype="multipart/form-data">
+                            <form class="mt-11" method="post" action="/listings">
                                 <div class="flex items-center justify-center">
                                     <div class="flex items-center justify-start w-full border border-dashed border-indigo-700 rounded-lg p-3">
                                         <div class="cursor-pointer text-indigo-700 dark:text-indigo-600">
@@ -30,7 +30,7 @@
                                         <p class="cursor-default text-base font-normal tracking-normal text-gray-800 dark:text-gray-100 text-left ml-4">
                                             Đăng ảnh sản phẩm tại 
                                             <label for="fileUp" tabindex="0" class="focus:outline-none cursor-pointer text-base font-normal tracking-normal text-indigo-700 dark:text-indigo-600 text-center"> đây </label>
-                                            <input type="file" name="picture" id="picture" class="hidden" onchange="onFileSelected(event)" name="fileUpload" id="fileUp" />
+                                            <input type="file" name="picture" id="picture" onchange="onFileSelected(event)" name="fileUpload" id="fileUp" />
                                         </p>
                                     </div>
                                 </div>
