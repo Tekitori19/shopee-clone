@@ -131,8 +131,13 @@
                             <div class="mt-1">
                                 <button 
                                     type="button"
-                                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Add
-                                    to bag</button>
+                                    class="<?= $product->status == 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50' : 'cursor-not-allowed'?> flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white ">
+                                    <?php if ($product->status == 1): ?>
+                                        Thêm vào giỏ hàng
+                                    <?php else: ?>
+                                        <span class="text-red-400">Sản phẩm tạm hết hàng</span>
+                                    <?php endif; ?>
+                                </button>
                             </div>
                             <div class="mt-6 text-center">
                                 <div href="javascrip:void(0)" class="group inline-flex text-base font-medium">

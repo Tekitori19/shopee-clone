@@ -163,7 +163,7 @@ class ListingsController
         'id' => $id
         ];
 
-        inspect($_POST);
+        // inspect()
 
         $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
 
@@ -206,10 +206,8 @@ class ListingsController
         }
 
         $updateFields = implode(', ', $updateFields);
-
-        $updateValues["status"] = bin2hex($updateValues["status"]);
         
-        inspect($updateValues);
+        // inspectAndDie($updateValues);
 
         $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
 

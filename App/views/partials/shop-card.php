@@ -30,8 +30,12 @@
                 <p class="text-base font-medium text-gray-900">$<?=$product->price?></p>
             </div>
         </div>
-        <button class="z-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 rounded border border-gray-600 text-gray-500 px-8 py-3 text-sm leading-6">
-            Thêm vào giỏ hàng
+        <button class="z-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none mx-2 my-2 bg-white transition duration-150 ease-in-out <?= $product->status === 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600' : 'cursor-not-allowed'?>  rounded border border-gray-600 text-gray-500 px-8 py-3 text-sm leading-6">
+            <?php if ($product->status == 1): ?>
+                Thêm vào giỏ hàng
+            <?php else: ?>
+                <span class="text-red-400">Sản phẩm tạm hết hàng</span>
+            <?php endif; ?>
         </button>
     </div>
 </div>
