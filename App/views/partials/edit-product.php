@@ -6,7 +6,8 @@
         default => "Chưa có danh mục" 
     };
 
-    echo $product->category_id;
+    inspect($product);
+
 ?>
 
 <div class="bg-white">
@@ -101,6 +102,14 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <p class="ml-2 text-sm text-gray-500">Còn hàng</p>
+                            <?php else:?>
+                            <svg class="h-5 w-5 flex-shrink-0 text-red-500" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M6.707 7.293a1 1 0 00-1.414 1.414L8.586 12 5.293 15.293a1 1 0 101.414 1.414L10 13.414l3.293 3.293a1 1 0 001.414-1.414L11.414 12l3.293-3.293a1 1 0 00-1.414-1.414L10 10.586 6.707 7.293z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="ml-2 text-sm text-gray-500">Hết hàng</p>
                             <?php endif;?>
                         </div>
                     </section>
@@ -167,6 +176,13 @@
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="picture">Link ảnh</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="picture" type="text" placeholder="Enter picture URL" name="picture" value="<?=$product->picture?>"> <!-- Replace "https://example.com/image.jpg" with actual picture URL -->
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="status">Trạng thái</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="status" name="status">
+                        <option <?= $product->status === 0 ?? 'selected="selected"' . ''?> value="0">Hết hàng</option>
+                        <option <?= $product->status === 1 ?? 'selected="selected"' . ''?> value="1">Còn hàng</option>
+                    </select>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Mô tả</label>

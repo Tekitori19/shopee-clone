@@ -26,7 +26,7 @@ CREATE TABLE categories(
 CREATE TABLE products (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(350) COMMENT 'Tên sản phẩm',
-    status BIT NOT NULL DEFAULT 1,
+    status TINYINT(1) DEFAULT 1,
     price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
     picture VARCHAR(300) DEFAULT '',
     description LONGTEXT,

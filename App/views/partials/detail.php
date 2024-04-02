@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="mt-6 flex items-center">
-                            <?php if ($product->status === 1): ?>
+                        <?php if ($product->status === 1): ?>
                             <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -99,6 +99,14 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <p class="ml-2 text-sm text-gray-500">Còn hàng</p>
+                            <?php else:?>
+                            <svg class="h-5 w-5 flex-shrink-0 text-red-500" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M6.707 7.293a1 1 0 00-1.414 1.414L8.586 12 5.293 15.293a1 1 0 101.414 1.414L10 13.414l3.293 3.293a1 1 0 001.414-1.414L11.414 12l3.293-3.293a1 1 0 00-1.414-1.414L10 10.586 6.707 7.293z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="ml-2 text-sm text-gray-500">Hết hàng</p>
                             <?php endif;?>
                         </div>
                     </section>

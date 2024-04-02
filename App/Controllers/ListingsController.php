@@ -163,6 +163,8 @@ class ListingsController
         'id' => $id
         ];
 
+        inspect($_POST);
+
         $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
 
         // Check if product$product exists
@@ -171,8 +173,7 @@ class ListingsController
         return;
         }
 
-
-        $validArray = ['name', 'price','category_id', 'description'];
+        $validArray = ['name', 'price','category_id', 'description', 'status'];
 
         $updateValues = [];
 
@@ -180,7 +181,7 @@ class ListingsController
 
         $updateValues = array_map('sanitize', $updateValues);
 
-        $requiredFields = ['name', 'price','category_id', 'description'];
+        $requiredFields = ['name', 'price','category_id', 'description', 'status'];
 
         $errors = [];
 
@@ -205,6 +206,10 @@ class ListingsController
         }
 
         $updateFields = implode(', ', $updateFields);
+
+        $updateValues["status"] = bin2hex($updateValues["status"]);
+        
+        inspect($updateValues);
 
         $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
 
