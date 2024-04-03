@@ -172,8 +172,8 @@ class ListingsController
 
         // Check if product$product exists
         if (!$product) {
-        ErrorController::notFound('product not found');
-        return;
+            ErrorController::notFound('product not found');
+            return;
         }
 
         $validArray = ['name', 'price','category_id', 'description', 'status'];
@@ -189,9 +189,9 @@ class ListingsController
         $errors = [];
 
         foreach ($requiredFields as $field) {
-        if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
-            $errors[$field] = ucfirst($field) . ' is required';
-        }
+            if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
         }
 
         if (!empty($errors)) {
