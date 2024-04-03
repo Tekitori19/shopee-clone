@@ -1,4 +1,5 @@
 <?php
+session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
 /// Cach 1: Dung require => Nhuoc diem de bi loi

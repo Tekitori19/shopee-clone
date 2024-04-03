@@ -118,17 +118,20 @@ class ListingsController
             $sql = "DELETE od, p FROM order_details od
             INNER JOIN products p ON od.product_id = p.id
             WHERE p.id = :id";
-            $this->db->query($sql, $params)->fetch();
+            $this->db->query($sql, $params);
         } catch (PDOException $e) {
             //throw $th;
         }
 
         try {
             $sql = "DELETE FROM products WHERE id = :id";
-            $this->db->query($sql, $params)->fetch();
+            $this->db->query($sql, $params);
         } catch (PDOException $e) {
             //throw $th;
         }
+
+        //Set flash message
+        $_SESSION['success_message'] = 'Xóa thành công';
 
         redirect('/dashboard/products');
     }
@@ -160,7 +163,7 @@ class ListingsController
         $id = $params['id'] ?? '';
 
         $params = [
-        'id' => $id
+            'id' => $id
         ];
 
         // inspect()
@@ -192,29 +195,31 @@ class ListingsController
         }
 
         if (!empty($errors)) {
-        loadView('listings/edit', [
-            'product' => $product,
-            'errors' => $errors
-        ]);
-        exit;
+            loadView('listings/edit', [
+                'product' => $product,
+                'errors' => $errors
+            ]);
+            exit;
         } else {
-        // Submit to database
-        $updateFields = [];
+            // Submit to database
+            $updateFields = [];
 
-        foreach (array_keys($updateValues) as $field) {
-            $updateFields[] = "{$field} = :{$field}";
-        }
+            foreach (array_keys($updateValues) as $field) {
+                $updateFields[] = "{$field} = :{$field}";
+            }
 
-        $updateFields = implode(', ', $updateFields);
-        
-        // inspectAndDie($updateValues);
+            $updateFields = implode(', ', $updateFields);
+            
+            // inspectAndDie($updateValues);
 
-        $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
+            $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
 
-        $updateValues['id'] = $id;
-        $this->db->query($updateQuery, $updateValues);
+            $updateValues['id'] = $id;
+            $this->db->query($updateQuery, $updateValues);
 
-        redirect('/listings/' . $id);
+            $_SESSION["success_message"] = "Cập nhật sản phẩm thành công";
+
+            redirect('/listings/' . $id);
         }
     }
 

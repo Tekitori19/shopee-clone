@@ -16,4 +16,3 @@ $router->get('/checkout', 'CheckoutController@index');
 
 $router->get('/dashboard', 'DashboardController@index');
 $router->get('/dashboard/products', 'DashboardController@products');
-// $router->delete('/dashboard/products', 'DashboardController@destroy');

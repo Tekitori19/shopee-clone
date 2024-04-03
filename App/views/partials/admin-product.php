@@ -1,5 +1,5 @@
 <div class="mx-auto max-w-7xl pt-24 px-4 py-12 sm:px-6 lg:px-8">
-
+<?= loadPartial("message")?>
 <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
  
   <?php foreach ($products as $product): ?>

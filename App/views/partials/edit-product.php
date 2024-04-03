@@ -5,9 +5,6 @@ $cate = match ($product->category_id) {
     3 => "Gia dụng",
     default => "Chưa có danh mục"
 };
-
-// inspect($product);
-
 ?>
 
 <div class="bg-white">
@@ -107,6 +104,11 @@ $cate = match ($product->category_id) {
                 <hr class="mb-10">
                 <div class="">
                     <!-- Product form -->
+                    <?php if (isset($errors)): ?>
+                        <?php foreach ($errors as $error):?> 
+                            <div class="message bg-red-100 my-3"><?=$error?></div>
+                        <?php endforeach;?>
+                    <?php endif; ?>
                     <div class="mx-auto bg-white rounded">
                         <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
                         <form action="/listings/<?= $product->id ?>" method="POST">
@@ -117,7 +119,7 @@ $cate = match ($product->category_id) {
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">Giá</label>
-                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="text" placeholder="Enter price" name="price" value="<?= $product->price ?>"> <!-- Replace "100.00" with actual price -->
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" min="1" step=".01" placeholder="Enter price" name="price" value="<?= $product->price ?>"> <!-- Replace "100.00" with actual price -->
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="picture">Link ảnh</label>
@@ -144,7 +146,10 @@ $cate = match ($product->category_id) {
                                 </select>
                             </div>
                             <div class="flex items-center justify-between">
-                                <button class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Update Product</button>
+                                <button class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Cập nhật sản phẩm</button>
+                            </div>
+                            <div class="flex items-center justify-between mt-3">
+                                <a href="/listings/<?= $product->id?>" class="text-center w-full border-indigo-600 bg-gray-100 text-indigo-600 hover:bg-indigo-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hủy</a>
                             </div>
                         </form>
                     </div>

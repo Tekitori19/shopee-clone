@@ -4,7 +4,8 @@
         2 => "Thời trang",
         3 => "Gia dụng",
         default => "Chưa có danh mục" 
-    }
+    };
+    // inspect($product);
 ?>
 
 <div class="bg-white">
@@ -34,6 +35,7 @@
 
                     <div class="mt-4">
                         <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><?=$product->name?></h1>
+                        <?= loadPartial("message")?>
                     </div>
 
                     <section aria-labelledby="information-heading" class="mt-4">
@@ -138,6 +140,11 @@
                                         <span class="text-red-400">Sản phẩm tạm hết hàng</span>
                                     <?php endif; ?>
                                 </button>
+                                <a
+                                    href="/listings/edit/<?= $product->id?>"
+                                    class="hover:border-blue-600 mt-10 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white ">
+                                    Sửa
+                                </a>
                             </div>
                             <div class="mt-6 text-center">
                                 <div href="javascrip:void(0)" class="group inline-flex text-base font-medium">
