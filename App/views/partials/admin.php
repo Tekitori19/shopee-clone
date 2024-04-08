@@ -125,14 +125,14 @@
                                             alt="Edit" class="max-w-none">
                                     </div>
                                 </a>
-                                <a class="mx-2 rounded border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray"
+                                <!-- <a class="mx-2 rounded border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray"
                                     href="javascript: void(0)">
                                     <div aria-label="Settings" role="button"
                                         class="p-2 bg-gray-100 hover:bg-gray-200 rounded cursor-pointer text-indigo-700">
                                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg5.svg"
                                             alt="Settings" class="max-w-none">
                                     </div>
-                                </a>
+                                </a> -->
                                 <a class="rounded border border-transparent focus:outline-none focus:border-gray-800 focus:shadow-outline-gray"
                                     href="javascript: void(0)">
                                     <div aria-label="Delete" role="button"

@@ -10,14 +10,6 @@
             <form>
               <div class="mb-4">
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  class="w-full px-4 py-2 border rounded focus:outline-none"
-                />
-              </div>
-              <div class="mb-4">
-                <input
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -27,11 +19,11 @@
               <button
                 type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
               >
-                Login
+                Đăng nhập
               </button>
               <p class="mt-4 text-gray-500">
-                Don't have an account?
-                <a class="text-blue-900" href="/register">Register</a>
+                Chưa có tài khoản?
+                <a class="text-blue-900" href="/auth/register">Đăng kí</a>
               </p>
             </form>
           </div>

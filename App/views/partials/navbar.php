@@ -221,7 +221,7 @@
                                             <circle cx="12" cy="7" r="4" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                         </svg>
-                                        <a href="/login" class="ml-2">Đăng Nhập</a>
+                                        <a href="/auth/login" class="ml-2">Đăng Nhập</a>
                                     </div>
                                 </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
@@ -231,7 +231,7 @@
                                         <line x1="12" y1="17" x2="12" y2="17.01" />
                                         <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
                                     </svg>
-                                    <a href="/register" class="ml-2">Đăng kí</a>
+                                    <a href="/auth/register" class="ml-2">Đăng kí</a>
                                 </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

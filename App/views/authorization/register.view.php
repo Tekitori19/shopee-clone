@@ -1,4 +1,7 @@
 <?php
-    loadPartial("head");
-    loadPartial("navbar");
-    loadPartial("register");
+loadPartial("head");
+loadPartial("navbar");
+loadPartial("register",[
+    'errors' => $errors ?? [],
+    'user' => $user ?? []
+]);

@@ -10,8 +10,9 @@ $router->get('/listings/edit/{id}', 'ListingsController@edit');
 $router->put('/listings/{id}', 'ListingsController@update');
 $router->delete('/listings/{id}', 'ListingsController@destroy');
 
-$router->get('/login', 'LoginController@index');
-$router->get('/register', 'RegisterController@index');
+$router->get('/auth/login', 'UserController@login');
+$router->get('/auth/register', 'UserController@register');
+$router->post('/auth/register', 'UserController@store');
 $router->get('/checkout', 'CheckoutController@index');
 
 $router->get('/dashboard', 'DashboardController@index');

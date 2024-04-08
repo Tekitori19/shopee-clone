@@ -35,11 +35,7 @@
                                     </div>
                                 </div>
 
-                                <?php if (isset($errors)):?> 
-                                <?php foreach ($errors as $error):?> 
-                                    <div class="message bg-red-100 my-3"><?=$error?></div>
-                                <?php endforeach;?> 
-                                <?php endif;?> 
+                                <?=loadPartial('errors', ['errors' => $errors])?>
                                 <div class="flex items-center pt-10 space-x-9">
                                     <input placeholder="Tên sản phẩm" name="name" value="<?=$listing['name']?? ''?>" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />
                                     <input placeholder="Giá" name="price" type="number" value="<?=$listing['price']?? ''?>" min="1" step=".01" class="dark:text-white focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white dark:bg-gray-900  border rounded border-gray-200 dark:border-gray-700 " />

@@ -7,21 +7,15 @@
         <div class="message bg-green-100 p-3 my-3">
           This is a success message.
         </div> -->
-        <form>
+        <?= loadPartial('errors', ['errors' => $errors ?? []])?>
+        <form method="POST" action="/auth/register">
           <div class="mb-4">
             <input
               type="text"
               name="name"
               placeholder="Tên đầy đủ"
               class="w-full px-4 py-2 border rounded focus:outline-none"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="Địa chỉ email"
-              class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= $user['name'] ?? ''?>"
             />
           </div>
            <div class="mb-4">
@@ -29,8 +23,9 @@
               type="tel"
               name="phone"
               placeholder="Số điện thoại"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              pattern="[0-9]{10}"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= $user['phone'] ?? ''?>"
             />
           </div>
            <div class="mb-4">
@@ -39,6 +34,7 @@
               name="address"
               placeholder="địa chỉ"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= $user['address'] ?? ''?>"
             />
           </div>
           <div class="mb-4">
@@ -65,7 +61,7 @@
 
           <p class="mt-4 text-gray-500">
             Đã có tài khoản?
-            <a class="text-blue-900" href="/login">Đăng nhập</a>
+            <a class="text-blue-900" href="/auth/login">Đăng nhập</a>
           </p>
         </form>
       </div>
