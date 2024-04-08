@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use Framework_Tu_Code\Database;
+use Framework_Tu_Code\Session;
 use Framework_Tu_Code\Validation;
 
 class UserController {
@@ -86,8 +87,86 @@ class UserController {
                 (fullname, phone_number, address, password, role_id)
             VALUES
                 (:fullname, :phone_number, :address, :password, 2)
-        ", $params
-        );
+        ", $params);
+
+        //Get new insert user ID
+        $userId = $this->db->conn->lastInsertId();
+        
+        Session::set('user', [
+            'id' => $userId,
+            'fullname' => $name,
+            'phone_number' => $phone,
+            'address' => $address
+        ]);
+        
+        redirect('/');
+    }
+
+    public function logout()
+    {
+        Session::clearAll();
+
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
+
+        redirect('/');
+    }
+
+    public function authenticate()
+    {
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+
+        $errors = [];
+
+        // Validation
+        if (!Validation::string($phone, 10, 10)) {
+            $errors['phone'] = 'Vui lòng nhập đúng thông tin';
+        }
+
+        if (!Validation::string($password, 6, 50)) {
+            $errors['password'] = 'Mật khẩu có ít nhất 6 kí tự';
+        }
+
+        if (!empty($errors)) {
+            loadView('authorization/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        $params = [
+            'phone' => $phone
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE phone_number = :phone', $params)->fetch();
+
+        print_r($user);
+
+        if (!$user) {
+            $errors['phone'] = 'Thông tin sai';
+            loadView('authorization/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        // Check if password is correct
+        if (!password_verify($password, $user->password)) {
+            $errors['phone'] = 'Thông tin sai';
+            loadView('authorization/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        // Set user session
+        Session::set('user', [
+            'id' => $user->id,
+            'fullname' => $user->fullname,
+            'phone_number' => $user->phone_number,
+            'address' => $user->address
+        ]);
 
         redirect('/');
     }
