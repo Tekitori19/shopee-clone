@@ -2,20 +2,20 @@
 $router->get('/', 'HomeController@index');
 
 $router->get('/listings', 'ListingsController@index');
-$router->post('/listings', 'ListingsController@store');
+$router->post('/listings', 'ListingsController@store', ['admin']);
 
-$router->get('/listings/create', 'ListingsController@create');
+$router->get('/listings/create', 'ListingsController@create', ['admin']);
 $router->get('/listings/{id}', 'ListingsController@detail');
-$router->get('/listings/edit/{id}', 'ListingsController@edit');
-$router->put('/listings/{id}', 'ListingsController@update');
-$router->delete('/listings/{id}', 'ListingsController@destroy');
+$router->get('/listings/edit/{id}', 'ListingsController@edit', ['admin']);
+$router->put('/listings/{id}', 'ListingsController@update', ['admin']);
+$router->delete('/listings/{id}', 'ListingsController@destroy', ['admin']);
 
-$router->get('/auth/login', 'UserController@login');
-$router->post('/auth/login', 'UserController@authenticate');
-$router->get('/auth/register', 'UserController@register');
-$router->post('/auth/register', 'UserController@store');
-$router->post('/auth/logout', 'UserController@logout');
-$router->get('/checkout', 'CheckoutController@index');
+$router->get('/auth/login', 'UserController@login', ['guest']);
+$router->post('/auth/login', 'UserController@authenticate', ['guest']);
+$router->get('/auth/register', 'UserController@register', ['guest']);
+$router->post('/auth/register', 'UserController@store', ['guest']);
+$router->post('/auth/logout', 'UserController@logout', ['auth']);
+$router->get('/checkout', 'CheckoutController@index', ['auth']);
 
-$router->get('/dashboard', 'DashboardController@index');
-$router->get('/dashboard/products', 'DashboardController@products');
+$router->get('/dashboard', 'DashboardController@index', ['admin']);
+$router->get('/dashboard/products', 'DashboardController@products', ['admin']);

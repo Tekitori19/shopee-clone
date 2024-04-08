@@ -16,7 +16,7 @@ class ListingsController
 
     public function index()
     {
-        $products = $this->db->query('SELECT * FROM products')->fetchAll();
+        $products = $this->db->query('SELECT * FROM products ORDER BY id DESC')->fetchAll();
 
         loadView('listings/index', [
             'products' => $products

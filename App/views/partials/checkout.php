@@ -181,22 +181,14 @@
                 </div>
 
                 <div class="flex flex-1 items-end justify-between pt-2">
-                  <p class="mt-1 text-sm font-medium text-gray-900">$32.00</p>
+                  <p class="price mt-1 text-sm font-medium text-gray-900">$32.00</p>
 
                   <div class="ml-4">
                     <label for="quantity" class="sr-only">Quantity</label>
-                    <select id="quantity" name="quantity" class="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                    </select>
+                    <input type="number" min="1" step="1" name="quantity" class="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                   </div>
                 </div>
+
               </div>
             </li>
             <li class="flex px-4 py-6 sm:px-6">
@@ -269,3 +261,14 @@
     </form>
   </div>
 </main>
+<script>
+    function calculateTotal() {
+      var prices = document.querySelectorAll('.price');
+      var quantities = document.querySelectorAll('input[name="quantity"]');
+      var total = 0;
+      for (var i = 0; i < prices.length; i++) {
+        total += parseFloat(prices[i].innerText.replace('$', '')) * parseFloat(quantities[i].value);
+      }
+      document.getElementById('total').innerText = '$' + total.toFixed(2);
+    }
+  </script>

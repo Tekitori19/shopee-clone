@@ -245,6 +245,7 @@ $check = match ($routePath) {
                                     <a href="/auth/register" class="ml-2">Đăng kí</a>
                                 </li>
                             <?php endif; ?>
+                            <?php if (Session::has('user') && Session::get('user')['role'] === 1): ?>
                             <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -253,6 +254,7 @@ $check = match ($routePath) {
                                 </svg>
                                 <a href="/dashboard" class="ml-2">Quản lý</a>
                             </li>
+                            <?php endif;?>
                         </ul>
                     </div>
                 </div>

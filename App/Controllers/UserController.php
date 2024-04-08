@@ -91,12 +91,15 @@ class UserController {
 
         //Get new insert user ID
         $userId = $this->db->conn->lastInsertId();
+
+        $role = $this->db->query("SELECT * FROM users WHERE id = :id",['id'=>$userId]);
         
         Session::set('user', [
             'id' => $userId,
             'fullname' => $name,
             'phone_number' => $phone,
-            'address' => $address
+            'address' => $address,
+            'role' => $role
         ]);
         
         redirect('/');
@@ -165,7 +168,8 @@ class UserController {
             'id' => $user->id,
             'fullname' => $user->fullname,
             'phone_number' => $user->phone_number,
-            'address' => $user->address
+            'address' => $user->address,
+            'role' => $user->role_id
         ]);
 
         redirect('/');
