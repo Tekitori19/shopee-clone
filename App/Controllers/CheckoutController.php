@@ -16,7 +16,11 @@ class CheckoutController
 
     public function index()
     {
-        loadView("checkout/index");
+        $id = Session::get('user')['id'];
+        $in4 = $this->db->query('SELECT * FROM users WHERE id = :id', ['id' => $id])->fetch();
+        loadView("checkout/index", [
+            'in4' => $in4,
+        ]);
     }
 
     public function cart()
@@ -131,7 +135,7 @@ class CheckoutController
         }
 
         $param = [
-            'order_total' => $order_total,
+            'order_total' => $order_total+16,
             'new_order_id' => $new_order_id
         ];
         $sql_update_order_total = "UPDATE orders SET total_money = :order_total WHERE id = :new_order_id";
