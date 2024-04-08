@@ -34,7 +34,6 @@ class DashboardController
             JOIN
                 users ON orders.user_id = users.id;
         ')->fetchAll();
-
         loadView("dashboard/index", [
             'users' => $users
         ]);
@@ -56,7 +55,8 @@ class DashboardController
                 users.fullname,
                 users.phone_number,
                 users.address,
-                order_details.id
+                order_details.id,
+                order_details.total_money as 'total'
             FROM
                 orders
             JOIN
@@ -118,7 +118,8 @@ class DashboardController
                 users.fullname,
                 users.phone_number,
                 users.address,
-                order_details.order_id
+                order_details.order_id,
+                order_details.total_money
             FROM
                 orders
             JOIN

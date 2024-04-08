@@ -22,6 +22,7 @@
                     <p class="text-sm text-gray-600">Số điện thoại: <?= $user->phone_number?></p>
                     <p class="text-sm text-gray-600">Tên sản phẩm: <?= $user->name?></p>
                     <p class="text-sm text-gray-600">Số lượng: <?= $user->number_of_products?></p>
+                    <p class="text-sm text-gray-600">Tổng tiền: <b><?= $user->total_money?>$</b></p>
                     <p class="text-sm text-gray-600">Trạng thái: <span class="font-semibold text-<?=$color?>-600"><?= $user->status?></span></p>
                     <form method="post" action="/dashboard/<?=$user->order_id?>" class="mt-4">
                         <input type="hidden" name="_method" value="PUT">
