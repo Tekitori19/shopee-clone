@@ -21,8 +21,8 @@ $router->delete('/checkout', 'CheckoutController@delete', ['auth']);
 $router->post('/checkout/store', 'CheckoutController@store', ['auth']);
 
 $router->get('/dashboard', 'DashboardController@order', ['admin']);
+$router->get('/dashboard/products', 'DashboardController@products', ['admin']);
 $router->get('/dashboard/{id}', 'DashboardController@detail_order', ['admin']);
 $router->delete('/dashboard/{id}', 'DashboardController@destroy_order', ['admin']);
 $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']);
 $router->put('/dashboard/{id}', 'DashboardController@update_order', ['admin']);
-$router->get('/dashboard/products', 'DashboardController@products', ['admin']);
