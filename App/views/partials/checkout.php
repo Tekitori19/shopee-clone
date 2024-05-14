@@ -143,8 +143,7 @@ $sumtotal = $subbtotal + 16;
     </div>
 
     <!-- Order summary -->
-
-    <?php if (Session::has('cart')) : ?>
+    <?php if (Session::has('cart') && !empty(Session::get('cart'))) : ?>
       <div class="mt-10 lg:mt-0">
         <h2 class="text-lg font-medium text-gray-900">Order summary</h2>
 

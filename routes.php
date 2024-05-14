@@ -4,6 +4,7 @@ $router->get('/', 'HomeController@index');
 $router->get('/listings', 'ListingsController@index');
 $router->post('/listings', 'ListingsController@store', ['admin']);
 
+$router->get('/listings/search', 'ListingsController@search', ['admin']);
 $router->get('/listings/create', 'ListingsController@create', ['admin']);
 $router->get('/listings/{id}', 'ListingsController@detail');
 $router->get('/listings/edit/{id}', 'ListingsController@edit', ['admin']);
@@ -20,8 +21,10 @@ $router->post('/checkout', 'CheckoutController@cart', ['auth']);
 $router->delete('/checkout', 'CheckoutController@delete', ['auth']);
 $router->post('/checkout/store', 'CheckoutController@store', ['auth']);
 
+$router->get('/dashboard/search', 'DashboardController@search', ['admin']);
 $router->get('/dashboard', 'DashboardController@order', ['admin']);
 $router->get('/dashboard/products', 'DashboardController@products', ['admin']);
+$router->get('/dashboard/products/search', 'DashboardController@products_search', ['admin']);
 $router->get('/dashboard/{id}', 'DashboardController@detail_order', ['admin']);
 $router->delete('/dashboard/{id}', 'DashboardController@destroy_order', ['admin']);
 $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']);

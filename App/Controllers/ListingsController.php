@@ -223,4 +223,20 @@ class ListingsController
         }
     }
 
+    public function search() {
+        $product = $_GET['product'] ?? '';
+
+        $params = [
+            'product' => "%{$product}%",
+        ];
+
+        $sql = "SELECT * FROM products WHERE name LIKE :product OR description LIKE :product";
+
+        $products = $this->db->query($sql, $params)->fetchAll();
+
+        loadView('listings/index', [
+            'products' => $products
+        ]);
+    }
+
 }

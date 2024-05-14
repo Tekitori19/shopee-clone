@@ -188,4 +188,72 @@ class DashboardController
             'products'=> $products
         ]);
     }
+
+    public function search() {
+        $user = $_GET['user'] ?? '';
+
+        $params = [
+            'user' => "%{$user}%",
+        ];
+
+        $sql = "SELECT
+                orders.order_date,
+                products.name,
+                order_details.number_of_products,
+                orders.status,
+                users.fullname,
+                users.phone_number,
+                users.address,
+                order_details.id,
+                order_details.total_money as 'total'
+            FROM
+                orders
+            JOIN
+                order_details ON orders.id = order_details.order_id
+            JOIN
+                products ON order_details.product_id = products.id
+            JOIN
+                users ON orders.user_id = users.id
+            WHERE (users.fullname LIKE :user OR users.phone_number LIKE :user OR users.address LIKE :user OR orders.status LIKE :user)
+        ";
+
+        $users = $this->db->query($sql, $params)->fetchAll();
+
+        loadView("dashboard/index", [
+            'users' => $users
+        ]);
+    }
+
+    public function products_search() {
+
+        $items = $_GET['items'] ?? '';
+
+        $params = [
+            'items' => "%{$items}%",
+        ];
+
+        $sql = " SELECT 
+                    products.id AS product_id,
+                    products.name AS product_name,
+                    IFNULL(SUM(order_details.total_money), 0) AS total_revenue,
+                    products.price,
+                    products.status,
+                    products.picture
+                FROM 
+                    products
+                LEFT JOIN 
+                    order_details ON products.id = order_details.product_id
+                WHERE (products.name LIKE :items OR products.description LIKE :items OR products.price LIKE :items)
+                GROUP BY 
+                    products.id, products.name, products.price, products.status
+                ORDER BY 
+                    total_revenue DESC
+                ;";
+
+        $products = $this->db->query($sql, $params)->fetchAll();
+    
+        loadView("dashboard/products", [
+            'products'=> $products
+        ]);
+    }
 }

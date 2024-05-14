@@ -25,19 +25,19 @@ INSERT INTO users (fullname, phone_number, address, password, role_id) VALUES
 ('Mark Johnson', '0987654321', '456 Oak Street', 'markpassword', 2);
 
 -- Thêm dữ liệu vào bảng products
-INSERT INTO products (name, status, price, picture, description, category_id) VALUES
-('Smartphone ABC', 1, 500.00, 'smartphone.jpg', 'Mô tả sản phẩm smartphone ABC', 1),
-('Laptop XYZ', 1, 1200.00, 'laptop.jpg', 'Mô tả sản phẩm laptop XYZ', 1),
-('Áo thun nam A', 1, 25.00, 'aothunnam.jpg', 'Mô tả sản phẩm áo thun nam A', 2),
-('Váy đầm nữ B', 1, 50.00, 'vaydamnu.jpg', 'Mô tả sản phẩm váy đầm nữ B', 2),
-('Máy giặt', 1, 600.00, 'maygiat.jpg', 'Mô tả sản phẩm máy giặt', 1),
-('Kem chống nắng', 1, 10.00, 'kemchongnang.jpg', 'Mô tả sản phẩm kem chống nắng', 2),
-('Bóng đá Adidas', 1, 30.00, 'bongda.jpg', 'Mô tả sản phẩm bóng đá Adidas', 2),
-('Máy hút bụi', 1, 80.00, 'mayhutbui.jpg', 'Mô tả sản phẩm máy hút bụi', 1),
-('Tai nghe Bluetooth', 1, 50.00, 'tainghe.jpg', 'Mô tả sản phẩm tai nghe Bluetooth', 1),
-('Vali du lịch', 1, 100.00, 'vali.jpg', 'Mô tả sản phẩm vali du lịch', 2),
-('Áo khoác nam', 1, 70.00, 'aokhoacnam.jpg', 'Mô tả sản phẩm áo khoác nam', 2),
-('Giày cao gót nữ', 1, 60.00, 'giaycaogotnu.jpg', 'Mô tả sản phẩm giày cao gót nữ', 2);
+INSERT INTO products (name, status, price, description, category_id) VALUES
+('Smartphone ABC', 1, 500.00,  'Mô tả sản phẩm smartphone ABC', 1),
+('Laptop XYZ', 1, 1200.00, 'Mô tả sản phẩm laptop XYZ', 1),
+('Áo thun nam A', 1, 25.00,  'Mô tả sản phẩm áo thun nam A', 2),
+('Váy đầm nữ B', 1, 50.00,  'Mô tả sản phẩm váy đầm nữ B', 2),
+('Máy giặt', 1, 600.00,  'Mô tả sản phẩm máy giặt', 1),
+('Kem chống nắng', 1, 10.00,  'Mô tả sản phẩm kem chống nắng', 2),
+('Bóng đá Adidas', 1, 30.00,  'Mô tả sản phẩm bóng đá Adidas', 2),
+('Máy hút bụi', 1, 80.00,  'Mô tả sản phẩm máy hút bụi', 1),
+('Tai nghe Bluetooth', 1, 50.00,  'Mô tả sản phẩm tai nghe Bluetooth', 1),
+('Vali du lịch', 1, 100.00,  'Mô tả sản phẩm vali du lịch', 2),
+('Áo khoác nam', 1, 70.00,  'Mô tả sản phẩm áo khoác nam', 2),
+('Giày cao gót nữ', 1, 60.00,  'Mô tả sản phẩm giày cao gót nữ', 2);
 
 -- Thêm dữ liệu vào bảng orders
 INSERT INTO orders (user_id, message, status, total_money) VALUES

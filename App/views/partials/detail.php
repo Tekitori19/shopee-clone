@@ -109,8 +109,7 @@ $cate = match ($product->category_id) {
                 <form method="post" action="/checkout">
 
                     <div class="mt-1">
-
-                        
+                            <input type="hidden" name="picture" value="<?= $product->picture ?>">
                             <input type="hidden" name="name" value="<?= $product->name ?>">
                             <input type="hidden" name="price" value="<?= $product->price ?>">
                             <button type="submit" name="cart" <?= $product->status !== 1? 'disabled': ''?> class="<?= $product->status == 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50' : 'cursor-not-allowed' ?> flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white ">

@@ -26,7 +26,7 @@ $check = match ($routePath) {
     '/register' => 'Đăng ký',
     '/dashboard' => 'Quản lý (khách hàng)',
     '/dashboard/products' => 'Quản lý (sản phẩm)',
-    default => 'jj'
+    default => 'idontknow'
 }
 ?>
 
@@ -172,12 +172,8 @@ $check = match ($routePath) {
                 <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check === 'Shop' ? $navbarClass : "" ?>"><a href="/listings">Shop</a></li>
                 <?php if (Session::get('user') && Session::get('user')['role'] === 1): ?>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : "" ?>"><a href="/listings/create">Đăng bài</a></li>
-                    <?php if ($check !== 'Quản lý (khách hàng)') : ?>
-                        <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal "><a href="/dashboard">Quản lý</a></li>
-                    <?php endif; ?>
-                    <?php if (!in_array($check, $staticNav) && in_array($check, $dynamicNav)) : ?>
-                        <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-800 tracking-normal <?= $navbarClass ?>"><?= $check ?></li>
-                    <?php endif; ?>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (khách hàng)' ? $navbarClass : "" ?>"><a href="/dashboard">Khách hàng</a></li>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/dashboard/products">Sản phẩm</a></li>
                 <?php endif;?>
             </ul>
         </div>
@@ -188,7 +184,10 @@ $check = match ($routePath) {
                         <div class="text-gray-600 absolute ml-3 inset-0 m-auto w-4 h-4">
                             <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_white_bg-svg3.svg" alt="search">
                         </div>
-                        <input class="border border-gray-100 focus:outline-none focus:border-indigo-700 w-56 rounded text-sm text-gray-500 placeholder-gray-600 bg-gray-100 pl-8 py-2" type="text" placeholder="Search" />
+                        <form action="/listings/search" method="get">
+                            <input name="product" class="border border-gray-100 focus:outline-none focus:border-indigo-700 w-56 rounded text-sm text-gray-500 placeholder-gray-600 bg-gray-100 pl-8 py-2" type="text" placeholder="Search product" />
+                            <input type="submit" hidden />
+                        </form>
                     </div>
                 </div>
                 <div class="w-full h-full flex">

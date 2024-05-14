@@ -17,6 +17,9 @@ $startIndex = ($currentPage - 1) * $productsPerPage;
 
 // Lấy danh sách sản phẩm cho trang hiện tại
 $currentPageProducts = array_slice($products, $startIndex, $productsPerPage);
+
+$item = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : '';
+// echo ($product==false) == true;
 ?>
 
 <section aria-labelledby="collection-heading" class="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8" id="store">
@@ -32,25 +35,47 @@ $currentPageProducts = array_slice($products, $startIndex, $productsPerPage);
     <!-- Phân trang -->
     <div class="mt-10 flex justify-center">
         <?php if ($totalPages > 1): ?>
-            <nav class="flex" aria-label="Pagination">
-                <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?= $currentPage - 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-                        Previous
-                    </a>
-                <?php endif; ?>
+            <?php if ($item): ?>
+                <nav class="flex" aria-label="Pagination">
+                    <?php if ($currentPage > 1): ?>
+                        <a href="?product=<?=$item?>&page=<?= $currentPage - 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            Trước
+                        </a>
+                    <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <a href="?page=<?= $i ?>" class="<?= $i === $currentPage ? 'bg-gray-200' : 'bg-white' ?> relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-50">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="?product=<?=$item?>&page=<?= $i ?>" class="<?= $i === $currentPage ? 'bg-gray-200' : 'bg-white' ?> relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-50">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
 
-                <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?= $currentPage + 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-                        Next
-                    </a>
-                <?php endif; ?>
-            </nav>
+                    <?php if ($currentPage < $totalPages): ?>
+                        <a href="?product=<?=$item?>&page=<?= $currentPage + 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            Tiếp theo
+                        </a>
+                    <?php endif; ?>
+                </nav>
+            <?php else:?>
+                <nav class="flex" aria-label="Pagination">
+                    <?php if ($currentPage > 1): ?>
+                        <a href="?page=<?= $currentPage - 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            Trước
+                        </a>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="?page=<?= $i ?>" class="<?= $i === $currentPage ? 'bg-gray-200' : 'bg-white' ?> relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-50">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+
+                    <?php if ($currentPage < $totalPages): ?>
+                        <a href="?page=<?= $currentPage + 1 ?>" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            Tiếp theo
+                        </a>
+                    <?php endif; ?>
+                </nav>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 </section>

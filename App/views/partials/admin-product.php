@@ -1,4 +1,18 @@
 <div class="mx-auto max-w-7xl pt-24 px-4 py-12 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row p-8 justify-center items-start lg:items-stretch w-full">
+        <div class="w-full lg:w-1/4 xl:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
+            <div class="w-full relative mb-2 lg:mb-0 lg:mr-4">
+                <div class="absolute text-gray-600 dark:text-gray-400 flex items-center pl-4 h-full">
+                    <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg1.svg" alt="search">
+                    <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/advance_table_with_filters_search_and_two_level_action_buttons-svg1dark.svg" alt="search">
+                </div>
+                <form action="/dashboard/products/search" method="get">
+                    <label for="items" class="hidden"></label>
+                    <input name="items" placeholder="Search product dashboard" id="items" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-12 text-sm border-gray-300 dark:border-gray-200 rounded border"/>
+                </form>
+            </div>
+        </div>
+    </div>
 <?= loadPartial("message")?>
 <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
  
