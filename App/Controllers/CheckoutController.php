@@ -30,6 +30,7 @@ class CheckoutController
         if (isset($_POST['cart'])) {
             $name = $_POST['name'];
             $price = $_POST['price'];
+            $picture = $_POST['picture'];
             $quantity = 1; // Số lượng sản phẩm được thêm vào giỏ hàng
             
             // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
@@ -51,6 +52,7 @@ class CheckoutController
                     'name' => $name,
                     'price' => $price,
                     'quantity' => $quantity,
+                    'picture' => $picture,
                     'total' => $price * $quantity
                 ];
             }
@@ -78,7 +80,7 @@ class CheckoutController
             }
         }
 
-        loadView("checkout/index");
+        redirect('/checkout');
     }
 
     public function store() {

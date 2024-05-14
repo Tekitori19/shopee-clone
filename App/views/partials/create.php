@@ -52,6 +52,9 @@
                                     </div>
                                 </div>
                                 <div class="mt-8">
+                                    <input placeholder="Link hình ảnh (hiện tại upload ảnh không được)" name="picture" class="dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 dark:bg-gray-900 py-3 pl-3 overflow-y-auto border placeholder-gray-500 rounded border-gray-200 dark:border-gray-700  w-full resize-none focus:outline-none"><?=$listing['picture'] ?? ''?></input>
+                                </div>
+                                <div class="mt-8">
                                     <textarea placeholder="Mô tả sản phẩm" name="description" class="dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 dark:bg-gray-900 py-3 pl-3 overflow-y-auto h-24 border placeholder-gray-500 rounded border-gray-200 dark:border-gray-700  w-full resize-none focus:outline-none"><?=$listing['description'] ?? ''?></textarea>
                                 </div>
                                 <div class="flex items-center justify-between mt-9">

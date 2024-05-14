@@ -155,7 +155,7 @@ $sumtotal = $subbtotal + 16;
               <li class="flex px-4 py-6 sm:px-6">
 
                 <div class="flex-shrink-0">
-                  <img src="https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="w-20 rounded-md">
+                  <img src="<?= strlen($cart['picture']) !== 0 ? $cart['picture'] :'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg'?>" alt="Front of men&#039;s Basic Tee in black." class="w-20 rounded-md">
                 </div>
                 <div class="ml-6 flex flex-1 flex-col">
                   <div class="flex">

@@ -172,7 +172,8 @@ class DashboardController
                 products.name AS product_name,
                 IFNULL(SUM(order_details.total_money), 0) AS total_revenue,
                 products.price,
-                products.status
+                products.status,
+                products.picture
             FROM 
                 products
             LEFT JOIN 
