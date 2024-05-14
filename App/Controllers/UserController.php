@@ -144,7 +144,7 @@ class UserController {
 
         $user = $this->db->query('SELECT * FROM users WHERE phone_number = :phone', $params)->fetch();
 
-        print_r($user);
+        // print_r($user);
 
         if (!$user) {
             $errors['phone'] = 'Thông tin sai';

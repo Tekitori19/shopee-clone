@@ -92,7 +92,7 @@ $cate = match ($product->category_id) {
         <!-- Product image -->
         <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
             <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg" alt="Model wearing light green backpack with black canvas straps and front zipper pouch." class="h-full w-full object-cover object-center">
+                <img src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'?>" class="h-full w-full object-cover object-center">
             </div>
         </div>
 
