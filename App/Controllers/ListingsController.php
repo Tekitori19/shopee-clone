@@ -1,22 +1,22 @@
 <?php
+
 namespace App\Controllers;
-use Framework_Tu_Code\Database;
+
 use Framework_Tu_Code\Validation;
-use PDOException;
+use App\Models\Product;
 
 class ListingsController
 {
-    protected $db;
-    
+    protected $model;
+
     public function __construct()
     {
-        $config = require basePath('config/db.php');
-        $this->db = new Database($config);
+        $this->model = new Product();
     }
 
     public function index()
     {
-        $products = $this->db->query('SELECT * FROM products ORDER BY id DESC')->fetchAll();
+        $products = $this->model->getAllProduct();
 
         loadView('listings/index', [
             'products' => $products
@@ -35,14 +35,14 @@ class ListingsController
         $params = [
             'id' => $id,
         ];
-    
-        $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+
+        $product = $this->model->getProductById($params);
 
         if (!$product) {
             ErrorController::notFound("Không tìm thấy sản phẩm");
             return;
         }
-    
+
         loadView("listings/detail", [
             'product' => $product
         ]);
@@ -50,7 +50,7 @@ class ListingsController
 
     public function store()
     {
-        $validArray = ['name', 'price','category_id', 'description', 'picture'];
+        $validArray = ['name', 'price', 'category_id', 'description', 'picture'];
         $newProduct = array_intersect_key($_POST, array_flip($validArray));
 
         // !!IMAGE UPLOAD HAS SOME BUG I CAN'T UPLOAD
@@ -59,16 +59,16 @@ class ListingsController
         // $newProduct['picture']="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg";
 
         $newProduct = array_map('sanitize', $newProduct);
-        $requiredFields = ['name', 'price','category_id', 'description', 'picture'];
+        $requiredFields = ['name', 'price', 'category_id', 'description', 'picture'];
 
         $errors = [];
 
         foreach ($requiredFields as $field) {
             if (empty($newProduct[$field]) || !Validation::string($newProduct[$field])) {
-              $errors[$field] = ucfirst($field) . ' is required';
+                $errors[$field] = ucfirst($field) . ' is required';
             }
-          }
-      
+        }
+
         if (!empty($errors)) {
             loadView('listings/create', [
                 'errors' => $errors,
@@ -77,7 +77,7 @@ class ListingsController
         } else {
             // $this->db->query('INSERT INTO products (name, status, price, picture, description, category_id) VALUES
             // (:name, 1, :price, :picture, :description, :category);', $newProduct);
-         
+
             $fields = [];
 
             foreach ($newProduct as $field => $value) {
@@ -87,7 +87,7 @@ class ListingsController
             $fields = implode(', ', $fields);
 
             $values = [];
-            
+
             foreach ($newProduct as $field => $value) {
                 if ($values === '') {
                     $newProduct[$field] = null;
@@ -99,9 +99,9 @@ class ListingsController
             // inspect($fields);
             // inspect($values);
 
-            $query = "INSERT INTO products ({$fields}) VALUES ({$values})";
-
-            $this->db->query($query, $newProduct);
+            // $query = "INSERT INTO products ({$fields}) VALUES ({$values})";
+            // $this->model->query($query, $newProduct);
+            $this->model->insertProduct($fields, $values, $newProduct);
             redirect("/listings");
         }
     }
@@ -109,26 +109,12 @@ class ListingsController
     public function destroy($params)
     {
         $id = $params['id'];
-        
+
         $params = [
             'id' => $id
         ];
 
-        try {
-            $sql = "DELETE od, p FROM order_details od
-            INNER JOIN products p ON od.product_id = p.id
-            WHERE p.id = :id";
-            $this->db->query($sql, $params);
-        } catch (PDOException $e) {
-            //throw $th;
-        }
-
-        try {
-            $sql = "DELETE FROM products WHERE id = :id";
-            $this->db->query($sql, $params);
-        } catch (PDOException $e) {
-            //throw $th;
-        }
+        $this->model->destroy($params);
 
         //Set flash message
         $_SESSION['success_message'] = 'Xóa thành công';
@@ -141,20 +127,19 @@ class ListingsController
         $id = $params['id'] ?? '';
 
         $params = [
-        'id' => $id
+            'id' => $id
         ];
 
-        $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+        $product = $this->model->getProductById($params);
 
         // Check if product exists
         if (!$product) {
-        ErrorController::notFound('Listing not found');
-        return;
+            ErrorController::notFound('Listing not found');
+            return;
         }
 
-
         loadView('listings/edit', [
-        'product' => $product
+            'product' => $product
         ]);
     }
 
@@ -168,7 +153,7 @@ class ListingsController
 
         // inspect()
 
-        $product = $this->db->query('SELECT * FROM products WHERE id = :id', $params)->fetch();
+        $product = $this->model->getProductById($params);
 
         // Check if product$product exists
         if (!$product) {
@@ -176,7 +161,7 @@ class ListingsController
             return;
         }
 
-        $validArray = ['name', 'price','category_id', 'description', 'status'];
+        $validArray = ['name', 'price', 'category_id', 'description', 'status'];
 
         $updateValues = [];
 
@@ -184,7 +169,7 @@ class ListingsController
 
         $updateValues = array_map('sanitize', $updateValues);
 
-        $requiredFields = ['name', 'price','category_id', 'description', 'status'];
+        $requiredFields = ['name', 'price', 'category_id', 'description', 'status'];
 
         $errors = [];
 
@@ -209,13 +194,13 @@ class ListingsController
             }
 
             $updateFields = implode(', ', $updateFields);
-            
+
             // inspectAndDie($updateValues);
 
-            $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
+            // $updateQuery = "UPDATE products SET $updateFields WHERE id = :id";
 
             $updateValues['id'] = $id;
-            $this->db->query($updateQuery, $updateValues);
+            $this->model->update($updateFields, $updateValues);
 
             $_SESSION["success_message"] = "Cập nhật sản phẩm thành công";
 
@@ -223,20 +208,18 @@ class ListingsController
         }
     }
 
-    public function search() {
+    public function search()
+    {
         $product = $_GET['product'] ?? '';
 
         $params = [
             'product' => "%{$product}%",
         ];
 
-        $sql = "SELECT * FROM products WHERE name LIKE :product OR description LIKE :product";
-
-        $products = $this->db->query($sql, $params)->fetchAll();
+        $products = $this->model->search($params)->fetchAll();
 
         loadView('listings/index', [
             'products' => $products
         ]);
     }
-
 }
