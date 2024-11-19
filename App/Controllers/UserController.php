@@ -1,23 +1,25 @@
 <?php
+
 namespace App\Controllers;
 
-use Framework_Tu_Code\Database;
 use Framework_Tu_Code\Session;
 use Framework_Tu_Code\Validation;
+use App\Models\User;
 
-class UserController {
-    protected $db;
+class UserController
+{
+    protected $model;
 
     public function __construct()
     {
-        $config = require basePath('config/db.php');
-        $this->db = new Database($config);
+        $this->model = new User();
     }
 
-    public function login() {
+    public function login()
+    {
         loadView("authorization/login");
     }
-    
+
     public function register()
     {
         loadView("authorization/register");
@@ -57,10 +59,10 @@ class UserController {
             'phone_number' => $phone
         ];
 
-        $user = $this->db->query("SELECT * FROM users WHERE phone_number = :phone_number", $params)->fetch();
+        $user = $this->model->selectByPhoneNumber($params);
 
         if ($user) {
-            $errors['phone_number'] = 'Số điện thoại đã được đăng kí vui lòng dùng số khác';  
+            $errors['phone_number'] = 'Số điện thoại đã được đăng kí vui lòng dùng số khác';
         }
 
         if (!empty($errors)) {
@@ -82,18 +84,12 @@ class UserController {
             'password' => password_hash($password, PASSWORD_BCRYPT)
         ];
 
-        $this->db->query(
-            "INSERT INTO users 
-                (fullname, phone_number, address, password, role_id)
-            VALUES
-                (:fullname, :phone_number, :address, :password, 2)
-        ", $params);
+        $this->model->insert($params);
 
         //Get new insert user ID
-        $userId = $this->db->conn->lastInsertId();
+        $userId = $this->model->getNewInsertedUserID();
+        $role = $this->model->selectByID($userId);
 
-        $role = $this->db->query("SELECT * FROM users WHERE id = :id",['id'=>$userId]);
-        
         Session::set('user', [
             'id' => $userId,
             'fullname' => $name,
@@ -101,7 +97,7 @@ class UserController {
             'address' => $address,
             'role' => $role
         ]);
-        
+
         redirect('/');
     }
 
@@ -142,7 +138,7 @@ class UserController {
             'phone' => $phone
         ];
 
-        $user = $this->db->query('SELECT * FROM users WHERE phone_number = :phone', $params)->fetch();
+        $user = $this->model->selectByPhoneNumber($params);
 
         // print_r($user);
 
