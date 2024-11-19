@@ -1,39 +1,21 @@
 <?php
+
 namespace App\Controllers;
-use Framework_Tu_Code\Database;
-use PDOException;
+
+use App\Models\Dashboard;
 
 class DashboardController
 {
-    protected $db;
+    protected $model;
 
-    public function __construct() 
+    public function __construct()
     {
-        $config = require basePath('config/db.php');
-        $this->db = new Database($config);
+        $this->model = new Dashboard();
     }
 
     public function order()
     {
-        $users = $this->db->query(
-            'SELECT
-                orders.order_date,
-                products.name,
-                order_details.number_of_products,
-                orders.status,
-                users.fullname,
-                users.phone_number,
-                users.address,
-                order_details.id
-            FROM
-                orders
-            JOIN
-                order_details ON orders.id = order_details.order_id
-            JOIN
-                products ON order_details.product_id = products.id
-            JOIN
-                users ON orders.user_id = users.id;
-        ')->fetchAll();
+        $users = $this->model->loadOrder();
         loadView("dashboard/index", [
             'users' => $users
         ]);
@@ -46,34 +28,13 @@ class DashboardController
         $params = [
             'id' => $id
         ];
-        
-        $sql = "SELECT
-                orders.order_date,
-                products.name,
-                order_details.number_of_products,
-                orders.status,
-                users.fullname,
-                users.phone_number,
-                users.address,
-                order_details.id,
-                order_details.total_money as 'total'
-            FROM
-                orders
-            JOIN
-                order_details ON orders.id = order_details.order_id
-            JOIN
-                products ON order_details.product_id = products.id
-            JOIN
-                users ON orders.user_id = users.id
-            WHERE order_details.id = :id
-        ";
 
-        $user = $this->db->query($sql, $params)->fetch();
+        $user = $this->model->detailOrder($params);
 
         // Kiểm tra nếu người dùng tồn tại
         if (!$user) {
             ErrorController::notFound('Không tìm thấy đơn hàng');
-        return;
+            return;
         }
 
         loadView('dashboard/detail_user', [
@@ -84,17 +45,12 @@ class DashboardController
     public function destroy_order($params)
     {
         $id = $params['id'];
-        
+
         $params = [
             'id' => $id
         ];
 
-        try {
-            $sql = "DELETE FROM order_details WHERE id = :id";
-            $this->db->query($sql, $params);
-        } catch (PDOException $e) {
-            //throw $th;
-        }
+        $this->model->deleteOrder($params);
 
         //Set flash message
         $_SESSION['success_message'] = 'Xóa thành công';
@@ -106,37 +62,12 @@ class DashboardController
     {
         $id = $params['id'] ?? '';
 
-        $params = [
-            'id' => $id
-        ];
-        
-        $sql = "SELECT
-                orders.order_date,
-                products.name,
-                order_details.number_of_products,
-                orders.status,
-                users.fullname,
-                users.phone_number,
-                users.address,
-                order_details.order_id,
-                order_details.total_money
-            FROM
-                orders
-            JOIN
-                order_details ON orders.id = order_details.order_id
-            JOIN
-                products ON order_details.product_id = products.id
-            JOIN
-                users ON orders.user_id = users.id
-            WHERE order_details.id = :id
-        ";
+        $params = ['id' => $id];
 
-        $user = $this->db->query($sql, $params)->fetch();
-
-        // Kiểm tra nếu người dùng tồn tại
+        $user = $this->model->loadOrderDetails($params);
         if (!$user) {
             ErrorController::notFound('Không tìm thấy đơn hàng');
-        return;
+            return;
         }
 
         loadView('dashboard/edit', [
@@ -155,76 +86,41 @@ class DashboardController
             'status' => $status
         ];
 
-        $sql = "UPDATE orders SET status = :status WHERE id = :id";
-
-        $this->db->query($sql, $params);
+        $this->model->updateStatusOrder($params);
 
         $_SESSION["success_message"] = "Cập nhật sản phẩm thành công";
 
         redirect('/dashboard');
-    
     }
 
-    public function products() {
-        $products = $this->db->query(
-            " SELECT 
-                products.id AS product_id,
-                products.name AS product_name,
-                IFNULL(SUM(order_details.total_money), 0) AS total_revenue,
-                products.price,
-                products.status,
-                products.picture
-            FROM 
-                products
-            LEFT JOIN 
-                order_details ON products.id = order_details.product_id
-            GROUP BY 
-                products.id, products.name, products.price, products.status
-            ORDER BY 
-                total_revenue DESC;"
-            )->fetchAll();
-    
+    public function products()
+    {
+        $products = $this->model->loadProduct();
         loadView("dashboard/products", [
-            'products'=> $products
+            'products' => $products
         ]);
     }
 
-    public function search() {
+    /**
+     * Search order
+     */
+    public function search()
+    {
         $user = $_GET['user'] ?? '';
 
         $params = [
             'user' => "%{$user}%",
         ];
 
-        $sql = "SELECT
-                orders.order_date,
-                products.name,
-                order_details.number_of_products,
-                orders.status,
-                users.fullname,
-                users.phone_number,
-                users.address,
-                order_details.id,
-                order_details.total_money as 'total'
-            FROM
-                orders
-            JOIN
-                order_details ON orders.id = order_details.order_id
-            JOIN
-                products ON order_details.product_id = products.id
-            JOIN
-                users ON orders.user_id = users.id
-            WHERE (users.fullname LIKE :user OR users.phone_number LIKE :user OR users.address LIKE :user OR orders.status LIKE :user)
-        ";
-
-        $users = $this->db->query($sql, $params)->fetchAll();
+        $users = $this->model->searchOrders($params);
 
         loadView("dashboard/index", [
             'users' => $users
         ]);
     }
 
-    public function products_search() {
+    public function products_search()
+    {
 
         $items = $_GET['items'] ?? '';
 
@@ -232,28 +128,10 @@ class DashboardController
             'items' => "%{$items}%",
         ];
 
-        $sql = " SELECT 
-                    products.id AS product_id,
-                    products.name AS product_name,
-                    IFNULL(SUM(order_details.total_money), 0) AS total_revenue,
-                    products.price,
-                    products.status,
-                    products.picture
-                FROM 
-                    products
-                LEFT JOIN 
-                    order_details ON products.id = order_details.product_id
-                WHERE (products.name LIKE :items OR products.description LIKE :items OR products.price LIKE :items)
-                GROUP BY 
-                    products.id, products.name, products.price, products.status
-                ORDER BY 
-                    total_revenue DESC
-                ;";
+        $products = $this->model->searchProducts($params);
 
-        $products = $this->db->query($sql, $params)->fetchAll();
-    
         loadView("dashboard/products", [
-            'products'=> $products
+            'products' => $products
         ]);
     }
 }
