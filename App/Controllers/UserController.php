@@ -135,7 +135,7 @@ class UserController
         }
 
         $params = [
-            'phone' => $phone
+            'phone_number' => $phone
         ];
 
         $user = $this->model->selectByPhoneNumber($params);

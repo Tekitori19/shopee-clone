@@ -61,7 +61,21 @@ class Product
 
     public function search($params)
     {
-        return $this->db->query('SELECT * FROM products WHERE name LIKE :product OR description LIKE :product', $params)->fetchAll();
+        $query = 'SELECT * FROM products WHERE 1=1';
+        $queryParams = [];
+
+        if ($params['product']) {
+            $query .= ' AND (name LIKE :product OR description LIKE :product)';
+            $queryParams['product'] = $params['product'];
+        }
+
+        if ($params['category']) {
+            $query .= ' AND category_id = :category';
+            $queryParams['category'] = $params['category'];
+        }
+
+        return $this->db->query($query, $queryParams)->fetchAll();
+        // return $this->db->query('SELECT * FROM products WHERE (name LIKE :product OR description LIKE :product) OR category_id = :category', $params)->fetchAll();
     }
 
     public function update($updateFields, $updateValues)

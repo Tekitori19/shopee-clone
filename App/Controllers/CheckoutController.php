@@ -148,4 +148,10 @@ class CheckoutController
         Session::clear('cart');
         redirect('/dashboard');
     }
+
+    public function order()
+    {
+        inspectAndDie(Session::get('user'));
+        loadView('checkout/order');
+    }
 }

@@ -29,3 +29,5 @@ $router->get('/dashboard/{id}', 'DashboardController@detail_order', ['admin']);
 $router->delete('/dashboard/{id}', 'DashboardController@destroy_order', ['admin']);
 $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']);
 $router->put('/dashboard/{id}', 'DashboardController@update_order', ['admin']);
+
+$router->get('/order', 'CheckoutController@order', ['auth']);

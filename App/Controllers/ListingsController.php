@@ -211,12 +211,17 @@ class ListingsController
     public function search()
     {
         $product = $_GET['product'] ?? '';
+        $category = $_GET['category'] ?? '';
+        // inspect($product);
 
+        // inspectAndDie($category);
         $params = [
             'product' => "%{$product}%",
+            'category' => "{$category}",
         ];
+        // inspectAndDie($params);
 
-        $products = $this->model->search($params)->fetchAll();
+        $products = $this->model->search($params);
 
         loadView('listings/index', [
             'products' => $products
