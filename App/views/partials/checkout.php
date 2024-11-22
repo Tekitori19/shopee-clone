@@ -14,47 +14,91 @@ $sumtotal = $subbtotal + 16;
 
 <main class="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl lg:max-w-none">
-    <h1 class="sr-only">Checkout</h1>
-
+    <h1 class="sr-only">Thanh toán </h1>
     <div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
       <div>
         <div>
-          <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
+          <h2 class="text-lg font-medium text-gray-900">Thông tin liên hệ</h2>
 
           <div class="mt-4">
             <label for="email-address" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
             <div class="mt-1">
-              <input type="tel" disabled value="<?= $in4->phone_number ?>" autocomplete="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <input
+                type="tel" value="<?= $in4->phone_number ?>" 
+                placeholder="Tên đầy đủ"
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              />
             </div>
           </div>
         </div>
 
         <div class="mt-10 border-t border-gray-200 pt-10">
-          <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
 
           <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
 
             <div class="sm:col-span-2">
-              <label for="fullname" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
               <div class="mt-1">
-                <input type="text" disabled value="<?= $in4->fullname ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
-            </div>
-
-            <div class="sm:col-span-2">
-              <label for="address" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
-              <div class="mt-1">
-                <input type="text" disabled value="<?= $in4->address ?>" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
+      
               <!-- </div> -->
+              <div>
+    <h2 class="text-lg font-semibold mb-4">Thông tin vận chuyển</h2>
+    <div class="space-y-4">
+      <input
+        type="text" value="<?= $in4->fullname ?>"
+        placeholder="Tên đầy đủ"
+        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+      />
+      <div class="grid grid-cols-2 gap-4">
+        <select
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          <option>Tỉnh/Thành phố</option>
+          <option>Thành phố Hồ Chí Minh</option>
+          <option>Hà Nội</option>
+          <option>Đà Nẵnng</option>
+          <option>TP. HCM</option>
 
+        </select>
+        <select
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          <option>Quận/Huyện</option>
+          <option>Quận 1</option>
+          <option>Quận 2</option>
+          <option>Quận 3</option>
+          <option>Quận 4</option>
+        </select>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <select
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          <option>Phường/Xã</option>
+          <option>Phư��ng 1</option>
+          <option>Phư��ng 2</option>
+          <option>Phư��ng 3</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Tên đường/địa chỉ" 
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+        />
+      </div>
+      <input
+        type="text"
+        placeholder="Địa chỉ cụ thể"  value="<?= $in4->address ?>"
+        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+      />
+    </div>
+  </div>
             </div>
           </div>
         </div>
 
       <div class="mt-10 border-t border-gray-200 pt-10">
         <fieldset>
-          <legend class="text-lg font-medium text-gray-900">Delivery method</legend>
+          <legend class="text-lg font-medium text-gray-900">Phương thức giao hàng</legend>
 
           <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
             <!--
@@ -69,8 +113,8 @@ $sumtotal = $subbtotal + 16;
               <input type="radio" name="delivery-method" value="Express" class="sr-only" aria-labelledby="delivery-method-1-label" aria-describedby="delivery-method-1-description-0 delivery-method-1-description-1">
               <span class="flex flex-1">
                 <span class="flex flex-col">
-                  <span id="delivery-method-1-label" class="block text-sm font-medium text-gray-900">Express</span>
-                  <span id="delivery-method-1-description-0" class="mt-1 flex items-center text-sm text-gray-500">2–5 business days</span>
+                  <span id="delivery-method-1-label" class="block text-sm font-medium text-gray-900">Thể hiện</span>
+                  <span id="delivery-method-1-description-0" class="mt-1 flex items-center text-sm text-gray-500">2–5 ngày làm việc</span>
                   <span id="delivery-method-1-description-1" class="mt-6 text-sm font-medium text-gray-900">$16.00</span>
                 </span>
               </span>
@@ -90,36 +134,36 @@ $sumtotal = $subbtotal + 16;
 
       <!-- Payment -->
       <div class="mt-10 border-t border-gray-200 pt-10">
-        <h2 class="text-lg font-medium text-gray-900">Payment</h2>
+        <h2 class="text-lg font-medium text-gray-900">Sự chi trả</h2>
 
         <fieldset class="mt-4">
-          <legend class="sr-only">Payment type</legend>
+          <legend class="sr-only">Hình thức thanh toán</legend>
           <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
             <div class="flex items-center">
               <input id="credit-card" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
               <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">Thanh toán khi nhận hàng</label>
             </div>
             <div class="flex items-center">
-              <input id="paypal" disabled type="radio" class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+              <input id="paypal"  type="radio" class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
               <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700">PayPal <span class="text-red-500">(Bảo trì)</span></label>
             </div>
             <div class="flex items-center">
-              <input id="etransfer" type="radio" disabled class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-              <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700">eTransfer <span class="text-red-500">(Bảo trì)</span></label>
+              <input id="etransfer" type="radio"  class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+              <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700">Chuyển khoản điện tử <span class="text-red-500">(Bảo trì)</span></label>
             </div>
           </div>
         </fieldset>
 
         <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
           <div class="col-span-4">
-            <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
+            <label for="card-number" class="block text-sm font-medium text-gray-700">Số Thẻ</label>
             <div class="mt-1">
               <input type="text" disabled id="card-number" name="card-number" autocomplete="cc-number" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
           </div>
 
           <div class="col-span-4">
-            <label for="name-on-card" class="block text-sm font-medium text-gray-700">Name on card</label>
+            <label for="name-on-card" class="block text-sm font-medium text-gray-700">Tên Thẻ Ngân Hàng</label>
             <div class="mt-1">
               <input type="text" disabled id="name-on-card" name="name-on-card" autocomplete="cc-name" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
@@ -145,10 +189,10 @@ $sumtotal = $subbtotal + 16;
     <!-- Order summary -->
     <?php if (Session::has('cart') && !empty(Session::get('cart'))) : ?>
       <div class="mt-10 lg:mt-0">
-        <h2 class="text-lg font-medium text-gray-900">Order summary</h2>
+        <h2 class="text-lg font-medium text-gray-900">Tóm tắt đơn hàng</h2>
 
         <div class="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm">
-          <h3 class="sr-only">Items in your cart</h3>
+          <h3 class="sr-only">Các mặt hàng trong giỏ hàng của bạn</h3>
           <ul role="list" class="divide-y divide-gray-200">
             <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
               <li class="flex px-4 py-6 sm:px-6">
@@ -181,8 +225,17 @@ $sumtotal = $subbtotal + 16;
                     <p class="price mt-1 text-sm font-medium text-gray-900">$<?= $cart['price'] ?></p>
                     <div class="ml-4">
                       <label for="quantity" class="sr-only">Quantity</label>
-                      <select disabled id="quantity" name="quantity" class="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                        <option value="1"><?= $cart['quantity'] ?></option>
+                      <!-- <select disabled id="quantity" name="quantity" class="rounded-md border border-gray-300 text-left text-base font-medium 
+                       text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"> -->
+                        <!-- <option value=""><?= $cart['quantity'] ?></option> -->
+                        <input
+                          type="number"
+                          name="quantity"
+                          value="<?= $cart['quantity'] ?>"
+                          min="1"
+                          max="100"
+                          class="border border-gray-300 p-2 rounded"
+                        >
                       </select>
                     </div>
                   </div>
@@ -192,22 +245,22 @@ $sumtotal = $subbtotal + 16;
           </ul>
           <dl class="space-y-6 border-t border-gray-200 px-4 py-6 sm:px-6">
             <div class="flex items-center justify-between">
-              <dt class="text-sm">Subtotal</dt>
+              <dt class="text-sm">Tổng phụ</dt>
               <dd class="text-sm font-medium text-gray-900">$<?= $subbtotal ?></dd>
             </div>
             <div class="flex items-center justify-between">
-              <dt class="text-sm">Shipping</dt>
+              <dt class="text-sm">Vận Chuyển</dt>
               <dd class="text-sm font-medium text-gray-900">$16</dd>
             </div>
             <div class="flex items-center justify-between border-t border-gray-200 pt-6">
-              <dt class="text-base font-medium">Total</dt>
+              <dt class="text-base font-medium">Tổng Tiền</dt>
               <dd class="text-base font-medium text-gray-900">$<?= $sumtotal ?></dd>
             </div>
           </dl>
 
           <form method="post" action="/checkout/store">
             <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Confirm order</button>
+              <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Xác nhận đơn hàng</button>
             </div>
           </form>
         </div>

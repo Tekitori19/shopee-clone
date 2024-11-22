@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
-        <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-hero-half-width.jpg" alt="" class="h-full w-full object-cover object-center">
+        <img src="https://i.pinimg.com/736x/6d/6a/94/6d6a94ce6216e6efd9b14275534c4bd4.jpg" alt="" class="h-full  w-full object-cover object-center">
       </div>
 </div>
 <div class="lg:max-w-[1440px] md:max-w-[744px] max-w-[375px] w-full py-10 lg:px-10 md:px-6 px-4 bg-gray-100 mx-auto">
