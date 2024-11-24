@@ -20,6 +20,7 @@ $router->get('/checkout', 'CheckoutController@index', ['auth']);
 $router->post('/checkout', 'CheckoutController@cart', ['auth']);
 $router->delete('/checkout', 'CheckoutController@delete', ['auth']);
 $router->post('/checkout/store', 'CheckoutController@store', ['auth']);
+$router->get('/checkout/order', 'CheckoutController@order', ['auth']);
 
 $router->get('/dashboard/search', 'DashboardController@search', ['admin']);
 $router->get('/dashboard', 'DashboardController@order', ['admin']);
@@ -29,5 +30,3 @@ $router->get('/dashboard/{id}', 'DashboardController@detail_order', ['admin']);
 $router->delete('/dashboard/{id}', 'DashboardController@destroy_order', ['admin']);
 $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']);
 $router->put('/dashboard/{id}', 'DashboardController@update_order', ['admin']);
-
-$router->get('/order', 'CheckoutController@order', ['auth']);

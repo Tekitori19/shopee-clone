@@ -151,7 +151,13 @@ class CheckoutController
 
     public function order()
     {
-        inspectAndDie(Session::get('user'));
-        loadView('checkout/order');
+        // inspectAndDie(Session::get('user'));
+        ['id' => $id] = Session::get('user');
+        // inspect($id);
+        $orders = $this->model->loadAllOrder(['user_id' => $id]);
+        // inspectAndDie($orders);
+        loadView('checkout/order', [
+            'orders' => $orders
+        ]);
     }
 }

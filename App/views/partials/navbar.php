@@ -170,11 +170,14 @@ $check = match ($routePath) {
             <ul class="pr-12 xl:flex items-center h-full hidden">
                 <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check === 'Trang chủ' ? $navbarClass : "" ?>"><a href="/"> Trang Chủ</a></li>
                 <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check === 'Shop' ? $navbarClass : "" ?>"><a href="/listings">Shop</a></li>
+                <?php if (Session::get('user')): ?>
+                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/checkout/order">Đơn hàng</a></li>
+                <?php endif; ?>
                 <?php if (Session::get('user') && Session::get('user')['role'] === 1): ?>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : "" ?>"><a href="/listings/create">Đăng bài</a></li>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (khách hàng)' ? $navbarClass : "" ?>"><a href="/dashboard">Khách hàng</a></li>
                     <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/dashboard/products">Sản phẩm</a></li>
-                <?php endif;?>
+                <?php endif; ?>
             </ul>
         </div>
         <div class="h-full xl:flex items-center justify-end hidden">
@@ -200,9 +203,9 @@ $check = match ($routePath) {
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
                                     </svg>
                                     <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                                        <?php if(Session::has('cart')):?>
-                                            <?= count(Session::get('cart'))?>
-                                        <?php endif;?>
+                                        <?php if (Session::has('cart')): ?>
+                                            <?= count(Session::get('cart')) ?>
+                                        <?php endif; ?>
                                     </span>
                                     <span class="sr-only">items in cart, view bag</span>
                                 </button>
@@ -213,7 +216,7 @@ $check = match ($routePath) {
                     <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative" onclick="dropdownHandler(this)">
                         <button aria-haspopup="true" onclick="dropdownHandler(this)" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded flex items-center">
                             <img class="rounded h-10 w-10 object-cover" src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png" alt="logo">
-                            <p class="text-gray-800 text-sm ml-2"><?= Session::has('user') ? Session::get('user')['fullname'] : 'Guest'?></p>
+                            <p class="text-gray-800 text-sm ml-2"><?= Session::has('user') ? Session::get('user')['fullname'] : 'Guest' ?></p>
                         </button>
                         <ul class="p-2 w-40 border-r bg-white absolute rounded z-40 left-0 shadow mt-64 hidden">
                             <?php if (Session::has('user')) : ?>
@@ -251,15 +254,15 @@ $check = match ($routePath) {
                                 </li>
                             <?php endif; ?>
                             <?php if (Session::has('user') && Session::get('user')['role'] === 1): ?>
-                            <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                                <a href="/dashboard" class="ml-2">Quản lý</a>
-                            </li>
-                            <?php endif;?>
+                                <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    <a href="/dashboard" class="ml-2">Quản lý</a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
