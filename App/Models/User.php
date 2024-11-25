@@ -19,6 +19,11 @@ class User
         return  $this->db->query("SELECT * FROM users WHERE phone_number = :phone_number", $params)->fetch();
     }
 
+    public function selectByEmail($params)
+    {
+        return  $this->db->query("SELECT * FROM users WHERE email = :email", $params)->fetch();
+    }
+
     public function selectByID($userId)
     {
         return $this->db->query("SELECT * FROM users WHERE id = :id", ['id' => $userId])->fetch();
@@ -28,9 +33,9 @@ class User
     {
         $this->db->query(
             "INSERT INTO users 
-                (fullname, phone_number, address, password, role_id)
+                (fullname, phone_number, email, address, password, role_id)
             VALUES
-                (:fullname, :phone_number, :address, :password, 2)
+                (:fullname, :phone_number, email, :address, :password, 2)
         ",
             $params
         );
