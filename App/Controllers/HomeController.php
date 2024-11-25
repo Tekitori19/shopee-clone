@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Product;
+
 // REMEMBER: use REQUIRE for return file
 
 class HomeController

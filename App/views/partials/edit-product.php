@@ -92,7 +92,7 @@ $cate = match ($product->category_id) {
         <!-- Product image -->
         <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
             <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-                <img src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'?>" class="h-full w-full object-cover object-center">
+                <img src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg' ?>" class="h-full w-full object-cover object-center">
             </div>
         </div>
 
@@ -105,9 +105,9 @@ $cate = match ($product->category_id) {
                 <div class="">
                     <!-- Product form -->
                     <?php if (isset($errors)): ?>
-                        <?php foreach ($errors as $error):?> 
-                            <div class="message bg-red-100 my-3"><?=$error?></div>
-                        <?php endforeach;?>
+                        <?php foreach ($errors as $error): ?>
+                            <div class="message bg-red-100 my-3"><?= $error ?></div>
+                        <?php endforeach; ?>
                     <?php endif; ?>
                     <div class="mx-auto bg-white rounded">
                         <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
@@ -149,7 +149,7 @@ $cate = match ($product->category_id) {
                                 <button class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Cập nhật sản phẩm</button>
                             </div>
                             <div class="flex items-center justify-between mt-3">
-                                <a href="/listings/<?= $product->id?>" class="text-center w-full border-indigo-600 bg-gray-100 text-indigo-600 hover:bg-indigo-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hủy</a>
+                                <a href="/listings/<?= $product->id ?>" class="text-center w-full border-indigo-600 bg-gray-100 text-indigo-600 hover:bg-indigo-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hủy</a>
                             </div>
                         </form>
                     </div>

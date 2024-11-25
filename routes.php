@@ -16,6 +16,8 @@ $router->post('/auth/login', 'UserController@authenticate', ['guest']);
 $router->get('/auth/register', 'UserController@register', ['guest']);
 $router->post('/auth/register', 'UserController@store', ['guest']);
 $router->post('/auth/logout', 'UserController@logout', ['auth']);
+$router->get('/auth/forget', 'UserController@forget', ['guest']);
+
 $router->get('/checkout', 'CheckoutController@index', ['auth']);
 $router->post('/checkout', 'CheckoutController@cart', ['auth']);
 $router->delete('/checkout', 'CheckoutController@delete', ['auth']);

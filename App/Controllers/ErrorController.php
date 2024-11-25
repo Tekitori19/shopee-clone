@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 class ErrorController
@@ -30,8 +31,8 @@ class ErrorController
         http_response_code(403);
 
         loadView('error', [
-        'status' => '403',
-        'message' => $message
+            'status' => '403',
+            'message' => $message
         ]);
     }
 }

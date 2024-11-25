@@ -25,6 +25,11 @@ class UserController
         loadView("authorization/register");
     }
 
+    public function forget()
+    {
+        loadView("authorization/forget");
+    }
+
     public function store()
     {
         $name = $_POST['name'];

@@ -128,7 +128,7 @@ class CheckoutController
 
             // Thực hiện truy vấn SQL để thêm thông tin của mỗi mặt hàng trong giỏ hàng vào bảng order_details
             // $sql_insert_order_details =
-            //     "INSERT INTO order_details (order_id, product_id, price, number_of_products, total_money) 
+            //     "INSERT INTO order_details (order_id, product_id, price, number_of_products, total_money)
             // VALUES (:new_order_id, :product_id, :price, :quantity, :total_money)";
             // $this->db->query($sql_insert_order_details, $params);
             $this->model->insertOrderDetails($params);

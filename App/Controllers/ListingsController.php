@@ -55,7 +55,7 @@ class ListingsController
 
         // !!IMAGE UPLOAD HAS SOME BUG I CAN'T UPLOAD
 
-        // $newProduct['picture'] = "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg"; 
+        // $newProduct['picture'] = "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg";
         // $newProduct['picture']="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg";
 
         $newProduct = array_map('sanitize', $newProduct);

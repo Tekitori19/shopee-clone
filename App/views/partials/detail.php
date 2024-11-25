@@ -97,7 +97,7 @@ $cate = match ($product->category_id) {
         <!-- Product image -->
         <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
             <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-                <img src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'?>" class="h-full w-full object-cover object-center">
+                <img src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg' ?>" class="h-full w-full object-cover object-center">
             </div>
         </div>
 
@@ -109,17 +109,17 @@ $cate = match ($product->category_id) {
                 <form method="post" action="/checkout">
 
                     <div class="mt-1">
-                            <input type="hidden" name="picture" value="<?= $product->picture ?>">
-                            <input type="hidden" name="name" value="<?= $product->name ?>">
-                            <input type="hidden" name="price" value="<?= $product->price ?>">
-                            <button type="submit" name="cart" <?= $product->status !== 1? 'disabled': ''?> class="<?= $product->status == 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50' : 'cursor-not-allowed' ?> flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white ">
-                                <?php if ($product->status == 1) : ?>
-                                    Thêm vào giỏ hàng
-                                <?php else : ?>
-                                    <span class="text-red-400">Sản phẩm tạm hết hàng</span>
-                                <?php endif; ?>
-                            </button>
-                        
+                        <input type="hidden" name="picture" value="<?= $product->picture ?>">
+                        <input type="hidden" name="name" value="<?= $product->name ?>">
+                        <input type="hidden" name="price" value="<?= $product->price ?>">
+                        <button type="submit" name="cart" <?= $product->status !== 1 ? 'disabled' : '' ?> class="<?= $product->status == 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50' : 'cursor-not-allowed' ?> flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white ">
+                            <?php if ($product->status == 1) : ?>
+                                Thêm vào giỏ hàng
+                            <?php else : ?>
+                                <span class="text-red-400">Sản phẩm tạm hết hàng</span>
+                            <?php endif; ?>
+                        </button>
+
                         <?php if (Session::has('user') && Session::get('user')['role'] === 1) : ?>
                             <a href="/listings/edit/<?= $product->id ?>" class="hover:border-blue-600 mt-10 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white ">
                                 Sửa
