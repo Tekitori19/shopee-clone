@@ -18,40 +18,49 @@ $sumtotal = $subbtotal + 16;
 
         <div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             <div>
-                <div>
-                    <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
-
-                    <div class="mt-4">
-                        <label for="email-address" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
-                        <div class="mt-1">
-                            <input type="tel" disabled value="<?= $in4->phone_number ?>" autocomplete="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-10 border-t border-gray-200 pt-10">
-                    <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
-
-                    <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-
-                        <div class="sm:col-span-2">
-                            <label for="fullname" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
+                <form method="post" action="/update_info">
+                    <div>
+                        <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
+                        <input type="hidden" name="id" value="<?= $in4->id ?>">
+                        <div class="mt-4">
+                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
                             <div class="mt-1">
-                                <input type="text" disabled value="<?= $in4->fullname ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="tel" name="phone_number" value="<?= $in4->phone_number ?>" pattern="[0-9]{10}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="sm:col-span-2">
-                            <label for="address" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
-                            <div class="mt-1">
-                                <input type="text" disabled value="<?= $in4->address ?>" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div class="mt-10 border-t border-gray-200 pt-10">
+                        <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
+
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+
+                            <div class="sm:col-span-2">
+                                <label for="fullname" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
+                                <div class="mt-1">
+                                    <input type="text" name="fullname" value="<?= $in4->fullname ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                </div>
                             </div>
-                            <!-- </div> -->
 
+                            <div class="sm:col-span-2">
+                                <label for="email" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
+                                <div class="mt-1">
+                                    <input type="email" name="email" value="<?= $in4->email ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label for="address" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
+                                <div class="mt-1">
+                                    <input type="text" name="address" value="<?= $in4->address ?>" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                </div>
+                                <!-- </div> -->
+
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                    <button>test</button>
+                </form>
                 <div class="mt-10 border-t border-gray-200 pt-10">
                     <fieldset>
                         <legend class="text-lg font-medium text-gray-900">Delivery method</legend>

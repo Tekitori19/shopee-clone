@@ -368,4 +368,30 @@ class UserController
 
         redirect('/');
     }
+
+    public function update_info()
+    {
+        // [id] => 18
+        // [phone_number] => 0111111111
+        // [fullname] => admin
+        // [email] => corclan19@gmail.com
+        // [address] => đà nẵng        
+        $id = $_POST['id'];
+        $phone_number = $_POST['phone_number'];
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+
+        $params = [
+            'id' => $id,
+            'phone_number' => $phone_number,
+            'fullname' => $fullname,
+            'email' => $email,
+            'address' => $address
+        ];
+
+        $this->model->updateUser($params);
+        redirect('/checkout');
+        // inspectAndDie($_POST);
+    }
 }

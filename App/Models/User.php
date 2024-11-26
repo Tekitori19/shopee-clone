@@ -50,4 +50,18 @@ class User
     {
         return $this->db->query("SELECT * FROM users WHERE email = :email AND password = :password", $params)->fetch();
     }
+
+    public function updateUser($params)
+    {
+        return $this->db->query(
+            "UPDATE users 
+            SET 
+            fullname = :fullname, 
+            phone_number = :phone_number, 
+            email = :email, 
+            address = :address
+            WHERE id = :id",
+            $params
+        );
+    }
 }
