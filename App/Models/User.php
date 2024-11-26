@@ -35,7 +35,7 @@ class User
             "INSERT INTO users 
                 (fullname, phone_number, email, address, password, role_id)
             VALUES
-                (:fullname, :phone_number, email, :address, :password, 2)
+                (:fullname, :phone_number, :email, :address, :password, 2)
         ",
             $params
         );
@@ -44,5 +44,10 @@ class User
     public function getNewInsertedUserID()
     {
         return $this->db->conn->lastInsertId();
+    }
+
+    public function selectByEmailAndPassword($params)
+    {
+        return $this->db->query("SELECT * FROM users WHERE email = :email AND password = :password", $params)->fetch();
     }
 }

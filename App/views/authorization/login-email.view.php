@@ -2,7 +2,7 @@
 
 loadPartial("head");
 loadPartial("navbar");
-loadPartial("login", [
+loadPartial("login-email", [
     'errors' => $errors ?? [],
     'user' => $user ?? []
 ]);

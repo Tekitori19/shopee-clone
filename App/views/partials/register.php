@@ -28,6 +28,14 @@
                 </div>
                 <div class="mb-4">
                     <input
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        class="w-full px-4 py-2 border rounded focus:outline-none"
+                        value="<?= $user['email'] ?? '' ?>" />
+                </div>
+                <div class="mb-4">
+                    <input
                         type="text"
                         name="address"
                         placeholder="địa chỉ"

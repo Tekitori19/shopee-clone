@@ -2,6 +2,6 @@
 
 loadPartial("head");
 loadPartial("navbar");
-loadPartial("login", [
+loadPartial("forget", [
     'errors' => $errors ?? []
 ]);

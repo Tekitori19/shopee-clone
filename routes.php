@@ -13,10 +13,13 @@ $router->delete('/listings/{id}', 'ListingsController@destroy', ['admin']);
 
 $router->get('/auth/login', 'UserController@login', ['guest']);
 $router->post('/auth/login', 'UserController@authenticate', ['guest']);
+$router->get('/auth/login-email', 'UserController@login_email', ['guest']);
+$router->post('/auth/login-email', 'UserController@authenticate_by_email', ['guest']);
 $router->get('/auth/register', 'UserController@register', ['guest']);
 $router->post('/auth/register', 'UserController@store', ['guest']);
 $router->post('/auth/logout', 'UserController@logout', ['auth']);
 $router->get('/auth/forget', 'UserController@forget', ['guest']);
+$router->post('/auth/forget', 'UserController@reset', ['guest']);
 
 $router->get('/checkout', 'CheckoutController@index', ['auth']);
 $router->post('/checkout', 'CheckoutController@cart', ['auth']);
