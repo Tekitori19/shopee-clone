@@ -49,47 +49,12 @@ $sumtotal = $subbtotal + 16;
         placeholder="Tên đầy đủ"
         class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
       />
-      <div class="grid grid-cols-2 gap-4">
-        <select
-          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-        >
-          <option>Tỉnh/Thành phố</option>
-          <option>Thành phố Hồ Chí Minh</option>
-          <option>Hà Nội</option>
-          <option>Đà Nẵnng</option>
-          <option>TP. HCM</option>
-
-        </select>
-        <select
-          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-        >
-          <option>Quận/Huyện</option>
-          <option>Quận 1</option>
-          <option>Quận 2</option>
-          <option>Quận 3</option>
-          <option>Quận 4</option>
-        </select>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <select
-          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-        >
-          <option>Phường/Xã</option>
-          <option>Phư��ng 1</option>
-          <option>Phư��ng 2</option>
-          <option>Phư��ng 3</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Tên đường/địa chỉ" 
-          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-        />
-      </div>
       <input
         type="text"
         placeholder="Địa chỉ cụ thể"  value="<?= $in4->address ?>"
         class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
       />
+        <buttom bg-black>Commit</buttom>
     </div>
   </div>
             </div>
