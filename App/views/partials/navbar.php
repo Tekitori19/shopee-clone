@@ -171,12 +171,12 @@ $check = match ($routePath) {
                 <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 tracking-normal <?= $check === 'Trang chủ' ? $navbarClass : "" ?>"><a href="/"> Trang Chủ</a></li>
                 <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal <?= $check === 'Shop' ? $navbarClass : "" ?>"><a href="/listings">Shop</a></li>
                 <?php if (Session::get('user')): ?>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/checkout/order">Đơn hàng</a></li>
+                <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/checkout/order">Đơn hàng</a></li>
                 <?php endif; ?>
                 <?php if (Session::get('user') && Session::get('user')['role'] === 1): ?>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : "" ?>"><a href="/listings/create">Đăng bài</a></li>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (khách hàng)' ? $navbarClass : "" ?>"><a href="/dashboard">Khách hàng</a></li>
-                    <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/dashboard/products">Sản phẩm</a></li>
+                <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Đăng bài' ? $navbarClass : "" ?>"><a href="/listings/create">Đăng bài</a></li>
+                <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (khách hàng)' ? $navbarClass : "" ?>"><a href="/dashboard">Khách hàng</a></li>
+                <li class="navbar-item hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal <?= $check === 'Quản lý (sản phẩm)' ? $navbarClass : "" ?>"><a href="/dashboard/products">Sản phẩm</a></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -204,7 +204,10 @@ $check = match ($routePath) {
                                     </svg>
                                     <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                                         <?php if (Session::has('cart')): ?>
-                                            <?= count(Session::get('cart')) ?>
+                                        <?php $cart = Session::get('cart'); ?>
+                                        <?php if (is_array($cart) || $cart instanceof Countable): ?>
+                                        <?= count($cart) ?>
+                                        <?php endif; ?>
                                         <?php endif; ?>
                                     </span>
                                     <span class="sr-only">items in cart, view bag</span>
@@ -220,48 +223,48 @@ $check = match ($routePath) {
                         </button>
                         <ul class="p-2 w-40 border-r bg-white absolute rounded z-40 left-0 shadow mt-64 hidden">
                             <?php if (Session::has('user')) : ?>
-                                <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <circle cx="12" cy="7" r="4" />
-                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                        </svg>
-                                        <form method="post" action="/auth/logout">
-                                            <button type="submit" class="ml-2">Đăng xuất</button>
-                                        </form>
-                                    </div>
-                                </li>
-                            <?php else : ?>
-                                <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <circle cx="12" cy="7" r="4" />
-                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                        </svg>
-                                        <a href="/auth/login" class="ml-2">Đăng Nhập</a>
-                                    </div>
-                                </li>
-                                <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" />
-                                        <circle cx="12" cy="12" r="9" />
-                                        <line x1="12" y1="17" x2="12" y2="17.01" />
-                                        <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
+                                        <circle cx="12" cy="7" r="4" />
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                     </svg>
-                                    <a href="/auth/register" class="ml-2">Đăng kí</a>
-                                </li>
+                                    <form method="post" action="/auth/logout">
+                                        <button type="submit" class="ml-2">Đăng xuất</button>
+                                    </form>
+                                </div>
+                            </li>
+                            <?php else : ?>
+                            <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <circle cx="12" cy="7" r="4" />
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                    </svg>
+                                    <a href="/auth/login" class="ml-2">Đăng Nhập</a>
+                                </div>
+                            </li>
+                            <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <circle cx="12" cy="12" r="9" />
+                                    <line x1="12" y1="17" x2="12" y2="17.01" />
+                                    <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
+                                </svg>
+                                <a href="/auth/register" class="ml-2">Đăng kí</a>
+                            </li>
                             <?php endif; ?>
                             <?php if (Session::has('user') && Session::get('user')['role'] === 1): ?>
-                                <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <circle cx="12" cy="12" r="3" />
-                                    </svg>
-                                    <a href="/dashboard" class="ml-2">Quản lý</a>
-                                </li>
+                            <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                <a href="/dashboard" class="ml-2">Quản lý</a>
+                            </li>
                             <?php endif; ?>
                         </ul>
                     </div>
@@ -278,87 +281,87 @@ $check = match ($routePath) {
     </div>
 </nav>
 <!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var navbarLinks = document.querySelectorAll(".navbar-item");
+document.addEventListener("DOMContentLoaded", function() {
+var navbarLinks = document.querySelectorAll(".navbar-item");
 
-        // Mặc định set border cho liên kết của trang chủ
-        navbarLinks[0].classList.add("border-b-2", "border-indigo-700", "text-indigo-700");
+// Mặc định set border cho liên kết của trang chủ
+navbarLinks[0].classList.add("border-b-2", "border-indigo-700", "text-indigo-700");
 
-        // Thêm sự kiện click cho từng liên kết
-        navbarLinks.forEach(function(link, index) {
-            link.addEventListener("click", function() {
-                // Loại bỏ lớp active từ tất cả các liên kết
-                navbarLinks.forEach(function(item) {
-                    item.classList.remove("border-b-2 border-indigo-700");
-                });
-                // Thêm lớp active cho liên kết được click
-                this.classList.add("border-b-2 border-indigo-700");
-            });
-        });
-    });
-    </script> -->
+// Thêm sự kiện click cho từng liên kết
+navbarLinks.forEach(function(link, index) {
+link.addEventListener("click", function() {
+// Loại bỏ lớp active từ tất cả các liên kết
+navbarLinks.forEach(function(item) {
+item.classList.remove("border-b-2 border-indigo-700");
+});
+// Thêm lớp active cho liên kết được click
+this.classList.add("border-b-2 border-indigo-700");
+});
+});
+});
+</script> -->
 
 <script>
-    function dropdownHandler(element) {
-        let single = element.getElementsByTagName("ul")[0];
-        single.classList.toggle("hidden");
-    }
+function dropdownHandler(element) {
+    let single = element.getElementsByTagName("ul")[0];
+    single.classList.toggle("hidden");
+}
 
-    function MenuHandler(el, val) {
-        let MainList = el.parentElement.getElementsByTagName("ul")[0];
-        let closeIcon = el.parentElement.getElementsByClassName("close-m-menu")[0];
-        let showIcon = el.parentElement.getElementsByClassName("show-m-menu")[0];
-        if (val) {
-            MainList.classList.remove("hidden");
-            el.classList.add("hidden");
-            closeIcon.classList.remove("hidden");
-        } else {
-            showIcon.classList.remove("hidden");
-            MainList.classList.add("hidden");
-            el.classList.add("hidden");
-        }
+function MenuHandler(el, val) {
+    let MainList = el.parentElement.getElementsByTagName("ul")[0];
+    let closeIcon = el.parentElement.getElementsByClassName("close-m-menu")[0];
+    let showIcon = el.parentElement.getElementsByClassName("show-m-menu")[0];
+    if (val) {
+        MainList.classList.remove("hidden");
+        el.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+    } else {
+        showIcon.classList.remove("hidden");
+        MainList.classList.add("hidden");
+        el.classList.add("hidden");
     }
-    let sideBar = document.getElementById("mobile-nav");
-    let menu = document.getElementById("menu");
-    let cross = document.getElementById("cross");
-    sideBar.style.transform = "translateX(-100%)";
-    const sidebarHandler = (check) => {
-        if (check) {
-            sideBar.style.transform = "translateX(0px)";
-            menu.classList.add("hidden");
-            cross.classList.remove("hidden");
-        } else {
-            sideBar.style.transform = "translateX(-100%)";
-            menu.classList.remove("hidden");
-            cross.classList.add("hidden");
-        }
-    };
-    let list = document.getElementById("list");
-    let chevrondown = document.getElementById("chevrondown");
-    let chevronup = document.getElementById("chevronup");
-    const listHandler = (check) => {
-        if (check) {
-            list.classList.remove("hidden");
-            chevrondown.classList.remove("hidden");
-            chevronup.classList.add("hidden");
-        } else {
-            list.classList.add("hidden");
-            chevrondown.classList.add("hidden");
-            chevronup.classList.remove("hidden");
-        }
-    };
-    let list2 = document.getElementById("list2");
-    let chevrondown2 = document.getElementById("chevrondown2");
-    let chevronup2 = document.getElementById("chevronup2");
-    const listHandler2 = (check) => {
-        if (check) {
-            list2.classList.remove("hidden");
-            chevrondown2.classList.remove("hidden");
-            chevronup2.classList.add("hidden");
-        } else {
-            list2.classList.add("hidden");
-            chevrondown2.classList.add("hidden");
-            chevronup2.classList.remove("hidden");
-        }
-    };
+}
+let sideBar = document.getElementById("mobile-nav");
+let menu = document.getElementById("menu");
+let cross = document.getElementById("cross");
+sideBar.style.transform = "translateX(-100%)";
+const sidebarHandler = (check) => {
+    if (check) {
+        sideBar.style.transform = "translateX(0px)";
+        menu.classList.add("hidden");
+        cross.classList.remove("hidden");
+    } else {
+        sideBar.style.transform = "translateX(-100%)";
+        menu.classList.remove("hidden");
+        cross.classList.add("hidden");
+    }
+};
+let list = document.getElementById("list");
+let chevrondown = document.getElementById("chevrondown");
+let chevronup = document.getElementById("chevronup");
+const listHandler = (check) => {
+    if (check) {
+        list.classList.remove("hidden");
+        chevrondown.classList.remove("hidden");
+        chevronup.classList.add("hidden");
+    } else {
+        list.classList.add("hidden");
+        chevrondown.classList.add("hidden");
+        chevronup.classList.remove("hidden");
+    }
+};
+let list2 = document.getElementById("list2");
+let chevrondown2 = document.getElementById("chevrondown2");
+let chevronup2 = document.getElementById("chevronup2");
+const listHandler2 = (check) => {
+    if (check) {
+        list2.classList.remove("hidden");
+        chevrondown2.classList.remove("hidden");
+        chevronup2.classList.add("hidden");
+    } else {
+        list2.classList.add("hidden");
+        chevrondown2.classList.add("hidden");
+        chevronup2.classList.remove("hidden");
+    }
+};
 </script>

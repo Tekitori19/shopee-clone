@@ -366,6 +366,8 @@ class UserController
             'role' => $user->role_id
         ]);
 
+        Session::set('cart', []);
+
         redirect('/');
     }
 
@@ -393,5 +395,11 @@ class UserController
         $this->model->updateUser($params);
         redirect('/checkout');
         // inspectAndDie($_POST);
+    }
+
+    public function update_cart()
+    {
+        $_SESSION['cart'][$_POST['key']]['quantity'] = intval($_POST['quantity']);
+        redirect('/checkout');
     }
 }

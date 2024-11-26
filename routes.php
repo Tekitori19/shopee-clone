@@ -37,3 +37,4 @@ $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']
 $router->put('/dashboard/{id}', 'DashboardController@update_order', ['admin']);
 
 $router->post('/update_info', 'UserController@update_info', ['auth']);
+$router->post('/update_cart', 'UserController@update_cart', ['auth']);

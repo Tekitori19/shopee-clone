@@ -27,6 +27,10 @@ class CheckoutController
     {
         // Khởi tạo giỏ hàng nếu chưa tồn tại trong session
 
+        if (!Session::has('cart')) {
+            Session::set('cart', []);
+        }
+
         if (isset($_POST['cart'])) {
             $name = $_POST['name'];
             $price = $_POST['price'];
@@ -35,7 +39,12 @@ class CheckoutController
 
             // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
             $cart = Session::get('cart');
-            $found = false;
+
+            // Ensure $cart is an array
+            if (!is_array($cart)) {
+                $cart = [];
+            }
+
             foreach ($cart as &$item) {
                 if ($item['name'] === $name) {
                     // Nếu sản phẩm đã tồn tại, cập nhật số lượng và giá
