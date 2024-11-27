@@ -31,7 +31,12 @@ if($mysqli->affected_rows) {
    END;
   try{
     $mail->send();
-    echo "Link đặt lại mật khẩu đã được gửi đến email của bạn.";
+    echo '<script>
+    if (confirm("Link đặt lại mật khẩu đã được gửi đến email của bạn. Bạn có muốn quay lại trang đăng nhập không?")) {
+        window.location.href = "dangnhap.php";
+    }
+</script>';
+    
   }
   catch(Exception $e){
     echo "Lỗi: ". $mail->ErrorInfo;
