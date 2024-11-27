@@ -32,6 +32,9 @@
                     Chưa có tài khoản?
                     <a class="text-blue-900" href="/auth/register">Đăng kí</a>
                 </p>
+                <p class="mt-4 text-gray-900">
+                <a class="text-blue-900" href="/auth/forget">Forget</a>
+                </p>
             </form>
         </div>
     </div>
