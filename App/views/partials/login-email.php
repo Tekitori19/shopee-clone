@@ -8,14 +8,13 @@
             This is a success message.
         </div> -->
             <?= loadPartial('errors', ['errors' => $errors ?? []]) ?>
-            <form method="post" action="/auth/login">
+            <form method="post" action="/auth/login-email">
                 <div class="mb-4">
                     <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Số điện thoại"
-                        pattern="[0-9]{10}"
-                        value="<?= $user['phone'] ?? '' ?>"
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        value="<?= $user['email'] ?? '' ?>"
                         class="w-full px-4 py-2 border rounded focus:outline-none" />
                 </div>
                 <div class="mb-4">
@@ -32,6 +31,9 @@
                 <p class="mt-4 text-gray-500">
                     Chưa có tài khoản?
                     <a class="text-blue-900" href="/auth/register">Đăng kí</a>
+                </p>
+                <p class="mt-4 text-gray-900">
+                <a class="text-blue-900" href="/auth/forget">Forget</a>
                 </p>
             </form>
         </div>

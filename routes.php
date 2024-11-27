@@ -13,13 +13,19 @@ $router->delete('/listings/{id}', 'ListingsController@destroy', ['admin']);
 
 $router->get('/auth/login', 'UserController@login', ['guest']);
 $router->post('/auth/login', 'UserController@authenticate', ['guest']);
+$router->get('/auth/login-email', 'UserController@login_email', ['guest']);
+$router->post('/auth/login-email', 'UserController@authenticate_by_email', ['guest']);
 $router->get('/auth/register', 'UserController@register', ['guest']);
 $router->post('/auth/register', 'UserController@store', ['guest']);
 $router->post('/auth/logout', 'UserController@logout', ['auth']);
+$router->get('/auth/forget', 'UserController@forget', ['guest']);
+$router->post('/auth/forget', 'UserController@reset', ['guest']);
+
 $router->get('/checkout', 'CheckoutController@index', ['auth']);
 $router->post('/checkout', 'CheckoutController@cart', ['auth']);
 $router->delete('/checkout', 'CheckoutController@delete', ['auth']);
 $router->post('/checkout/store', 'CheckoutController@store', ['auth']);
+$router->get('/checkout/order', 'CheckoutController@order', ['auth']);
 
 $router->get('/dashboard/search', 'DashboardController@search', ['admin']);
 $router->get('/dashboard', 'DashboardController@order', ['admin']);
@@ -29,3 +35,6 @@ $router->get('/dashboard/{id}', 'DashboardController@detail_order', ['admin']);
 $router->delete('/dashboard/{id}', 'DashboardController@destroy_order', ['admin']);
 $router->get('/dashboard/edit/{id}', 'DashboardController@edit_order', ['admin']);
 $router->put('/dashboard/{id}', 'DashboardController@update_order', ['admin']);
+
+$router->post('/update_info', 'UserController@update_info', ['auth']);
+$router->post('/update_cart', 'UserController@update_cart', ['auth']);

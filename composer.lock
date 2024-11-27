@@ -91,10 +91,15 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
+<<<<<<< HEAD
     "platform": [],
     "platform-dev": [],
+=======
+    "platform": {},
+    "platform-dev": {},
+>>>>>>> split_mvc
     "plugin-api-version": "2.6.0"
 }

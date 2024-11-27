@@ -1,23 +1,23 @@
 <?php
+
 namespace App\Controllers;
 
 use Framework_Tu_Code\Session;
-use Framework_Tu_Code\Database;
+use App\Models\CheckOut;
 
 class CheckoutController
 {
-    protected $db;
+    protected $model;
 
-    public function __construct() 
+    public function __construct()
     {
-        $config = require basePath('config/db.php');
-        $this->db = new Database($config);
+        $this->model = new CheckOut();
     }
 
     public function index()
     {
         $id = Session::get('user')['id'];
-        $in4 = $this->db->query('SELECT * FROM users WHERE id = :id', ['id' => $id])->fetch();
+        $in4 = $this->model->getUserByID($id);
         loadView("checkout/index", [
             'in4' => $in4,
         ]);
@@ -27,15 +27,24 @@ class CheckoutController
     {
         // Khởi tạo giỏ hàng nếu chưa tồn tại trong session
 
+        if (!Session::has('cart')) {
+            Session::set('cart', []);
+        }
+
         if (isset($_POST['cart'])) {
             $name = $_POST['name'];
             $price = $_POST['price'];
             $picture = $_POST['picture'];
             $quantity = 1; // Số lượng sản phẩm được thêm vào giỏ hàng
-            
+
             // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
             $cart = Session::get('cart');
-            $found = false;
+
+            // Ensure $cart is an array
+            if (!is_array($cart)) {
+                $cart = [];
+            }
+
             foreach ($cart as &$item) {
                 if ($item['name'] === $name) {
                     // Nếu sản phẩm đã tồn tại, cập nhật số lượng và giá
@@ -45,7 +54,7 @@ class CheckoutController
                     break;
                 }
             }
-            
+
             if (!$found) {
                 // Nếu sản phẩm chưa tồn tại, thêm vào giỏ hàng
                 $cart[] = [
@@ -56,25 +65,25 @@ class CheckoutController
                     'total' => $price * $quantity
                 ];
             }
-            
+
             // Cập nhật giỏ hàng trong session
             Session::set('cart', $cart);
 
             redirect('/listings');
         }
-
     }
 
-    public function delete() {
+    public function delete()
+    {
         if (isset($_POST['remove_from_cart'])) {
             $remove_index = $_POST['remove_from_cart'];
             $cart = Session::get('cart');
-            
+
             // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng không
             if (array_key_exists($remove_index, $cart)) {
                 // Xóa sản phẩm khỏi giỏ hàng
                 unset($cart[$remove_index]);
-                
+
                 // Cập nhật giỏ hàng trong session
                 Session::set('cart', $cart);
             }
@@ -83,7 +92,8 @@ class CheckoutController
         redirect('/checkout');
     }
 
-    public function store() {
+    public function store()
+    {
 
         $user_id = Session::get('user')['id'];
 
@@ -98,11 +108,12 @@ class CheckoutController
         ];
 
         // Thực hiện truy vấn SQL để thêm đơn hàng mới vào bảng orders
-        $sql_insert_order = "INSERT INTO orders (user_id, status, total_money) VALUES (:user_id, :order_status, :order_total)";
-        $this->db->query($sql_insert_order, $param);
+        // $sql_insert_order = "INSERT INTO orders (user_id, status, total_money) VALUES (:user_id, :order_status, :order_total)";
+        // $this->db->query($sql_insert_order, $param);
+        $this->model->insertOrder($param);
 
         // Lấy id của đơn hàng mới nhất được tạo
-        $new_order_id = $this->db->conn->lastInsertId();
+        $new_order_id = $this->model->getLastInsertedID();
 
         // Thêm thông tin về các mặt hàng trong giỏ hàng vào bảng order_details
         $cart = Session::get('cart');
@@ -110,12 +121,11 @@ class CheckoutController
         foreach ($cart as $item) {
             $name = $item['name'];
             $param = ['name' => $name];
-            $product_id = $this->db->query("SELECT id FROM products WHERE name = :name", $param)->fetch();
+            $product_id = $this->model->getProductIDByName($param);
             $price = $item['price'];
             $quantity = $item['quantity'];
             $total_money = $price * $quantity;
 
-            
             $params = [
                 'new_order_id' => $new_order_id,
                 'product_id' => $product_id->id,
@@ -124,27 +134,39 @@ class CheckoutController
                 'total_money' => $total_money
             ];
             // inspectAndDie($params);
-            
+
             // Thực hiện truy vấn SQL để thêm thông tin của mỗi mặt hàng trong giỏ hàng vào bảng order_details
-            $sql_insert_order_details = 
-            "INSERT INTO order_details (order_id, product_id, price, number_of_products, total_money) 
-            VALUES (:new_order_id, :product_id, :price, :quantity, :total_money)";
-            
-            $this->db->query($sql_insert_order_details, $params);
+            // $sql_insert_order_details =
+            //     "INSERT INTO order_details (order_id, product_id, price, number_of_products, total_money)
+            // VALUES (:new_order_id, :product_id, :price, :quantity, :total_money)";
+            // $this->db->query($sql_insert_order_details, $params);
+            $this->model->insertOrderDetails($params);
 
             // Cập nhật tổng tiền cho đơn hàng
             $order_total += $total_money;
         }
 
         $param = [
-            'order_total' => $order_total+16,
+            'order_total' => $order_total + 16,
             'new_order_id' => $new_order_id
         ];
-        $sql_update_order_total = "UPDATE orders SET total_money = :order_total WHERE id = :new_order_id";
-        
-        $this->db->query($sql_update_order_total, $param);
+        // $sql_update_order_total = "UPDATE orders SET total_money = :order_total WHERE id = :new_order_id";
+        // $this->db->query($sql_update_order_total, $param);
+        $this->model->updateMoneyOrder($param);
 
         Session::clear('cart');
         redirect('/dashboard');
+    }
+
+    public function order()
+    {
+        // inspectAndDie(Session::get('user'));
+        ['id' => $id] = Session::get('user');
+        // inspect($id);
+        $orders = $this->model->loadAllOrder(['user_id' => $id]);
+        // inspectAndDie($orders);
+        loadView('checkout/order', [
+            'orders' => $orders
+        ]);
     }
 }

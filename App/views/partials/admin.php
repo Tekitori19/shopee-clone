@@ -8,7 +8,7 @@
                 </div>
                 <form action="/dashboard/search" method="get">
                     <label for="user" class="hidden"></label>
-                    <input name="user" placeholder="Search user dashboard" id="user" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-12 text-sm border-gray-300 dark:border-gray-200 rounded border"/>
+                    <input name="user" placeholder="Search user dashboard" id="user" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-12 text-sm border-gray-300 dark:border-gray-200 rounded border" />
                 </form>
             </div>
         </div>

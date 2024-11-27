@@ -1,10 +1,10 @@
 <?php
-    $color = match ($user->status) {
-        "Chưa xử lý" => 'red',
-        "Đang giao hàng" => 'yellow',
-        "Đã giao hàng" => 'green',
-        default => 'green'
-    }
+$color = match ($user->status) {
+    "Chưa xử lý" => 'red',
+    "Đang giao hàng" => 'yellow',
+    "Đã giao hàng" => 'green',
+    default => 'green'
+}
 ?>
 <?= loadPartial('head') ?>
 <?= loadPartial('navbar') ?>
