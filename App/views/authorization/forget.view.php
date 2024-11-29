@@ -2,6 +2,6 @@
 
 loadPartial("head");
 loadPartial("navbar");
-loadPartial("checkout", [
-    'in4' => $in4
+loadPartial("forget", [
+    'errors' => $errors ?? []
 ]);

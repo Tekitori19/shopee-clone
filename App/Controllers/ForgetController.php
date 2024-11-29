@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> split_mvc
 namespace App\Controllers;
 
 use App\Models\ForgetModel;

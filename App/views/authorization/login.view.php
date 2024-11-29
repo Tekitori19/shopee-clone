@@ -1,6 +1,8 @@
 <?php
-    loadPartial("head");
-    loadPartial("navbar");
-    loadPartial("login", [
-        'errors' => $errors ?? []
-    ]);
+
+loadPartial("head");
+loadPartial("navbar");
+loadPartial("login", [
+    'errors' => $errors ?? [],
+    'user' => $user ?? []
+]);
