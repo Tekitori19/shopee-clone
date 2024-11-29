@@ -4,7 +4,7 @@
         <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-500 mx-6">
             <h2 class="text-4xl text-center font-bold mb-4">Đăng nhập</h2>
             <?= loadPartial('errors', ['errors' => $errors ?? []]) ?>
-            <form method="post" action="/auth/forget">
+            <form method="post" action="/forget/sendResetEmail">
                 <div class="mb-4">
                     <input
                         type="email"

@@ -64,4 +64,43 @@ class User
             $params
         );
     }
+    ////////////////////////////////////////////////////////////
+    public function findByEmail($email) {
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    /**
+     * Cập nhật token reset mật khẩu
+     */
+    public function updateResetToken($email, $tokenHash, $expiry) {
+        $sql = "UPDATE users SET reset_token_hash = ?, reset_token_expores_at = ? WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sss", $tokenHash, $expiry, $email);
+        return $stmt->execute();
+    }
+
+    /**
+     * Tìm người dùng bằng token reset mật khẩu
+     */
+    public function findByResetToken($tokenHash) {
+        $sql = "SELECT * FROM users WHERE reset_token_hash = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $tokenHash);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    /**
+     * Cập nhật mật khẩu mới
+     */
+    public function updatePassword($userId, $newPassword) {
+        $sql = "UPDATE users SET password = ?, reset_token_hash = NULL, reset_token_expores_at = NULL WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("si", $newPassword, $userId);
+        return $stmt->execute();
+    }
 }

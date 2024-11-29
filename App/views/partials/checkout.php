@@ -43,7 +43,7 @@ $sumtotal = $subbtotal + 16;
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="email" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                 <div class="mt-1">
                                     <input type="email" name="email" value="<?= $in4->email ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                 </div>
