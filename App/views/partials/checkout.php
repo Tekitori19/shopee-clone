@@ -25,7 +25,7 @@ $sumtotal = $subbtotal + 16;
                         <div class="mt-4">
                             <label for="phone_number" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
                             <div class="mt-1">
-                                <input type="tel" name="phone_number" value="<?= $in4->phone_number ?>" pattern="[0-9]{10}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="tel" name="phone_number" value="<?= $in4->phone_number ?>" pattern="[0-9]{10}" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                             </div>
                         </div>
                     </div>
@@ -38,28 +38,43 @@ $sumtotal = $subbtotal + 16;
                             <div class="sm:col-span-2">
                                 <label for="fullname" class="block text-sm font-medium text-gray-700">Tên đầy đủ</label>
                                 <div class="mt-1">
-                                    <input type="text" name="fullname" value="<?= $in4->fullname ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input
+                                    type="text" value="<?= $in4->fullname ?>"
+                                    placeholder="Tên đầy đủ"
+                                    class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
                                 </div>
                             </div>
 
                             <div class="sm:col-span-2">
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                 <div class="mt-1">
-                                    <input type="email" name="email" value="<?= $in4->email ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <input type="email" name="email" value="<?= $in4->email ?>" 
+                                    class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                                 </div>
                             </div>
 
                             <div class="sm:col-span-2">
                                 <label for="address" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
                                 <div class="mt-1">
-                                    <input type="text" name="address" value="<?= $in4->address ?>" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input
+                                    type="text"
+                                    placeholder="Địa chỉ cụ thể"  value="<?= $in4->address ?>"
+                                    class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
                                 </div>
                                 <!-- </div> -->
+                                <div class="space-y-4">
+    
+    </div>
 
                             </div>
                         </div>
                     </div>
-                    <button>test</button>
+                    <br />
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Commit
+                    </button>
                 </form>
                 <div class="mt-10 border-t border-gray-200 pt-10">
                     <fieldset>
@@ -123,28 +138,28 @@ $sumtotal = $subbtotal + 16;
                         <div class="col-span-4">
                             <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
                             <div class="mt-1">
-                                <input type="text" disabled id="card-number" name="card-number" autocomplete="cc-number" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" disabled id="card-number" name="card-number" autocomplete="cc-number" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                             </div>
                         </div>
 
                         <div class="col-span-4">
                             <label for="name-on-card" class="block text-sm font-medium text-gray-700">Name on card</label>
                             <div class="mt-1">
-                                <input type="text" disabled id="name-on-card" name="name-on-card" autocomplete="cc-name" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" disabled id="name-on-card" name="name-on-card" autocomplete="cc-name" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                             </div>
                         </div>
 
                         <div class="col-span-3">
                             <label for="expiration-date" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
                             <div class="mt-1">
-                                <input type="text" disabled name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" disabled name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                             </div>
                         </div>
 
                         <div>
                             <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
                             <div class=" cursor-not-allowedmt-1">
-                                <input type="text" disabled name="cvc" id="cvc" autocomplete="csc" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" disabled name="cvc" id="cvc" autocomplete="csc" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
                             </div>
                         </div>
                     </div>
