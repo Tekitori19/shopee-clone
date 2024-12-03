@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2024 at 02:55 AM
+-- Generation Time: Dec 03, 2024 at 06:52 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -195,11 +195,13 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `fullname` varchar(100) DEFAULT '',
-  `email` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(10) NOT NULL,
+  `fullname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `phone_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `reset_token_hash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `reset_token_expires_at` datetime DEFAULT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `address` varchar(200) DEFAULT '',
-  `password` varchar(100) NOT NULL DEFAULT '',
   `role_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -207,26 +209,26 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullname`, `email`, `phone_number`, `address`, `password`, `role_id`) VALUES
-(1, 'John Doe', NULL, '0123456789', '123 Main Street', 'johnpassword', 2),
-(2, 'Alice Smith', NULL, '0987654321', '456 Elm Street', 'alicepassword', 2),
-(3, 'Michael Johnson', NULL, '0123456789', '789 Oak Street', 'michaelpassword', 2),
-(4, 'Emily Williams', NULL, '0987654321', '101 Pine Street', 'emilypassword', 2),
-(5, 'Chris Brown', NULL, '0123456789', '321 Maple Street', 'chrispassword', 2),
-(6, 'Jessica Davis', NULL, '0987654321', '654 Cedar Street', 'jessicapassword', 2),
-(7, 'Daniel Wilson', NULL, '0123456789', '987 Walnut Street', 'danielpassword', 2),
-(8, 'Sarah Martinez', NULL, '0987654321', '741 Birch Street', 'sarahpassword', 2),
-(9, 'Kevin Taylor', NULL, '0123456789', '852 Ash Street', 'kevinpassword', 2),
-(10, 'Amanda Anderson', NULL, '0987654321', '369 Pine Street', 'amandapassword', 2),
-(11, 'Laura Brown', NULL, '0123456789', '123 Elm Street', 'laurapassword', 2),
-(12, 'Mark Johnson', NULL, '0987654321', '456 Oak Street', 'markpassword', 2),
-(14, 'ad', NULL, '0123456788', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', '$2y$10$72CECJj73PfV8dqQ0RcJS.Mzu9blFs6jKeuLhxuOOY7kCWgUl7rb2', 2),
-(15, 'ad', NULL, '0123456787', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', '$2y$10$lEG3OnuEimXI0dLj1CyBXuSO.s/6TKbYlF2UpdAptWfzmX8/Sb09W', 2),
-(16, 'user', NULL, '0123456799', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', '$2y$10$Q1JWWKY1rPuzuxOjF0sGSe71G8tTn4oGxK12IQ6ziMbFgTJmc8Ntu', 2),
-(17, 'user', NULL, '0123456798', 'gần CĐ FPT Polytechnic', '$2y$10$iPdcCdVjcqlGz6paN.9Xm.kctOldiYqf8AhlJ/EIuMXqoPzd90Gn.', 2),
-(18, 'admin  nè', 'corclan19@gmail.com', '0111111112', 'đà lạt nè', '$2y$10$dsNY9PO8b3OjXAQknDZyKe7TboObzaZq4jccuhSOGLWqegKdiCZby', 1),
-(19, 'anning', NULL, '0223456789', 'anning', '$2y$10$Uxm2JuTpQ31YHAcJqPh1nOB2lOudwwDsNd15rx0xORwwSCwSW.riC', 2),
-(20, 'user', 'dinhpdpd09993@fpt.edu.vn', '0222222222', 'Da nang', '$2y$10$4.PkjO4GFqpQ/uqKj5jPpONbEfD8aj9wetjtVnhVKbQ.BMvALrEe.', 2);
+INSERT INTO `users` (`id`, `fullname`, `email`, `phone_number`, `reset_token_hash`, `reset_token_expires_at`, `password`, `address`, `role_id`) VALUES
+(1, 'John Doe', NULL, '0123456789', NULL, NULL, 'johnpassword', '123 Main Street', 2),
+(2, 'Alice Smith', NULL, '0987654321', NULL, NULL, 'alicepassword', '456 Elm Street', 2),
+(3, 'Michael Johnson', NULL, '0123456789', NULL, NULL, 'michaelpassword', '789 Oak Street', 2),
+(4, 'Emily Williams', NULL, '0987654321', NULL, NULL, 'emilypassword', '101 Pine Street', 2),
+(5, 'Chris Brown', NULL, '0123456789', NULL, NULL, 'chrispassword', '321 Maple Street', 2),
+(6, 'Jessica Davis', NULL, '0987654321', NULL, NULL, 'jessicapassword', '654 Cedar Street', 2),
+(7, 'Daniel Wilson', NULL, '0123456789', NULL, NULL, 'danielpassword', '987 Walnut Street', 2),
+(8, 'Sarah Martinez', NULL, '0987654321', NULL, NULL, 'sarahpassword', '741 Birch Street', 2),
+(9, 'Kevin Taylor', NULL, '0123456789', NULL, NULL, 'kevinpassword', '852 Ash Street', 2),
+(10, 'Amanda Anderson', NULL, '0987654321', NULL, NULL, 'amandapassword', '369 Pine Street', 2),
+(11, 'Laura Brown', NULL, '0123456789', NULL, NULL, 'laurapassword', '123 Elm Street', 2),
+(12, 'Mark Johnson', NULL, '0987654321', NULL, NULL, 'markpassword', '456 Oak Street', 2),
+(14, 'ad', NULL, '0123456788', NULL, NULL, '$2y$10$72CECJj73PfV8dqQ0RcJS.Mzu9blFs6jKeuLhxuOOY7kCWgUl7rb2', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', 2),
+(15, 'ad', NULL, '0123456787', NULL, NULL, '$2y$10$lEG3OnuEimXI0dLj1CyBXuSO.s/6TKbYlF2UpdAptWfzmX8/Sb09W', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', 2),
+(16, 'user', NULL, '0123456799', NULL, NULL, '$2y$10$Q1JWWKY1rPuzuxOjF0sGSe71G8tTn4oGxK12IQ6ziMbFgTJmc8Ntu', 'nhà tôi ở dưới chân đồi có giàn thiên lí có người tôi thương', 2),
+(17, 'user', NULL, '0123456798', NULL, NULL, '$2y$10$iPdcCdVjcqlGz6paN.9Xm.kctOldiYqf8AhlJ/EIuMXqoPzd90Gn.', 'gần CĐ FPT Polytechnic', 2),
+(18, 'admin  nè', 'corclan19@gmail.com', '0111111112', NULL, NULL, '$2y$10$HUhpCCPMsFTLxQFEGUDACuXIeNP251yrJsPWbwQ/AxtXx33oPbK52', 'đà lạt nè', 1),
+(19, 'anning', NULL, '0223456789', NULL, NULL, '$2y$10$Uxm2JuTpQ31YHAcJqPh1nOB2lOudwwDsNd15rx0xORwwSCwSW.riC', 'anning', 2),
+(20, 'user', 'dinhpdpd09993@fpt.edu.vn', '0222222222', NULL, NULL, '$2y$10$4.PkjO4GFqpQ/uqKj5jPpONbEfD8aj9wetjtVnhVKbQ.BMvALrEe.', 'Da nang', 2);
 
 --
 -- Indexes for dumped tables
