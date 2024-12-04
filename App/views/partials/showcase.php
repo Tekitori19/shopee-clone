@@ -363,7 +363,8 @@
             Kinh doanh đồ điện tử, gia dụng, và quần áo với khả năng tiếp cận khách hàng toàn quốc nhờ nền tảng của chúng tôi.
           </p>
         </div>
-        <img class="object-contain" src="https://thanhlapcongtyonline.com/hoanghung/31/images/cach-xay-dung-hinh-anh-cong-ty-thu-hut-khach-hang-tiem-nang-02.jpg" alt="luke">
+        <img  class="object-contain"
+        src="https://thanhlapcongtyonline.com/hoanghung/31/images/cach-xay-dung-hinh-anh-cong-ty-thu-hut-khach-hang-tiem-nang-02.jpg" alt="luke">
         <a href="#" class="text-blue-500 text-sm mt-4 hover:underline">Xem thêm</a>
       </div>
       <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">

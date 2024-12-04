@@ -24,7 +24,7 @@ if (!Session::has('cart')) {
         <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
             <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                 <img
-                    src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://olymstore.net/storage/20.09.2022/Olymstore0094.jpg' ?>"
+                    src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg' ?>"
                     class="h-full w-full object-cover object-center sm:h-full sm:w-full">
             </div>
             <div class="flex flex-1 flex-col space-y-2 p-4">
@@ -40,13 +40,31 @@ if (!Session::has('cart')) {
                     <p class="text-base font-medium text-gray-900">$<?= $product->price ?></p>
                 </div>
             </div>
-            <button type="submit" name="cart" class="z-0 mx-2 my-2 bg-white transition duration-150 ease-in-out <?= $product->status === 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none' : 'cursor-not-allowed' ?>  rounded border border-gray-600 text-gray-500 px-8 py-3 text-sm leading-6">
-                <?php if ($product->status == 1): ?>
+            <!-- <button type="submit" name="cart" class="z-0 mx-2 my-2 bg-white transition duration-150 ease-in-out <?= $product->status === 1 ? 'hover:border-indigo-600 hover:bg-gray-100 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none' : 'cursor-not-allowed' ?>  rounded border border-gray-600 text-gray-500 px-8 py-3 text-sm leading-6">
+                <?php //if ($product->status == 1): ?>
                     Thêm vào giỏ hàng
-                <?php else: ?>
+                <?php //else: ?>
                     <span class="text-red-400">Sản phẩm tạm hết hàng</span>
-                <?php endif; ?>
+                <?php //endif; ?>
+            </button> -->
+            <button type="submit" name="cart" 
+             onclick="thongbao()"
+            class="z-0 mx-2 my-2 px-8 py-3 text-sm leading-6 rounded border 
+                <?= $product->status === 1 ? 
+                    'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' : 
+                    'bg-gray-300 text-gray-500 cursor-not-allowed' ?>">
+            <?php if ($product->status == 1): ?>
+                Thêm vào giỏ hàng
+            <?php else: ?>
+                <span class="text-red-400">Sản phẩm tạm hết hàng</span>
+            <?php endif; ?>
             </button>
+
         </div>
     </form>
 </div>
+<script>
+function thongbao() {
+    alert("Sản phẩm đã được thêm vào giỏ hàng! Vui lòng xem giỏ hàng");
+}
+</script>
