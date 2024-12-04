@@ -23,9 +23,10 @@ $item = isset($_GET['product']) ? htmlspecialchars($_GET['product']) : '';
 ?>
 
 <section aria-labelledby="collection-heading" class="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8" id="store">
-    <h2 id="collection-heading" class="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
+    <h2 id="collection-heading" class="text-2xl font-bold tracking-tight text-gray-900">Mua sắm theo bộ sưu tập</h2>
     <?php loadPartial("dropdown"); ?>
-    <p class="mt-4 text-base text-gray-500">Each season, we collaborate with world-class designers to create a collection inspired by the natural world.</p>
+    <p class="mt-4 text-base text-gray-500">Mỗi mùa, chúng tôi hợp tác với các nhà thiết kế đẳng 
+        cấp thế giới để tạo ra một bộ sưu tập lấy cảm hứng từ thế giới tự nhiên.</p>
 
     <div class="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
         <?php foreach ($currentPageProducts as $product): ?>

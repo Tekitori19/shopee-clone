@@ -24,7 +24,7 @@ if (!Session::has('cart')) {
         <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
             <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                 <img
-                    src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg' ?>"
+                    src="<?= strlen($product->picture) !== 0 ? $product->picture : 'https://olymstore.net/storage/20.09.2022/Olymstore0094.jpg' ?>"
                     class="h-full w-full object-cover object-center sm:h-full sm:w-full">
             </div>
             <div class="flex flex-1 flex-col space-y-2 p-4">

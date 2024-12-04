@@ -10,6 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_white_bg-svg1.svg" type="image/x-icon">
     <title>Shop BEE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100">
