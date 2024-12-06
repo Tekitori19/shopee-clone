@@ -31,11 +31,11 @@ $cate = match ($product->category_id) {
             </nav>
 
             <div class="mt-4">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><?= $product->name ?></h1>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><strong><?= $product->name ?></strong></h1>
             </div>
 
             <section aria-labelledby="information-heading" class="mt-4">
-                <h2 id="information-heading" class="sr-only">Product information</h2>
+                <h2 id="information-heading" class="sr-only">Thông tin sản phẩm</h2>
 
                 <div class="flex items-center">
                     <p class="text-lg text-gray-900 sm:text-xl">$<?= $product->price ?></p>

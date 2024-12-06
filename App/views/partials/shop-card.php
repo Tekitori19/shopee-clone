@@ -15,6 +15,15 @@ if (!Session::has('cart')) {
 
 // var_dump($product->picture);
 ?>
+<style>
+    .truncate-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* Giới hạn số dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
 <div class="pb-10">
 
     <form method="post" action="/checkout">
@@ -31,10 +40,11 @@ if (!Session::has('cart')) {
                 <h3 class="text-sm font-medium text-gray-900">
                     <a href="/listings/<?= $product->id ?>">
                         <span aria-hidden="true" class="absolute inset-0"></span>
-                        <?= $product->name ?>
+                        <strong><?= $product->name ?></strong>
                     </a>
                 </h3>
-                <p class="text-sm text-gray-500"><?= $product->description ?></p>
+                <!-- <p class="text-sm text-gray-500 "><?= $product->description ?></p> -->
+                <p class="text-base text-gray-500 truncate overflow-hidden whitespace-nowrap"><?= $product->description ?></p>
                 <div class="flex flex-1 flex-col justify-end">
                     <p class="text-sm italic text-gray-500"><?= $category ?></p>
                     <p class="text-base font-medium text-gray-900">$<?= $product->price ?></p>

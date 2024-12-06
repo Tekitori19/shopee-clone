@@ -54,22 +54,22 @@ class CheckOut
 
     public function loadAllOrder($params)
     {
-        $sql = " SELECT 
-            o.id as order_id, 
-            o.message, 
-            o.order_date, 
-            o.status, 
-            o.total_money as order_total, 
-            od.product_id, 
-            p.name as product_name, 
-            od.price as product_price, 
-            od.number_of_products, 
-            od.total_money as product_total 
-            FROM orders o
-            LEFT JOIN order_details od ON o.id = od.order_id
-            LEFT JOIN products p ON od.product_id = p.id
-            WHERE o.user_id = :user_id
-        ";
+        // $sql = " SELECT 
+        //     o.id as order_id, 
+        //     o.message, 
+        //     o.order_date, 
+        //     o.status, 
+        //     o.total_money as order_total, 
+        //     od.product_id, 
+        //     p.name as product_name, 
+        //     od.price as product_price, 
+        //     od.number_of_products, 
+        //     od.total_money as product_total 
+        //     FROM orders o
+        //     LEFT JOIN order_details od ON o.id = od.order_id
+        //     LEFT JOIN products p ON od.product_id = p.id
+        //     WHERE o.user_id = :user_id
+        // ";
 
 
         $sql = " SELECT 

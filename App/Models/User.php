@@ -64,4 +64,33 @@ class User
             $params
         );
     }
+
+    public function resetPassword($params)
+    {
+        $sql = "UPDATE users
+        SET reset_token_hash = :token,
+            reset_token_expires_at = :expiry
+        WHERE email = :email";
+        return $this->db->query($sql, $params)->rowCount();
+    }
+
+    public function selectByResetToken($params)
+    {
+        // date_default_timezone_set('Asia/Ho_Chi_Minh');
+        return $this->db->query(
+            "SELECT * FROM users 
+            WHERE reset_token_hash = :token AND reset_token_expires_at > :current_time",
+            [...$params, 'current_time' => date('Y-m-d H:i:s')]
+        )->fetch();
+    }
+
+    public function updateUserPasswordByToken($params)
+    {
+        $this->db->query(
+            "UPDATE users 
+            SET password = :password, reset_token_hash = NULL, reset_token_expires_at = NULL
+            WHERE id = :id",
+            $params
+        );
+    }
 }

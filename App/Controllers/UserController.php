@@ -37,101 +37,99 @@ class UserController
         loadView("authorization/forget");
     }
 
-    // public function reset()
-    // {
-    //     // Ví dụ về cách sử dụng
-    //     $userEmail = 'user@example.com'; // Email người dùng
-    //     $resetToken = bin2hex(random_bytes(16)); // Tạo token ngẫu nhiên để gửi qua email
-    //     $this->sendPasswordResetEmail($userEmail, $resetToken);
-    //     // loadView("authorization/forget");
-    // }
-    //
-    // function sendPasswordResetEmail($userEmail, $resetToken)
-    // {
-    //     $mail = new PHPMailer(true); // Tạo đối tượng PHPMailer
-    //
-    //     try {
-    //         // Cấu hình server SMTP
-    //         $mail->isSMTP();
-    //         $mail->Host = 'smtp.gmail.com'; // Dùng SMTP của Google (hoặc server khác)
-    //         $mail->SMTPAuth = true;
-    //         $mail->Username = 'your_email@gmail.com'; // Thay bằng email của bạn
-    //         $mail->Password = 'your_password'; // Thay bằng mật khẩu email của bạn
-    //         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    //         $mail->Port = 587;
-    //
-    //         // Cài đặt người gửi và người nhận
-    //         $mail->setFrom('your_email@gmail.com', 'Your Name');
-    //         $mail->addAddress($userEmail); // Thêm địa chỉ email người nhận
-    //
-    //         // Nội dung email
-    //         $mail->isHTML(true);
-    //         $mail->Subject = 'Reset Password Request';
-    //         $mail->Body    = 'Click on the following link to reset your password: <a href="https://yourdomain.com/reset_password.php?token=' . $resetToken . '">Reset Password</a>';
-    //         $mail->AltBody = 'To reset your password, please click on the following link: https://yourdomain.com/reset_password.php?token=' . $resetToken;
-    //
-    //         // Gửi email
-    //         $mail->send();
-    //         echo 'Password reset email has been sent.';
-    //     } catch (Exception $e) {
-    //         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    //     }
-    // }
-    //
+    public function reset()
+    {
+        $email = $_POST["email"];
 
-    // public function sendResetLink()
-    // {
-    //     $email = $_POST['email'];
-    //     $userModel = new UserModel();
-    //     $user = $userModel->getUserByEmail($email);
-    //
-    //     if ($user) {
-    //         $token = bin2hex(random_bytes(50));
-    //         $userModel->storeToken($user['id'], $token);
-    //
-    //         $resetLink = "http://yourdomain.com/reset-password?token=" . $token;
-    //         $subject = "Password Reset Request";
-    //         $message = "Click the following link to reset your password: " . $resetLink;
-    //
-    //         $emailLib = new Email();
-    //         $emailLib->send($email, $subject, $message);
-    //
-    //         echo "A password reset link has been sent to your email.";
-    //     } else {
-    //         echo "Email address not found.";
-    //     }
-    // }
-    //
-    // public function resetPassword()
-    // {
-    //     $token = $_GET['token'];
-    //     $userModel = new UserModel();
-    //     $user = $userModel->getUserByToken($token);
-    //
-    //     if ($user) {
-    //         loadView("authorization/reset_password", ['token' => $token]);
-    //     } else {
-    //         echo "Invalid token.";
-    //     }
-    // }
-    //
-    // public function updatePassword()
-    // {
-    //     $token = $_POST['token'];
-    //     $password = $_POST['password'];
-    //     $userModel = new UserModel();
-    //     $user = $userModel->getUserByToken($token);
-    //
-    //     if ($user) {
-    //         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    //         $userModel->updatePassword($user['id'], $hashedPassword);
-    //         $userModel->deleteToken($token);
-    //
-    //         echo "Your password has been successfully updated.";
-    //     } else {
-    //         echo "Invalid token.";
-    //     }
-    // }
+        $token = bin2hex(random_bytes(16));
+
+        $token_hash = hash("sha256", $token);
+
+        $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
+
+        $params = [
+            'token' => $token_hash,
+            'expiry' => $expiry,
+            'email' => $email
+        ];
+        // 1 == true
+        if ($this->model->resetPassword($params)) {
+            $mail = new PHPMailer(true);
+
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+            $mail->Username = 'phamvanmien2001@gmail.com';
+
+            $mail->Password = 'jsjy uafl vesk ovfc';
+            $mail->isHtml(true);
+            $mail->setFrom("noreply@example.com");
+            $mail->addAddress($email);
+            $mail->Subject = "Password Reset";
+            $mail->Body = <<<END
+
+    Click <a href="http://shopee-clone.test/auth/reset?token=$token">here</a> 
+    to reset your password.
+
+    END;
+
+            try {
+
+                $mail->send();
+            } catch (Exception $e) {
+
+                echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+            }
+            // $this->sendPasswordResetEmail($email, $token);
+            
+            echo "<script>
+        alert('Email đặt lại mật khẩu đã được gửi. Vui lòng kiểm tra email của bạn và đăng nhập.');
+        window.location.href = 'login'; // Điều hướng về trang đăng nhập
+        </script>";
+        } else {
+            echo "Email not found";
+        };
+    }
+
+    public function reset_view()
+    {
+        loadView("authorization/reset");
+    }
+
+    public function reset_pass()
+    {
+        $token = $_POST['token'];
+        $token_hash = hash("sha256", $token);
+        $user = $this->model->selectByResetToken(['token' => $token_hash]);
+        if (strlen($_POST["password"]) < 8) {
+            die("Password must be at least 8 characters");
+        }
+
+        if (! preg_match("/[a-z]/i", $_POST["password"])) {
+            die("Password must contain at least one letter");
+        }
+
+        if (! preg_match("/[0-9]/", $_POST["password"])) {
+            die("Password must contain at least one number");
+        }
+
+        if ($_POST["password"] !== $_POST["password_confirmation"]) {
+            die("Passwords must match");
+        }
+
+        $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        $this->model->updateUserPasswordByToken([
+            'password' => $password_hash,
+            'id' => $user->id
+        ]);;
+        echo "Password has been reset";
+        redirect('/auth/login');
+    }
 
     public function store()
     {

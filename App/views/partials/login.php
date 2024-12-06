@@ -30,9 +30,18 @@
                     Đăng nhập
                 </button>
                 <p class="mt-4 text-gray-500">
-                    Chưa có tài khoản?
-                    <a class="text-blue-900" href="/auth/register">Đăng kí</a>
+                    Chưa có tài khoản? 
+                        <a class="text-blue-900 underline hover:text-blue-700" href="/auth/register">Đăng ký</a>
+                    </p>
+                    <p class="mt-2 text-gray-500">
+                        <a class="text-blue-900 underline hover:text-blue-700" href="/auth/forget">Quên mật khẩu?</a>
+                    </p>
+                    <p class="mt-2 text-gray-500">
+                        <a class="text-blue-900 underline hover:text-blue-700" href="/auth/login-email">
+                            Đăng nhập bằng Gmail
+                        </a>
                 </p>
+
             </form>
         </div>
     </div>

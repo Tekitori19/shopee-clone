@@ -20,6 +20,8 @@ $router->post('/auth/register', 'UserController@store', ['guest']);
 $router->post('/auth/logout', 'UserController@logout', ['auth']);
 $router->get('/auth/forget', 'UserController@forget', ['guest']);
 $router->post('/auth/forget', 'UserController@reset', ['guest']);
+$router->get('/auth/reset', 'UserController@reset_view', ['guest']);
+$router->post('/auth/reset', 'UserController@reset_pass', ['guest']);
 
 $router->get('/checkout', 'CheckoutController@index', ['auth']);
 $router->post('/checkout', 'CheckoutController@cart', ['auth']);
