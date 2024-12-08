@@ -35,6 +35,12 @@ class CheckOut
         $this->db->query($sql_insert_order, $params);
     }
 
+    public function insertOrderZalopay($params)
+    {
+        $sql_insert_order = "INSERT INTO orders (user_id, status, total_money, online_payment) VALUES (:user_id, :order_status, :order_total, 1)";
+        $this->db->query($sql_insert_order, $params);
+    }
+
     public function insertOrderDetails($params)
     {
         $sql_insert_order_details =

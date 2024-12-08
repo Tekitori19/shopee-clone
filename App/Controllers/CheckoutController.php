@@ -23,6 +23,58 @@ class CheckoutController
         ]);
     }
 
+    public function success()
+    {
+        if (isset($_GET['apptransid']) && isset($_GET['appid'])) {
+
+            $user_id = Session::get('user')['id'];
+
+            $order_status = "Chưa xử lí"; // Trạng thái đơn hàng mới
+            $order_total = 0; // Tính tổng tiền đơn hàng
+
+            $param = [
+                'user_id' => $user_id,
+                'order_status' => $order_status,
+                'order_total' => $order_total
+            ];
+
+            $this->model->insertOrderZalopay($param);
+
+            $new_order_id = $this->model->getLastInsertedID();
+
+            $cart = Session::get('cart');
+
+            foreach ($cart as $item) {
+                $name = $item['name'];
+                $param = ['name' => $name];
+                $product_id = $this->model->getProductIDByName($param);
+                $price = $item['price'];
+                $quantity = $item['quantity'];
+                $total_money = $price * $quantity;
+
+                $params = [
+                    'new_order_id' => $new_order_id,
+                    'product_id' => $product_id->id,
+                    'price' => $price,
+                    'quantity' => $quantity,
+                    'total_money' => $total_money
+                ];
+                $this->model->insertOrderDetails($params);
+
+                $order_total += $total_money;
+            }
+
+            $param = [
+                'order_total' => $order_total + 16,
+                'new_order_id' => $new_order_id
+            ];
+            $this->model->updateMoneyOrder($param);
+
+            Session::clear('cart');
+        }
+        echo "Thanh toán thành công!";
+    }
+
     public function cart()
     {
         // Khởi tạo giỏ hàng nếu chưa tồn tại trong session
@@ -155,7 +207,7 @@ class CheckoutController
         $this->model->updateMoneyOrder($param);
 
         Session::clear('cart');
-        redirect('/dashboard');
+        redirect('/checkout/success');
     }
 
     public function order()
