@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `categories`
 --
+CREATE DATABASE IF NOT EXISTS shopee;
+USE shopee;
 
 CREATE TABLE `categories` (
   `id` int NOT NULL,

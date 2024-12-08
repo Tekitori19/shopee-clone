@@ -85,3 +85,36 @@ if (isset($_GET['token'])) {
 ### Lưu ý:
 - Đảm bảo rằng token được lưu trữ và kiểm tra trong cơ sở dữ liệu để bảo vệ tính bảo mật.
 - Cấu hình email SMTP chính xác (đặc biệt khi sử dụng Gmail, bạn cần kích hoạt "Less secure apps" hoặc dùng OAuth2 cho bảo mật cao hơn).
+
+
+# Docker
+có xíu lỗi mà t lười chưa kịp fix nên có gì ae chạy docker compose lên thì chạy thêm lệnh ni giúp t
+```bash
+docker-compose exec db mysql -u root -p
+```
+```SQL
+USE shopee;
+SHOW TABLES;
+```
+```bash
+docker-compose exec -T db mysql -u root -proot shopee < ./database_design/shopapp.sql
+```
+# Lưu ý
+khi chạy trên localhost thì phải uncomment dòng 11 và comment dòng 12 của file helper.php
+```php
+function basePath($path = '')
+{
+// return __DIR__ . "\\" . $path;
+return __DIR__ . "/" . $path; // for docker
+}
+```
+khi chạy trên localhost thì phải uncomment config đầu tien của config/db.php
+```php
+return [
+    'host' => 'localhost',
+    'port' => 3306,
+    'dbname' => 'shopapp',
+    'username' => 'root',
+    'password' => ''
+];
+```
