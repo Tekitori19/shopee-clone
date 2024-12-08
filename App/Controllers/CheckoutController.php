@@ -72,7 +72,7 @@ class CheckoutController
 
             Session::clear('cart');
         }
-        echo "Thanh toán thành công!";
+        loadView("checkout/success");
     }
 
     public function cart()
