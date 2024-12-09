@@ -51,7 +51,7 @@ class Product
 
     public function insertProduct($fields, $values, $newProduct)
     {
-        $this->db->query("INSERT INTO products ({ $fields }) VALUES ({ $values })", $newProduct);
+        $this->db->query("INSERT INTO products ({$fields}) VALUES ({$values})", $newProduct);
     }
 
     public function query($query, $data)

@@ -8,8 +8,8 @@
  */
 function basePath($path = '')
 {
-    // return __DIR__ . "\\" . $path;
-    return __DIR__ . "/" . $path; // for docker
+    return __DIR__ . "\\" . $path;
+    // return __DIR__ . "/" . $path; // for docker
 }
 
 /**
@@ -90,4 +90,3 @@ function redirect($path)
     header("Location: {$path}");
     exit;
 }
-
