@@ -1,5 +1,6 @@
 <?= loadPartial("head"); ?>
 <?= loadPartial("navbar"); ?>
+<div class="w-full h-[100px]"></div>
 <div class="container w-[1000px] mx-auto py-4">
     <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Lịch sử đơn hàng</h1>
     <?php if (empty($orders)): ?>
