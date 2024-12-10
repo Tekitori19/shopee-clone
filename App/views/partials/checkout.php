@@ -178,50 +178,13 @@ $sumtotal = $subbtotal + 16;
                     <fieldset class="mt-4">
                         <legend class="sr-only">Payment type</legend>
                         <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                            <div class="flex items-center">
-                                <input id="credit-card" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">Thanh toán khi nhận hàng</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="paypal" disabled type="radio" class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700">PayPal <span class="text-red-500">(Bảo trì)</span></label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="etransfer" type="radio" disabled class="cursor-not-allowed h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700">eTransfer <span class="text-red-500">(Bảo trì)</span></label>
-                            </div>
+                            <form method="post" action="/checkout/zalo-pay" class="flex items-center">
+                                <input id="zalo-pay" disabled type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <!-- <label for="zalo">zalo </label> -->
+                                <button type="submit" class="ml-3 block text-sm font-medium text-gray-700">Thanh toán zalo pay</button>
+                            </form>
                         </div>
                     </fieldset>
-
-                    <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
-                        <div class="col-span-4">
-                            <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
-                            <div class="mt-1">
-                                <input type="text" disabled id="card-number" name="card-number" autocomplete="cc-number" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <div class="col-span-4">
-                            <label for="name-on-card" class="block text-sm font-medium text-gray-700">Name on card</label>
-                            <div class="mt-1">
-                                <input type="text" disabled id="name-on-card" name="name-on-card" autocomplete="cc-name" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <div class="col-span-3">
-                            <label for="expiration-date" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
-                            <div class="mt-1">
-                                <input type="text" disabled name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
-                            <div class=" cursor-not-allowedmt-1">
-                                <input type="text" disabled name="cvc" id="cvc" autocomplete="csc" class="cursor-not-allowed block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

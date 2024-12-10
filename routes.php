@@ -28,6 +28,9 @@ $router->post('/checkout', 'CheckoutController@cart', ['auth']);
 $router->delete('/checkout', 'CheckoutController@delete', ['auth']);
 $router->post('/checkout/store', 'CheckoutController@store', ['auth']);
 $router->get('/checkout/order', 'CheckoutController@order', ['auth']);
+$router->get('/checkout/success', 'CheckoutController@success', ['auth']);
+$router->post('/checkout/zalo-pay', 'OnlinePaymentController@index', ['auth']);
+$router->post('/checkout/zalo-pay/callback', 'OnlinePaymentController@callback', ['auth']);
 
 $router->get('/dashboard/search', 'DashboardController@search', ['admin']);
 $router->get('/dashboard', 'DashboardController@order', ['admin']);
