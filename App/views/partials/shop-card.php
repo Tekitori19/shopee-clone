@@ -75,6 +75,13 @@ if (!Session::has('cart')) {
 </div>
 <script>
 function thongbao() {
-    alert("Sản phẩm đã được thêm vào giỏ hàng! Vui lòng xem giỏ hàng");
+    <?php if (!Session::has('user')): ?>
+        // Nếu chưa đăng nhập, hiển thị thông báo và chuyển hướng
+        alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!");
+        window.location.href = "/login.php"; // Chuyển hướng đến trang đăng nhập
+    <?php else: ?>
+        // Nếu đã đăng nhập, hiển thị thông báo thêm vào giỏ hàng
+        alert("Sản phẩm đã được thêm vào giỏ hàng! Vui lòng xem giỏ hàng.");
+    <?php endif; ?>
 }
 </script>

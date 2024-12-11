@@ -179,13 +179,15 @@ $sumtotal = $subbtotal + 16;
                         <legend class="sr-only">Payment type</legend>
                         <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
                             <form method="post" action="/checkout/zalo-pay" class="flex items-center">
-                                <input id="zalo-pay" disabled type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                <!-- <label for="zalo">zalo </label> -->
-                                <button type="submit" class="ml-3 block text-sm font-medium text-gray-700">Thanh toán zalo pay</button>
+                                <input id="zalo-pay" disabled type="radio" class="h-5 w-5 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <button type="submit" class="ml-3 py-2 px-4 bg-indigo-600 text-white rounded-md font-medium text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    Thanh toán Zalo Pay
+                                </button>
                             </form>
                         </div>
                     </fieldset>
                 </div>
+
             </div>
 
             <!-- Order summary -->
