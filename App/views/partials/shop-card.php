@@ -15,15 +15,7 @@ if (!Session::has('cart')) {
 
 // var_dump($product->picture);
 ?>
-<style>
-    .truncate-text {
-        display: -webkit-box;
-        -webkit-line-clamp: 1; /* Giới hạn số dòng */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-</style>
+
 <div class="pb-10">
 
     <form method="post" action="/checkout">
@@ -76,11 +68,11 @@ if (!Session::has('cart')) {
 <script>
 function thongbao() {
     <?php if (!Session::has('user')): ?>
-        // Nếu chưa đăng nhập, hiển thị thông báo và chuyển hướng
+        
         alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!");
-        window.location.href = "/login.php"; // Chuyển hướng đến trang đăng nhập
+        window.location.href = "/login.php"; 
     <?php else: ?>
-        // Nếu đã đăng nhập, hiển thị thông báo thêm vào giỏ hàng
+        
         alert("Sản phẩm đã được thêm vào giỏ hàng! Vui lòng xem giỏ hàng.");
     <?php endif; ?>
 }
