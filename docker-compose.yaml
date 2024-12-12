@@ -12,6 +12,12 @@ services:
 
   app:
     build: .
+    # render part
+    expose:
+      - "10000"  # Đảm bảo ứng dụng lắng nghe trên cổng 10000.
+    environment:
+      - PORT=10000  # Đảm bảo ứng dụng lắng nghe trên cổng 10000.
+    # render part
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
