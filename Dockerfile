@@ -29,8 +29,12 @@ WORKDIR /var/www/html
 # Sao chép mã nguồn
 COPY . /var/www/html
 
-# Cài đặt dependencies
-RUN composer install
+# Hiển thị phiên bản Composer và PHP để kiểm tra
+RUN composer --version
+RUN php --version
+
+# Cài đặt dependencies với đầu ra chi tiết
+RUN composer install --prefer-dist --no-scripts --no-dev --no-progress --no-interaction -vvv
 
 # Đảm bảo quyền truy cập
 RUN chown -R www-data:www-data /var/www/html
