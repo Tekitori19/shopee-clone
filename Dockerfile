@@ -1,24 +1,39 @@
-# FROM php:8.1-fpm-alpine
+# # Tạo Dockerfile
+# FROM php:8.1-fpm
 #
+# # Cài đặt các extension PHP cần thiết
 # RUN docker-php-ext-install pdo pdo_mysql
 #
-# ENV COMPOSER_ALLOW_SUPERUSER=1
+# # Cài đặt Composer
+# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 #
-# COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
+# # Đặt thư mục làm việc
+# WORKDIR /var/www/html
 #
-# COPY ./composer.* ./
+# # Sao chép mã nguồn
+# COPY . /var/www/html
 #
-# RUN composer install --prefer-dist --no-scripts --no-dev --no-progress --no-interaction
+# # Cài đặt dependencies
+# RUN composer install
 #
-# COPY . .
-#
-# RUN composer dump-autoload --optimize
+# # Đảm bảo quyền truy cập
+# RUN chown -R www-data:www-data /var/www/html
 
-# Tạo Dockerfile
+
 FROM php:8.1-fpm
 
-# Cài đặt các extension PHP cần thiết
-RUN docker-php-ext-install pdo pdo_mysql
+# Cài đặt các dependencies hệ thống
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
+
+# Cài đặt các extension PHP
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
 
 # Cài đặt Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -26,15 +41,28 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Đặt thư mục làm việc
 WORKDIR /var/www/html
 
-# Sao chép mã nguồn
-COPY . /var/www/html
+# Sao chép file composer để cài đặt dependencies
+COPY composer.json composer.lock* ./
 
-# Hiển thị phiên bản Composer và PHP để kiểm tra
-RUN composer --version
-RUN php --version
+# Cài đặt dependencies Composer
+RUN composer install \
+    --no-scripts \
+    --no-autoloader \
+    --prefer-dist \
+    --no-progress \
+    --no-suggest
 
-# Cài đặt dependencies với đầu ra chi tiết
-RUN composer install --prefer-dist --no-scripts --no-dev --no-progress --no-interaction -vvv
+# Sao chép toàn bộ mã nguồn
+COPY . .
+
+# Generate autoload
+RUN composer dump-autoload --optimize
 
 # Đảm bảo quyền truy cập
 RUN chown -R www-data:www-data /var/www/html
+
+# Expose port
+EXPOSE 9000
+
+# Command default
+CMD ["php-fpm"]
