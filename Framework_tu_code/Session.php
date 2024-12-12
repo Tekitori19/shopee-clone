@@ -7,6 +7,7 @@ class Session
     /**
      * Start the session
      * 
+
      * @return void
      */
     public static function start()
