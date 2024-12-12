@@ -61,11 +61,8 @@ RUN composer dump-autoload --optimize
 # Đảm bảo quyền truy cập
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port only expose if not has ports in docker-compose
-# EXPOSE 80
-
-#default port in render
-EXPOSE 10000
+# Expose port
+EXPOSE 9000
 
 # Command default
 CMD ["php-fpm"]
