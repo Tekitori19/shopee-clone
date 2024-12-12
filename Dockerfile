@@ -62,7 +62,7 @@ RUN composer dump-autoload --optimize
 RUN chown -R www-data:www-data /var/www/html
 
 # Expose port
-EXPOSE 9000
+# EXPOSE 9000
 
 # Command default
 CMD ["php-fpm"]
